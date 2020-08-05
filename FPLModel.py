@@ -6,7 +6,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QAbstractTableModel
 
 
-class PandasModel(QAbstractTableModel):
+class TableViewModel(QAbstractTableModel):
 
     def __init__(self, data):
         QAbstractTableModel.__init__(self)

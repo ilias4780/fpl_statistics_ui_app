@@ -21,14 +21,18 @@ class Controller(object):
         self.element_types_df = None
         self.teams_df = None
         self.useful_player_attributes = None
-        self.most_vfm_players = None
+        self.df_for_view = None
         self.model = None
+        self.last_process = None
 
         # Connections
         self.main_window.menu.addAction('&Exit', self.main_window.close)
         self.main_window.download_database_button.clicked.connect(self.get_fpl_database_in_json)
         self.main_window.process_data_button.clicked.connect(self.process_data)
         self.main_window.most_vfm_players_button.clicked.connect(self.display_most_vfm_players)
+        self.main_window.save_useful_player_attributes_df_to_csv.clicked.connect(
+            self.save_useful_player_attributes_df_to_csv)
+        self.main_window.save_df_for_view_to_csv.clicked.connect(self.save_df_for_view_to_csv)
 
     def get_fpl_database_in_json(self):
         fpl_api_url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
@@ -83,12 +87,13 @@ class Controller(object):
         else:
             self.main_window.set_response_display_text("Data has been processed successfully.")
             self.main_window.most_vfm_players_button.setDisabled(False)
+            self.main_window.save_useful_player_attributes_df_to_csv.setDisabled(False)
 
     def display_most_vfm_players(self):
         try:
             # Find the most vfm players (most points per cost - value = points / cost)
-            self.most_vfm_players = self.useful_player_attributes.sort_values('value', ascending=False)
-            self.model = m.PandasModel(self.most_vfm_players)
+            self.df_for_view = self.useful_player_attributes.sort_values('value', ascending=False)
+            self.model = m.TableViewModel(self.df_for_view)
         except Exception as e:
             self.main_window.set_response_display_text("An error has occurred while trying to calculate the data. "
                                                        "Please consult the log for details.")
@@ -96,3 +101,28 @@ class Controller(object):
         else:
             self.main_window.set_table_view(self.model)
             self.main_window.set_response_display_text("Most Valuable For Money Players shown below.")
+            self.main_window.save_df_for_view_to_csv.setDisabled(False)
+            self.last_process = 'VFM_player'
+
+    def save_useful_player_attributes_df_to_csv(self):
+        # TODO: Add popup window for save directory
+        try:
+            self.useful_player_attributes.to_csv('FplStatistics.csv')
+        except Exception as e:
+            self.main_window.set_response_display_text("An error has occurred while trying to save the data. "
+                                                       "Please consult the log for details.")
+            self.logger.error("An error has occurred while trying to save the data.", exc_info=True)
+        else:
+            self.main_window.set_response_display_text("Data has been saved to a spreadsheet.")
+
+    def save_df_for_view_to_csv(self):
+        # TODO: Add popup window for save directory
+        try:
+            filename = 'FplStatistics_' + self.last_process + '.csv'
+            self.df_for_view.to_csv(filename)
+        except Exception as e:
+            self.main_window.set_response_display_text("An error has occurred while trying to save the data. "
+                                                       "Please consult the log for details.")
+            self.logger.error("An error has occurred while trying to save the data.", exc_info=True)
+        else:
+            self.main_window.set_response_display_text("Data has been saved to a spreadsheet.")

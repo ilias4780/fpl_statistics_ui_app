@@ -14,26 +14,37 @@ class MainWindow(QMainWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
+        # Create main window
         self.setWindowTitle('FPL Statistics Python APP')
         self.setFixedSize(1024, 768)
         self.menu = self.menuBar().addMenu("&Options")
 
+        # Specify the general layout and central widget
         self._general_layout = QVBoxLayout()
         self._central_widget = QWidget(self)
         self.setCentralWidget(self._central_widget)
         self._central_widget.setLayout(self._general_layout)
 
+        # Add the button for db download and data processing
         self._buttons_layout1 = QGridLayout()
         self._create_download_database_button()
         self._create_process_data_button()
         self._general_layout.addLayout(self._buttons_layout1)
 
+        # Add the buttons for calculations
         self._buttons_layout2 = QGridLayout()
         self._create_most_vfm_players_button()
         self._general_layout.addLayout(self._buttons_layout2)
 
+        # Instantiate the status display and table view
         self._create_status_display()
         self._create_table_view()
+
+        # Add the buttons for saving the dataframes
+        self._buttons_layout3 = QGridLayout()
+        self._create_save_useful_player_attributes_df_to_csv()
+        self._create_save_df_for_view_to_csv()
+        self._general_layout.addLayout(self._buttons_layout3)
 
     def _create_status_display(self):
         self._response_display = QTextEdit()
@@ -55,7 +66,7 @@ class MainWindow(QMainWindow):
         self.process_data_button.setDisabled(True)
 
     def _create_most_vfm_players_button(self):
-        self.most_vfm_players_button = QPushButton('Calculate most \nVFM players.')
+        self.most_vfm_players_button = QPushButton('Calculate most \nVFM players')
         self.most_vfm_players_button.setFixedSize(120, 40)
         self._buttons_layout2.addWidget(self.most_vfm_players_button, 0, 0)
         self.most_vfm_players_button.setDisabled(True)
@@ -72,3 +83,15 @@ class MainWindow(QMainWindow):
         self._response_display.setText(text)
         self._response_display.setAlignment(Qt.AlignCenter)
         self._response_display.setFocus()
+
+    def _create_save_useful_player_attributes_df_to_csv(self):
+        self.save_useful_player_attributes_df_to_csv = QPushButton('Save Original \nDataframe To CSV')
+        self.save_useful_player_attributes_df_to_csv.setFixedSize(120, 40)
+        self._buttons_layout3.addWidget(self.save_useful_player_attributes_df_to_csv, 0, 0)
+        self.save_useful_player_attributes_df_to_csv.setDisabled(True)
+
+    def _create_save_df_for_view_to_csv(self):
+        self.save_df_for_view_to_csv = QPushButton('Save Processed \nDataframe To CSV')
+        self.save_df_for_view_to_csv.setFixedSize(120, 40)
+        self._buttons_layout3.addWidget(self.save_df_for_view_to_csv, 0, 1)
+        self.save_df_for_view_to_csv.setDisabled(True)
