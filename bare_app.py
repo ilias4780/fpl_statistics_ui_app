@@ -1,38 +1,5 @@
-"""
-    fpl_statistics_controller.py
-"""
-import logging
-
-import numpy as np
 import pandas as pd
 import requests
-
-
-class Controller(object):
-
-    def __init__(self, main_window):
-        self.logger = logging.getLogger(__name__)
-        self.main_window = main_window
-
-        self.fpl_database_in_json = None
-
-        # Connections
-        self.main_window.menu.addAction('&Exit', self.main_window.close)
-        self.main_window.download_database_button.clicked.connect(self.get_fpl_database_in_json)
-
-    def get_fpl_database_in_json(self):
-        fpl_api_url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
-        try:
-            the_whole_db = requests.get(fpl_api_url)
-        except requests.RequestException as e:
-            self.main_window.set_response_display_text("An error has occurred while trying to download the database. "
-                                                       "Please consult the log for details.")
-            self.logger.error("An error has occurred while trying to download the database.", exc_info=True)
-        else:
-            self.fpl_database_in_json = the_whole_db.json()
-            self.main_window.set_response_display_text("Database has been downloaded successfully.")
-            self.logger.debug("Database has been downloaded successfully.")
-            self.main_window.process_data_button.setDisabled(False)
 
 
 def main():

@@ -3,8 +3,8 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
-import fpl_statistics_viewer as v
-import fpl_statistics_controller as c
+import FPLViewer as v
+import FPLController as c
 
 
 def main():
@@ -33,6 +33,7 @@ def main():
         logger.debug("Main window initiated.")
         my_controller = c.Controller(my_main_window)
         logger.debug("Controller initiated.")
+
 
         my_main_window.show()
 
