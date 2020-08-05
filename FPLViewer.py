@@ -9,6 +9,8 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtWidgets import QTextEdit
 from PyQt5.QtWidgets import QPushButton
 
+import FPLModel as m
+
 
 class MainWindow(QMainWindow):
 
@@ -34,6 +36,8 @@ class MainWindow(QMainWindow):
         # Add the buttons for calculations
         self._buttons_layout2 = QGridLayout()
         self._create_most_vfm_players_button()
+        self._create_most_valuable_position_button()
+        self._create_most_valuable_teams_button()
         self._general_layout.addLayout(self._buttons_layout2)
 
         # Instantiate the status display and table view
@@ -71,13 +75,26 @@ class MainWindow(QMainWindow):
         self._buttons_layout2.addWidget(self.most_vfm_players_button, 0, 0)
         self.most_vfm_players_button.setDisabled(True)
 
+    def _create_most_valuable_position_button(self):
+        self.most_valuable_position_button = QPushButton('Calculate most \nValuable Position')
+        self.most_valuable_position_button.setFixedSize(120, 40)
+        self._buttons_layout2.addWidget(self.most_valuable_position_button, 0, 1)
+        self.most_valuable_position_button.setDisabled(True)
+
+    def _create_most_valuable_teams_button(self):
+        self.most_valuable_teams_button = QPushButton('Calculate most \nValuable Teams')
+        self.most_valuable_teams_button.setFixedSize(120, 40)
+        self._buttons_layout2.addWidget(self.most_valuable_teams_button, 0, 2)
+        self.most_valuable_teams_button.setDisabled(True)
+
     def _create_table_view(self):
         self.table_view = QTableView()
         self.table_view.resize(800, 600)
         self._general_layout.addWidget(self.table_view)
 
-    def set_table_view(self, data):
-        self.table_view.setModel(data)
+    def set_table_view(self, df):
+        model = m.TableViewModel(df)
+        self.table_view.setModel(model)
 
     def set_response_display_text(self, text):
         self._response_display.setText(text)

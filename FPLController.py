@@ -4,10 +4,9 @@
 
 import logging
 
+import numpy as np
 import pandas as pd
 import requests
-
-import FPLModel as m
 
 
 class Controller(object):
@@ -30,6 +29,8 @@ class Controller(object):
         self.main_window.download_database_button.clicked.connect(self.get_fpl_database_in_json)
         self.main_window.process_data_button.clicked.connect(self.process_data)
         self.main_window.most_vfm_players_button.clicked.connect(self.display_most_vfm_players)
+        self.main_window.most_valuable_position_button.clicked.connect(self.display_most_valuable_position)
+        self.main_window.most_valuable_teams_button.clicked.connect(self.display_most_valuable_teams)
         self.main_window.save_useful_player_attributes_df_to_csv.clicked.connect(
             self.save_useful_player_attributes_df_to_csv)
         self.main_window.save_df_for_view_to_csv.clicked.connect(self.save_df_for_view_to_csv)
@@ -45,7 +46,6 @@ class Controller(object):
         else:
             self.fpl_database_in_json = the_whole_db.json()
             self.main_window.set_response_display_text("Database has been downloaded successfully.")
-            self.logger.debug("Database has been downloaded successfully.")
             self.main_window.process_data_button.setDisabled(False)
 
     def process_data(self):
@@ -87,22 +87,61 @@ class Controller(object):
         else:
             self.main_window.set_response_display_text("Data has been processed successfully.")
             self.main_window.most_vfm_players_button.setDisabled(False)
+            self.main_window.most_valuable_position_button.setDisabled(False)
+            self.main_window.most_valuable_teams_button.setDisabled(False)
             self.main_window.save_useful_player_attributes_df_to_csv.setDisabled(False)
 
     def display_most_vfm_players(self):
         try:
             # Find the most vfm players (most points per cost - value = points / cost)
             self.df_for_view = self.useful_player_attributes.sort_values('value', ascending=False)
-            self.model = m.TableViewModel(self.df_for_view)
         except Exception as e:
             self.main_window.set_response_display_text("An error has occurred while trying to calculate the data. "
                                                        "Please consult the log for details.")
             self.logger.error("An error has occurred while trying to calculate the data.", exc_info=True)
         else:
-            self.main_window.set_table_view(self.model)
+            self.main_window.set_table_view(self.df_for_view)
             self.main_window.set_response_display_text("Most Valuable For Money Players shown below.")
             self.main_window.save_df_for_view_to_csv.setDisabled(False)
             self.last_process = 'VFM_player'
+
+    def display_most_valuable_position(self):
+        try:
+            # Find which position provides the most value when players with zero value are not considered
+            useful_player_attributes_no_zeros = \
+                self.useful_player_attributes.loc[self.useful_player_attributes.value > 0]
+            pivot = \
+                useful_player_attributes_no_zeros.pivot_table(index='position', values='value',
+                                                              aggfunc=np.mean).reset_index()
+            self.df_for_view = pivot.sort_values('value', ascending=False)
+        except Exception as e:
+            self.main_window.set_response_display_text("An error has occurred while trying to calculate the data. "
+                                                       "Please consult the log for details.")
+            self.logger.error("An error has occurred while trying to calculate the data.", exc_info=True)
+        else:
+            self.main_window.set_table_view(self.df_for_view)
+            self.main_window.set_response_display_text("Most Valuable Position shown below.")
+            self.main_window.save_df_for_view_to_csv.setDisabled(False)
+            self.last_process = 'MV_position'
+
+    def display_most_valuable_teams(self):
+        try:
+            # Find which teams provide the most value when players with zero value are not considered
+            useful_player_attributes_no_zeros = \
+                self.useful_player_attributes.loc[self.useful_player_attributes.value > 0]
+            team_pivot = \
+                useful_player_attributes_no_zeros.pivot_table(index='team_name', values='value',
+                                                              aggfunc=np.mean).reset_index()
+            self.df_for_view = team_pivot.sort_values('value', ascending=False)
+        except Exception as e:
+            self.main_window.set_response_display_text("An error has occurred while trying to calculate the data. "
+                                                       "Please consult the log for details.")
+            self.logger.error("An error has occurred while trying to calculate the data.", exc_info=True)
+        else:
+            self.main_window.set_table_view(self.df_for_view)
+            self.main_window.set_response_display_text("Most Valuable Teams shown below.")
+            self.main_window.save_df_for_view_to_csv.setDisabled(False)
+            self.last_process = 'MV_teams'
 
     def save_useful_player_attributes_df_to_csv(self):
         # TODO: Add popup window for save directory

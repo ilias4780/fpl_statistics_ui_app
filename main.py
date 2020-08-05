@@ -16,7 +16,6 @@ def main():
     # Application run
     try:
         app = QApplication(sys.argv)
-        logger.debug("Application initiated.")
 
         stylesheet = """
             MainWindow{
@@ -27,13 +26,9 @@ def main():
         """
 
         app.setStyleSheet(stylesheet)
-        logger.debug("Stylesheet set.")
 
         my_main_window = v.MainWindow()
-        logger.debug("Main window initiated.")
         my_controller = c.Controller(my_main_window)
-        logger.debug("Controller initiated.")
-
 
         my_main_window.show()
 
