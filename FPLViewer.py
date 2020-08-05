@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtWidgets import QTextEdit
 from PyQt5.QtWidgets import QPushButton
 
-import FPLModel as m
+import FPLModel
 
 
 class MainWindow(QMainWindow):
@@ -18,7 +18,7 @@ class MainWindow(QMainWindow):
         super().__init__(parent=parent)
         # Create main window
         self.setWindowTitle('FPL Statistics Python APP')
-        self.setFixedSize(1024, 768)
+        self.setMinimumSize(1024, 768)
         self.menu = self.menuBar().addMenu("&Options")
 
         # Specify the general layout and central widget
@@ -41,7 +41,7 @@ class MainWindow(QMainWindow):
         self._general_layout.addLayout(self._buttons_layout2)
 
         # Instantiate the status display and table view
-        self._create_status_display()
+        self._create_response_display()
         self._create_table_view()
 
         # Add the buttons for saving the dataframes
@@ -50,7 +50,7 @@ class MainWindow(QMainWindow):
         self._create_save_df_for_view_to_csv()
         self._general_layout.addLayout(self._buttons_layout3)
 
-    def _create_status_display(self):
+    def _create_response_display(self):
         self._response_display = QTextEdit()
         self._response_display.setAcceptRichText(True)
         self._response_display.setFixedHeight(40)
@@ -93,7 +93,7 @@ class MainWindow(QMainWindow):
         self._general_layout.addWidget(self.table_view)
 
     def set_table_view(self, df):
-        model = m.TableViewModel(df)
+        model = FPLModel.TableViewModel(df)
         self.table_view.setModel(model)
 
     def set_response_display_text(self, text):

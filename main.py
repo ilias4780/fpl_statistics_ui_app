@@ -3,8 +3,8 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
-import FPLViewer as v
-import FPLController as c
+import FPLViewer
+import FPLController
 
 
 def main():
@@ -19,18 +19,22 @@ def main():
 
         stylesheet = """
             MainWindow{
-                background-image: url('media/background.jpg');
-                background-repeat: no-repeat;
-                background-position: center;
-                }
+                background-color: rgb(55,0,60)
+            }
+            QTableView{ 
+                background-color: rgb(2,137,78)
+            }
+            QTextEdit{
+                background-color: rgb(2,137,78)
+            }
         """
 
         app.setStyleSheet(stylesheet)
 
-        my_main_window = v.MainWindow()
-        my_controller = c.Controller(my_main_window)
+        main_window = FPLViewer.MainWindow()
+        controller = FPLController.Controller(main_window)
 
-        my_main_window.show()
+        main_window.show()
 
         sys.exit(app.exec_())
     except Exception as e:
