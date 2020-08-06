@@ -3,6 +3,7 @@
 """
 
 import logging
+import os
 
 import numpy as np
 import pandas as pd
@@ -144,9 +145,9 @@ class Controller(object):
             self.last_process = 'MV_teams'
 
     def save_useful_player_attributes_df_to_csv(self):
-        # TODO: Add popup window for save directory
         try:
-            self.useful_player_attributes.to_csv('FplStatistics.csv')
+            selected_dir = str(self.main_window.dialog.getExistingDirectory(self.main_window, "Save Dataframe"))
+            self.useful_player_attributes.to_csv(os.path.join(selected_dir, 'FplStatistics.csv'))
         except Exception as e:
             self.main_window.set_response_display_text("An error has occurred while trying to save the data. "
                                                        "Please consult the log for details.")
@@ -155,10 +156,10 @@ class Controller(object):
             self.main_window.set_response_display_text("Data has been saved to a spreadsheet.")
 
     def save_df_for_view_to_csv(self):
-        # TODO: Add popup window for save directory
         try:
+            selected_dir = str(self.main_window.dialog.getExistingDirectory(self.main_window, "Save Dataframe"))
             filename = 'FplStatistics_' + self.last_process + '.csv'
-            self.df_for_view.to_csv(filename)
+            self.df_for_view.to_csv(os.path.join(selected_dir, filename))
         except Exception as e:
             self.main_window.set_response_display_text("An error has occurred while trying to save the data. "
                                                        "Please consult the log for details.")

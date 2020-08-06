@@ -16,6 +16,7 @@ def main():
     # Application run
     try:
         app = QApplication(sys.argv)
+        logger.debug('Application has started successfully.')
 
         stylesheet = """
             MainWindow{

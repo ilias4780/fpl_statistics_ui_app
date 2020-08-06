@@ -3,7 +3,7 @@
 """
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMainWindow, QGridLayout, QTableView
+from PyQt5.QtWidgets import QMainWindow, QGridLayout, QTableView, QFileDialog
 from PyQt5.QtWidgets import QVBoxLayout
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtWidgets import QTextEdit
@@ -49,6 +49,9 @@ class MainWindow(QMainWindow):
         self._create_save_useful_player_attributes_df_to_csv()
         self._create_save_df_for_view_to_csv()
         self._general_layout.addLayout(self._buttons_layout3)
+
+        # Add the file dialog for choosing the save directory
+        self.dialog = QFileDialog()
 
     def _create_response_display(self):
         self._response_display = QTextEdit()
