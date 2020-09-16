@@ -3,7 +3,7 @@
 """
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMainWindow, QGridLayout, QTableView, QFileDialog
+from PyQt5.QtWidgets import QMainWindow, QGridLayout, QTableView, QFileDialog, QComboBox, QLabel, QSpacerItem
 from PyQt5.QtWidgets import QVBoxLayout
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtWidgets import QTextEdit
@@ -33,15 +33,20 @@ class MainWindow(QMainWindow):
         self._create_process_data_button()
         self._general_layout.addLayout(self._buttons_layout1)
 
-        # Add the buttons for calculations
+        # Instantiate the status display
+        self._create_response_display()
+
+        # Create the grid for calculations
         self._buttons_layout2 = QGridLayout()
-        self._create_most_vfm_players_button()
+        self._create_show_player_statistics_button()
+        self._create_sort_by_label()
+        self._create_select_sort_value_button()
+        self._buttons_layout2.addItem(QSpacerItem(120, 40), 1, 2)
         self._create_most_valuable_position_button()
         self._create_most_valuable_teams_button()
         self._general_layout.addLayout(self._buttons_layout2)
 
-        # Instantiate the status display and table view
-        self._create_response_display()
+        # Instantiate the table view
         self._create_table_view()
 
         # Add the buttons for saving the dataframes
@@ -59,7 +64,7 @@ class MainWindow(QMainWindow):
         self._response_display.setFixedHeight(40)
         self._response_display.setFixedWidth(400)
         self._response_display.setReadOnly(True)
-        self._general_layout.addWidget(self._response_display, alignment=Qt.AlignLeft)
+        self._general_layout.addWidget(self._response_display, alignment=Qt.AlignCenter)
 
     def _create_download_database_button(self):
         self.download_database_button = QPushButton('Download Database')
@@ -72,22 +77,35 @@ class MainWindow(QMainWindow):
         self._buttons_layout1.addWidget(self.process_data_button, 0, 1)
         self.process_data_button.setDisabled(True)
 
-    def _create_most_vfm_players_button(self):
-        self.most_vfm_players_button = QPushButton('Calculate most \nVFM players')
-        self.most_vfm_players_button.setFixedSize(120, 40)
-        self._buttons_layout2.addWidget(self.most_vfm_players_button, 0, 0)
-        self.most_vfm_players_button.setDisabled(True)
+    def _create_show_player_statistics_button(self):
+        self.show_player_statistics_button = QPushButton("Show player \nstatistics")
+        self.show_player_statistics_button.setFixedSize(120, 40)
+        self._buttons_layout2.addWidget(self.show_player_statistics_button, 1, 0)
+        self.show_player_statistics_button.setDisabled(True)
+
+    def _create_sort_by_label(self):
+        self.sort_by_label = QLabel()
+        self.sort_by_label.setText("<font color='white'>Sort by:</font>")
+        self.sort_by_label.setAlignment(Qt.AlignBottom)
+        self.sort_by_label.setFixedSize(120, 40)
+        self._buttons_layout2.addWidget(self.sort_by_label, 0, 1)
+
+    def _create_select_sort_value_button(self):
+        self.select_sort_value_button = QComboBox()
+        self.select_sort_value_button.setFixedSize(120, 40)
+        self._buttons_layout2.addWidget(self.select_sort_value_button, 1, 1)
+        self.select_sort_value_button.setDisabled(True)
 
     def _create_most_valuable_position_button(self):
         self.most_valuable_position_button = QPushButton('Calculate most \nValuable Position')
         self.most_valuable_position_button.setFixedSize(120, 40)
-        self._buttons_layout2.addWidget(self.most_valuable_position_button, 0, 1)
+        self._buttons_layout2.addWidget(self.most_valuable_position_button, 1, 3)
         self.most_valuable_position_button.setDisabled(True)
 
     def _create_most_valuable_teams_button(self):
         self.most_valuable_teams_button = QPushButton('Calculate most \nValuable Teams')
         self.most_valuable_teams_button.setFixedSize(120, 40)
-        self._buttons_layout2.addWidget(self.most_valuable_teams_button, 0, 2)
+        self._buttons_layout2.addWidget(self.most_valuable_teams_button, 1, 4)
         self.most_valuable_teams_button.setDisabled(True)
 
     def _create_table_view(self):
@@ -111,7 +129,7 @@ class MainWindow(QMainWindow):
         self.save_useful_player_attributes_df_to_csv.setDisabled(True)
 
     def _create_save_df_for_view_to_csv(self):
-        self.save_df_for_view_to_csv = QPushButton('Save Processed \nDataframe To CSV')
+        self.save_df_for_view_to_csv = QPushButton('Save Current View \nDataframe To CSV')
         self.save_df_for_view_to_csv.setFixedSize(120, 40)
         self._buttons_layout3.addWidget(self.save_df_for_view_to_csv, 0, 1)
         self.save_df_for_view_to_csv.setDisabled(True)

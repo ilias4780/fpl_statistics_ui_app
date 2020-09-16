@@ -14,6 +14,11 @@ Functionality:
 - Calculate most valuable team
 - Save data in csv
 
+Version 1.1 Changelog
+-------------
+- You can now sort the tables by choosing the column to be sorted
+- Minor logic updates
+
 Setup:
 -------------
 In order to run the application, first you have to install the required dependencies
