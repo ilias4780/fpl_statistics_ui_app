@@ -151,10 +151,11 @@ class Controller(object):
         try:
             # Find which position provides the most value when players with zero value are not considered
             useful_player_attributes_no_zeros = \
-                self.useful_player_attributes.loc[self.useful_player_attributes.value > 0.1]
+                self.useful_player_attributes.loc[self.useful_player_attributes.value > 0]
             pivot = \
                 useful_player_attributes_no_zeros.pivot_table(index='position', values='value',
                                                               aggfunc=np.mean).reset_index()
+            pivot['value'] = pivot['value'].round(decimals=2)
             self.df_for_view = pivot.sort_values('value', ascending=False)
         except Exception as e:
             self.main_window.set_response_display_text("An error has occurred while trying to calculate the data. "
@@ -170,10 +171,11 @@ class Controller(object):
         try:
             # Find which teams provide the most value when players with zero value are not considered
             useful_player_attributes_no_zeros = \
-                self.useful_player_attributes.loc[self.useful_player_attributes.value > 0.1]
+                self.useful_player_attributes.loc[self.useful_player_attributes.value > 0]
             team_pivot = \
                 useful_player_attributes_no_zeros.pivot_table(index='team_name', values='value',
                                                               aggfunc=np.mean).reset_index()
+            team_pivot['value'] = team_pivot['value'].round(decimals=2)
             self.df_for_view = team_pivot.sort_values('value', ascending=False)
         except Exception as e:
             self.main_window.set_response_display_text("An error has occurred while trying to calculate the data. "
