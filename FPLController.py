@@ -12,6 +12,8 @@ import numpy as np
 import pandas as pd
 import requests
 
+import best_15_optimisation as opt
+
 
 class Controller(object):
 
@@ -23,17 +25,21 @@ class Controller(object):
         self.all_elements_df = None
         self.element_types_df = None
         self.teams_df = None
+        self.events_df = None
         self.useful_player_attributes = None
         self.columns_for_sorting = None
         self.df_for_view = None
         self.model = None
         self.last_process = None
-        self.columns_for_sorting = ['position', 'team_name', 'total_points', 'now_cost', 'value', 'form', 'minutes',
+        self.columns_for_sorting = ['total_points', 'now_cost', 'value', 'position', 'team_name', 'form', 'minutes',
                                     'ict_index', 'ict_index_rank', 'goals_scored', 'assists', 'clean_sheets',
                                     'bonus', 'selected_by_percent', 'transfers_in', 'transfers_out']
+        self.columns_for_optimisation = ['total_points', 'value', 'form', 'ict_index']
 
         # Populate the sort_value_button
         self.main_window.select_sort_value_button.addItems(self.columns_for_sorting)
+        # Populate the find_best_15_button
+        self.main_window.select_best_15_value_button.addItems(self.columns_for_optimisation)
 
         # Connections
         self.main_window.menu.addAction('&Exit', self.main_window.close)
@@ -41,6 +47,7 @@ class Controller(object):
         self.main_window.process_data_button.clicked.connect(self.process_data)
         self.main_window.show_player_statistics_button.clicked.connect(self.show_player_statistics)
         self.main_window.select_sort_value_button.activated.connect(self.display_sorted_statistics)
+        self.main_window.select_best_15_value_button.activated.connect(self.calculate_best_15_players)
         self.main_window.most_valuable_position_button.clicked.connect(self.display_most_valuable_position)
         self.main_window.most_valuable_teams_button.clicked.connect(self.display_most_valuable_teams)
         self.main_window.save_useful_player_attributes_df_to_csv.clicked.connect(
@@ -66,9 +73,11 @@ class Controller(object):
             self.all_elements_df = pd.DataFrame(self.fpl_database_in_json['elements'])
             self.element_types_df = pd.DataFrame(self.fpl_database_in_json['element_types'])
             self.teams_df = pd.DataFrame(self.fpl_database_in_json['teams'])
+            # TODO: Use events df to add interesting statst like current gw, most points etc
+            #    self.events_df = pd.DataFrame(self.fpl_database_in_json['events'])
 
             # Keep the useful columns of the elements dataframe
-            self.useful_player_attributes = self.all_elements_df[['second_name', 'team',
+            self.useful_player_attributes = self.all_elements_df[['second_name', 'first_name', 'team',
                                                                   'selected_by_percent', 'value_season', 'form',
                                                                   'minutes', 'ict_index', 'ict_index_rank',
                                                                   'goals_scored', 'assists', 'clean_sheets',
@@ -77,7 +86,7 @@ class Controller(object):
                                                                   'bonus', 'transfers_in', 'transfers_out', 'now_cost',
                                                                   'total_points']].copy()
 
-            # Adjust the 'now_cost' column to show millions (currently instead of 5.5 shows 55)
+            # Adjust the 'now_cost' column to show millions (by default instead of 5.5 shows 55)
             self.useful_player_attributes.loc[:, 'now_cost'] *= 0.1
 
             # TODO: self.all_elements_df[['chance_of_playing_this_round', 'chance_of_playing_next_round']]
@@ -109,6 +118,7 @@ class Controller(object):
             self.main_window.set_response_display_text("Data has been processed successfully.")
             # Turn on buttons
             self.main_window.show_player_statistics_button.setDisabled(False)
+            self.main_window.select_best_15_value_button.setDisabled(False)
             self.main_window.most_valuable_position_button.setDisabled(False)
             self.main_window.most_valuable_teams_button.setDisabled(False)
             self.main_window.save_useful_player_attributes_df_to_csv.setDisabled(False)
@@ -133,7 +143,7 @@ class Controller(object):
             self.last_process = 'show_stats'
 
     def display_sorted_statistics(self):
-        if self.last_process not in ['MV_position', 'MV_teams']:
+        if self.last_process not in ['MV_position', 'MV_teams', 'Best_15']:
             try:
                 column_to_sort = self.main_window.select_sort_value_button.currentText()
                 self.df_for_view = self.useful_player_attributes.sort_values(column_to_sort, ascending=False)
@@ -186,6 +196,25 @@ class Controller(object):
             self.main_window.set_response_display_text("Most Valuable Teams shown below.")
             self.main_window.save_df_for_view_to_csv.setDisabled(False)
             self.last_process = 'MV_teams'
+
+    def calculate_best_15_players(self):
+        try:
+            value_to_use_for_optimisation = self.main_window.select_best_15_value_button.currentText()
+            names = self.useful_player_attributes["first_name"] + ' ' + self.useful_player_attributes["second_name"]
+            names = names.tolist()
+            positions = self.useful_player_attributes["position"].tolist()
+            values = self.useful_player_attributes[value_to_use_for_optimisation].tolist()
+            prices = self.useful_player_attributes["now_cost"].tolist()
+            self.df_for_view = opt.find_best_15_players_by_value(names, positions, values, prices, self.logger)
+        except Exception as e:
+            self.main_window.set_response_display_text("An error has occurred while trying to calculate the data. "
+                                                       "Please consult the log for details.")
+            self.logger.error("An error has occurred while trying to calculate the data.", exc_info=True)
+        else:
+            self.main_window.set_table_view(self.df_for_view)
+            self.main_window.set_response_display_text("Best 15 successfully calculated.")
+            self.main_window.save_df_for_view_to_csv.setDisabled(False)
+            self.last_process = f'Best_15_{value_to_use_for_optimisation}'
 
     def save_useful_player_attributes_df_to_csv(self):
         try:

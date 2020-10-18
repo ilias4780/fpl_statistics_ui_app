@@ -41,7 +41,8 @@ class MainWindow(QMainWindow):
         self._create_show_player_statistics_button()
         self._create_sort_by_label()
         self._create_select_sort_value_button()
-        self._buttons_layout2.addItem(QSpacerItem(120, 40), 1, 2)
+        self._create_find_best_15_label()
+        self._create_select_best_15_button_value()
         self._create_most_valuable_position_button()
         self._create_most_valuable_teams_button()
         self._general_layout.addLayout(self._buttons_layout2)
@@ -95,6 +96,20 @@ class MainWindow(QMainWindow):
         self.select_sort_value_button.setFixedSize(120, 40)
         self._buttons_layout2.addWidget(self.select_sort_value_button, 1, 1)
         self.select_sort_value_button.setDisabled(True)
+
+    def _create_find_best_15_label(self):
+        self.find_best_15_label = QLabel()
+        self.find_best_15_label.setText("<font color='white'>Find best 15 based on:</font>")
+        self.find_best_15_label.setWordWrap(True)
+        self.find_best_15_label.setAlignment(Qt.AlignBottom)
+        self.find_best_15_label.setFixedSize(120, 40)
+        self._buttons_layout2.addWidget(self.find_best_15_label, 0, 2)
+
+    def _create_select_best_15_button_value(self):
+        self.select_best_15_value_button = QComboBox()
+        self.select_best_15_value_button.setFixedSize(120, 40)
+        self._buttons_layout2.addWidget(self.select_best_15_value_button, 1, 2)
+        self.select_best_15_value_button.setDisabled(True)
 
     def _create_most_valuable_position_button(self):
         self.most_valuable_position_button = QPushButton('Calculate most \nValuable Position')
