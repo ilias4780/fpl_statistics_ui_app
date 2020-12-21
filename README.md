@@ -3,15 +3,16 @@
 This is a python application providing users with a GUI in order to download 
 the FPL database by using the FPL API URL and make statistical calculations.
 
-MAJOR NEW FEATURE in Version 1.3
+Changelog in Version 1.4
 -------------
-- Use optimisation modelling to find the best 15 players squad based on either
-their value, form, total points or ICT Index!! Algorithm satisfies the cost limit (100) always!
-BEAT your mini league opponents by checking what's the best players to have!! 
+- Added info bar containing current gameweek and next deadline.
+- Changed visuals of interface.
+- Upgraded versions of libraries.
 
 Features:
 -------------
 - Graphical Interface
+- Info bar for interesting stats
 - Download and save useful data from FPL database
 - Show sorted statistics based on your selection
 - Calculate most valuable players
@@ -21,9 +22,9 @@ Features:
 
 EXECUTABLE AVAILABLE!!
 -------------
-You can now download the folder containing the application's executable
-if you don't care about the code. Just download the `FPL_Statistics_UI` folder
-and double click the `FPL_Statistics_UI.exe` inside it. Enjoy! 
+You can now download the zip containing the application's executable
+if you don't care about the code. Just download the `FPL_Statistics_UI` zip
+and double click the `FPL_Python_Stats.exe` inside it. Enjoy! 
 
 Code setup:
 -------------
@@ -32,6 +33,11 @@ Code setup:
 `pip install -r requirements.txt`    
 3. Then you execute the `main.py` file either from an IDE or from CMD running:  
 `python main.py`
+
+
+To build the application the following command was used: 
+`pyinstaller --onedir --windowed --add-data "C:/Users/.../Lib/site-packages/pulp;pulp/" -n FPL_Python_Stats main.py`
+
 
 Support:
 -------------

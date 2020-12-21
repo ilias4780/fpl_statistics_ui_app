@@ -2,7 +2,7 @@ import pandas
 import pulp as p
 
 
-def find_best_15_players_by_value(player_names, player_positions, player_values, player_prices, logger):
+def find_best_15_players_by_value(player_names, player_positions, player_values, player_prices, opt_target):
 
     # Extract the players' names, positions, values and prices
     players = list()
@@ -68,21 +68,35 @@ def find_best_15_players_by_value(player_names, player_positions, player_values,
     for player in best_15_corrected:
         total_price += prices[player]
 
-    # Assign the player positions
+    # Assign the player stats
     best_15_positions = list()
+    best_15_prices = list()
+    best_15_target_values = list()
     for player in best_15_corrected:
         best_15_positions.append(player_positions[player_names.index(player)])
+        best_15_prices.append(player_prices[player_names.index(player)])
+        best_15_target_values.append(player_values[player_names.index(player)])
+
+    # Round the values in best_15_prices
+    best_15_prices_rounded = list()
+    for item in best_15_prices:
+        best_15_prices_rounded.append(round(item, 2))
 
     # Assign the total value
     total_value = p.value(prob.objective)
 
     # Create the dataframe to return
-    result_df = pandas.DataFrame(columns=['player', 'position', 'total_price', 'total_target_value', 'status'])
+    result_df = pandas.DataFrame(columns=['player', 'position', 'price', 'target_value'])
     result_df['player'] = best_15_corrected
     result_df['position'] = best_15_positions
-    result_df['total_price'][0] = round(total_price, 2) if isinstance(total_price, float) else total_price
-    result_df['total_target_value'][0] = round(total_value, 2)
-    result_df['status'][0] = status
+    result_df['price'] = best_15_prices_rounded
+    result_df['target_value'] = best_15_target_values
+    total_stats = pandas.DataFrame(columns=['player', 'position', 'price', 'target_value'])
+    total_stats.loc[0] = ['Opt_Status', 'Opt_Target', 'Total_Price', 'Total_Target_Value']
+    total_stats.loc[1] = [status, opt_target,
+                          round(total_price, 2) if isinstance(total_price, float) else total_price,
+                          round(total_value, 2)]
+    return_df = pandas.concat([result_df, total_stats], ignore_index=True)
 
     # Return the results
-    return result_df
+    return return_df

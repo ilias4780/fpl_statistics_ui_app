@@ -23,10 +23,29 @@ def main():
                 background-color: rgb(55,0,60)
             }
             QTableView{ 
-                background-color: rgb(2,137,78)
+                background-color: rgb(2,137,78);
+                font-size: 18px
             }
-            QTextEdit{
-                background-color: rgb(2,137,78)
+            QPushButton{
+                background-color: rgb(2,137,78);
+                font-size: 16px;
+                border-style: outset;
+                border-width: 2px;
+                border-radius: 15px;
+                border-color: black;
+                padding: 4px;
+            }
+            QLabel{
+                font-size: 18px
+            }
+            QComboBox{
+                background-color: rgb(2,137,78);
+                font-size: 16px;
+                border-style: outset;
+                border-width: 2px;
+                border-radius: 15px;
+                border-color: black;
+                padding: 4px;
             }
         """
 

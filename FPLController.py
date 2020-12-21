@@ -1,10 +1,8 @@
 """
     FPLController.py
-
-    # Find the most vfm players (most points per cost - value = points / cost)
-            self.df_for_view = self.useful_player_attributes.sort_values('value', ascending=False)
 """
 
+import datetime
 import logging
 import os
 
@@ -59,12 +57,12 @@ class Controller(object):
         try:
             the_whole_db = requests.get(fpl_api_url)
         except requests.RequestException as e:
-            self.main_window.set_response_display_text("An error has occurred while trying to download the database. "
-                                                       "Please consult the log for details.")
+            self.main_window.set_status_display_text("An error has occurred while trying to download the database. "
+                                                     "Please consult the log for details.")
             self.logger.error("An error has occurred while trying to download the database.", exc_info=True)
         else:
             self.fpl_database_in_json = the_whole_db.json()
-            self.main_window.set_response_display_text("Database has been downloaded successfully.")
+            self.main_window.set_status_display_text("Database has been downloaded successfully.")
             self.main_window.process_data_button.setDisabled(False)
 
     def process_data(self):
@@ -73,8 +71,20 @@ class Controller(object):
             self.all_elements_df = pd.DataFrame(self.fpl_database_in_json['elements'])
             self.element_types_df = pd.DataFrame(self.fpl_database_in_json['element_types'])
             self.teams_df = pd.DataFrame(self.fpl_database_in_json['teams'])
-            # TODO: Use events df to add interesting statst like current gw, most points etc
-            #    self.events_df = pd.DataFrame(self.fpl_database_in_json['events'])
+
+            # Use events df to add interesting stats like current gw, most points etc
+            self.events_df = pd.DataFrame(self.fpl_database_in_json['events'])
+            current_gameweek_index = self.events_df['is_current'].idxmax()
+            current_gameweek = current_gameweek_index + 1
+            highest_current_score = self.events_df['highest_score'][current_gameweek_index]
+            next_deadline = self.events_df['deadline_time'][current_gameweek_index+1]
+            next_deadline_date = datetime.datetime.strptime(next_deadline, '%Y-%m-%dT%H:%M:%SZ')\
+                .strftime('%Y-%m-%d %H:%M:%S GMT')
+            current_most_captained_index = self.events_df['most_captained'][current_gameweek_index]
+            current_most_captained = self.all_elements_df['second_name'][current_most_captained_index]
+            #??current_most_selected = self.events_df['most_selected'][current_gameweek_index]
+            current_most_transferred_in_index = self.events_df['most_transferred_in'][current_gameweek_index]
+            current_most_transferred_in = self.all_elements_df['second_name'][current_most_transferred_in_index]
 
             # Keep the useful columns of the elements dataframe
             self.useful_player_attributes = self.all_elements_df[['second_name', 'first_name', 'team',
@@ -111,11 +121,12 @@ class Controller(object):
             # Drop the value_season column as it is not needed anymore
             self.useful_player_attributes = self.useful_player_attributes.drop(['value_season'], axis=1)
         except Exception as e:
-            self.main_window.set_response_display_text("An error has occurred while trying to process the data. "
-                                                       "Please consult the log for details.")
+            self.main_window.set_status_display_text("An error has occurred while trying to process the data. "
+                                                     "Please consult the log for details.")
             self.logger.error("An error has occurred while trying to process the data.", exc_info=True)
         else:
-            self.main_window.set_response_display_text("Data has been processed successfully.")
+            self.main_window.set_status_display_text("Data has been processed successfully.")
+            self.main_window.set_info_displays(current_gameweek, next_deadline_date)
             # Turn on buttons
             self.main_window.show_player_statistics_button.setDisabled(False)
             self.main_window.select_best_15_value_button.setDisabled(False)
@@ -127,8 +138,8 @@ class Controller(object):
         try:
             self.df_for_view = self.useful_player_attributes
         except Exception as e:
-            self.main_window.set_response_display_text("An error has occurred while trying to calculate the data. "
-                                                       "Please consult the log for details.")
+            self.main_window.set_status_display_text("An error has occurred while trying to calculate the data. "
+                                                     "Please consult the log for details.")
             self.logger.error("An error has occurred while trying to calculate the data.", exc_info=True)
         else:
             # Turn on the sort_value_button
@@ -136,7 +147,7 @@ class Controller(object):
             # Set the table view
             self.main_window.set_table_view(self.df_for_view)
             # Set the response display
-            self.main_window.set_response_display_text("Player statistics are shown below.")
+            self.main_window.set_status_display_text("Player statistics are shown below.")
             # Turn on buttons
             self.main_window.save_df_for_view_to_csv.setDisabled(False)
             # Save name of last process for save to csv function
@@ -148,8 +159,8 @@ class Controller(object):
                 column_to_sort = self.main_window.select_sort_value_button.currentText()
                 self.df_for_view = self.useful_player_attributes.sort_values(column_to_sort, ascending=False)
             except Exception as e:
-                self.main_window.set_response_display_text("An error has occurred while trying to calculate the data. "
-                                                           "Please consult the log for details.")
+                self.main_window.set_status_display_text("An error has occurred while trying to calculate the data. "
+                                                         "Please consult the log for details.")
                 self.logger.error("An error has occurred while trying to sort the statistics.", exc_info=True)
             else:
                 # Set the table view
@@ -168,12 +179,12 @@ class Controller(object):
             pivot['value'] = pivot['value'].round(decimals=2)
             self.df_for_view = pivot.sort_values('value', ascending=False)
         except Exception as e:
-            self.main_window.set_response_display_text("An error has occurred while trying to calculate the data. "
-                                                       "Please consult the log for details.")
+            self.main_window.set_status_display_text("An error has occurred while trying to calculate the data. "
+                                                     "Please consult the log for details.")
             self.logger.error("An error has occurred while trying to calculate the data.", exc_info=True)
         else:
             self.main_window.set_table_view(self.df_for_view)
-            self.main_window.set_response_display_text("Most Valuable Position shown below.")
+            self.main_window.set_status_display_text("Most Valuable Position shown below.")
             self.main_window.save_df_for_view_to_csv.setDisabled(False)
             self.last_process = 'MV_position'
 
@@ -188,12 +199,12 @@ class Controller(object):
             team_pivot['value'] = team_pivot['value'].round(decimals=2)
             self.df_for_view = team_pivot.sort_values('value', ascending=False)
         except Exception as e:
-            self.main_window.set_response_display_text("An error has occurred while trying to calculate the data. "
-                                                       "Please consult the log for details.")
+            self.main_window.set_status_display_text("An error has occurred while trying to calculate the data. "
+                                                     "Please consult the log for details.")
             self.logger.error("An error has occurred while trying to calculate the data.", exc_info=True)
         else:
             self.main_window.set_table_view(self.df_for_view)
-            self.main_window.set_response_display_text("Most Valuable Teams shown below.")
+            self.main_window.set_status_display_text("Most Valuable Teams shown below.")
             self.main_window.save_df_for_view_to_csv.setDisabled(False)
             self.last_process = 'MV_teams'
 
@@ -205,14 +216,15 @@ class Controller(object):
             positions = self.useful_player_attributes["position"].tolist()
             values = self.useful_player_attributes[value_to_use_for_optimisation].tolist()
             prices = self.useful_player_attributes["now_cost"].tolist()
-            self.df_for_view = opt.find_best_15_players_by_value(names, positions, values, prices, self.logger)
+            self.df_for_view = opt.find_best_15_players_by_value(names, positions, values, prices,
+                                                                 value_to_use_for_optimisation)
         except Exception as e:
-            self.main_window.set_response_display_text("An error has occurred while trying to calculate the data. "
-                                                       "Please consult the log for details.")
+            self.main_window.set_status_display_text("An error has occurred while trying to calculate the data. "
+                                                     "Please consult the log for details.")
             self.logger.error("An error has occurred while trying to calculate the data.", exc_info=True)
         else:
             self.main_window.set_table_view(self.df_for_view)
-            self.main_window.set_response_display_text("Best 15 successfully calculated.")
+            self.main_window.set_status_display_text("Best 15 successfully calculated.")
             self.main_window.save_df_for_view_to_csv.setDisabled(False)
             self.last_process = f'Best_15_{value_to_use_for_optimisation}'
 
@@ -221,11 +233,11 @@ class Controller(object):
             selected_dir = str(self.main_window.dialog.getExistingDirectory(self.main_window, "Save Dataframe"))
             self.useful_player_attributes.to_csv(os.path.join(selected_dir, 'FplStatistics.csv'))
         except Exception as e:
-            self.main_window.set_response_display_text("An error has occurred while trying to save the data. "
-                                                       "Please consult the log for details.")
+            self.main_window.set_status_display_text("An error has occurred while trying to save the data. "
+                                                     "Please consult the log for details.")
             self.logger.error("An error has occurred while trying to save the data.", exc_info=True)
         else:
-            self.main_window.set_response_display_text("Data has been saved to a spreadsheet.")
+            self.main_window.set_status_display_text("Data has been saved to a spreadsheet.")
 
     def save_df_for_view_to_csv(self):
         try:
@@ -233,8 +245,8 @@ class Controller(object):
             filename = 'FplStatistics_' + self.last_process + '.csv'
             self.df_for_view.to_csv(os.path.join(selected_dir, filename))
         except Exception as e:
-            self.main_window.set_response_display_text("An error has occurred while trying to save the data. "
-                                                       "Please consult the log for details.")
+            self.main_window.set_status_display_text("An error has occurred while trying to save the data. "
+                                                     "Please consult the log for details.")
             self.logger.error("An error has occurred while trying to save the data.", exc_info=True)
         else:
-            self.main_window.set_response_display_text("Data has been saved to a spreadsheet.")
+            self.main_window.set_status_display_text("Data has been saved to a spreadsheet.")
