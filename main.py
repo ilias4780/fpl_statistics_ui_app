@@ -1,3 +1,9 @@
+# Copyright 2020 by Ilias Charitos.
+# All rights reserved.
+# This file is part of the FPL Python Statistics UI App,
+# and is released under the "MIT License Agreement". Please see the LICENSE
+# file that should have been included as part of this application.
+
 import logging
 import sys
 

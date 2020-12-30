@@ -2,7 +2,22 @@ import pandas
 import pulp as p
 
 
-def find_best_15_players_by_value(player_names, player_positions, player_values, player_prices, opt_target):
+def find_best_15_players_by_value(player_names, player_positions, player_values, player_prices,
+                                  player_teams, opt_target):
+    """
+    Calculates the best 15 player selection according to the value passed as an argument. Uses the PULP library and
+    default CBC solver. It satisfies the max 3 players per team constraint and the 100 cost constraint.
+
+    :param player_names: list of the player names
+    :param player_positions: list of the player positions
+    :param player_values: list of the player values
+    :param player_prices: list of the player prices
+    :param player_teams: list of the player teams
+    :param opt_target: string containing the optimization target (the target value)
+
+    :returns: two pandas dataframes, first containing the players and their details, the second the
+              optimization information
+    """
 
     # Extract the players' names, positions, values and prices
     players = list()
@@ -26,6 +41,15 @@ def find_best_15_players_by_value(player_names, player_positions, player_values,
         elif player_positions[index] == "Forward":
             fwds.append(name)
 
+    # Create lists of players per team
+    teams_list = set(player_teams)
+    team_players_dict = dict()
+    for team in teams_list:
+        team_players_dict[team] = list()
+        for index in range(len(player_names)):
+            if player_teams[index] == team:
+                team_players_dict[team].append(player_names[index])
+
     # Create the problem and set it to maximization (we want to maximize value)
     prob = p.LpProblem("The FPL problem", p.LpMaximize)
 
@@ -45,6 +69,8 @@ def find_best_15_players_by_value(player_names, player_positions, player_values,
     prob += p.lpSum([mf_vars[i] for i in mfs]) == 5, "Number of midfielders wanted"
     prob += p.lpSum([fwds_vars[i] for i in fwds]) == 3, "Number of forwards wanted"
     prob += p.lpSum([prices[i]*all_player_vars[i] for i in players]) <= 100, "Price constraint"
+    for team in teams_list:
+        prob += p.lpSum([all_player_vars[i] for i in team_players_dict[team]]) <= 3, f"Max per {team} constraint"
 
     # Solve the problem
     prob.solve()
@@ -96,7 +122,6 @@ def find_best_15_players_by_value(player_names, player_positions, player_values,
     total_stats.loc[1] = [status, opt_target,
                           round(total_price, 2) if isinstance(total_price, float) else total_price,
                           round(total_value, 2)]
-    return_df = pandas.concat([result_df, total_stats], ignore_index=True)
 
     # Return the results
-    return return_df
+    return result_df, total_stats

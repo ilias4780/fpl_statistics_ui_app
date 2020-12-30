@@ -1,13 +1,13 @@
-# FPL Statistics Python App
+# FPL Python Statistics UI App
 
 This is a python application providing users with a GUI in order to download 
 the FPL database by using the FPL API URL and make statistical calculations.
 
-Changelog in Version 1.4
+Changelog in Version 1.5
 -------------
-- Added info bar containing current gameweek and next deadline.
-- Changed visuals of interface.
-- Upgraded versions of libraries.
+- Updated visuals for showing the best 15 selections.
+- Upgraded optimisation to respect the three players per team limit.
+- Added unit tests for optimization.
 
 Features:
 -------------
@@ -15,6 +15,7 @@ Features:
 - Info bar for interesting stats
 - Download and save useful data from FPL database
 - Show sorted statistics based on your selection
+- Calculate best 15 selection using mathematical engine solver optimization.
 - Calculate most valuable players
 - Calculate most valuable position
 - Calculate most valuable team

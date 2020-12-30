@@ -11,6 +11,7 @@ import pandas as pd
 import requests
 
 import best_15_optimisation as opt
+from FPLViewer import Best15PopUp
 
 
 class Controller(object):
@@ -18,6 +19,7 @@ class Controller(object):
     def __init__(self, main_window):
         self.logger = logging.getLogger(__name__)
         self.main_window = main_window
+        self.popup = None
 
         self.fpl_database_in_json = None
         self.all_elements_df = None
@@ -216,8 +218,11 @@ class Controller(object):
             positions = self.useful_player_attributes["position"].tolist()
             values = self.useful_player_attributes[value_to_use_for_optimisation].tolist()
             prices = self.useful_player_attributes["now_cost"].tolist()
-            self.df_for_view = opt.find_best_15_players_by_value(names, positions, values, prices,
-                                                                 value_to_use_for_optimisation)
+            teams = self.useful_player_attributes["team_name"].tolist()
+            result_df, total_stats = opt.find_best_15_players_by_value(names, positions, values, prices, teams,
+                                                                       value_to_use_for_optimisation)
+            self.df_for_view = pd.concat([result_df, total_stats], ignore_index=True)
+            gks, defs, mfs, fwds, stats = self.get_sep_data_from_results(result_df, total_stats)
         except Exception as e:
             self.main_window.set_status_display_text("An error has occurred while trying to calculate the data. "
                                                      "Please consult the log for details.")
@@ -227,6 +232,8 @@ class Controller(object):
             self.main_window.set_status_display_text("Best 15 successfully calculated.")
             self.main_window.save_df_for_view_to_csv.setDisabled(False)
             self.last_process = f'Best_15_{value_to_use_for_optimisation}'
+            self.popup = Best15PopUp(gks, defs, mfs, fwds, stats)
+            self.popup.exec()
 
     def save_useful_player_attributes_df_to_csv(self):
         try:
@@ -250,3 +257,18 @@ class Controller(object):
             self.logger.error("An error has occurred while trying to save the data.", exc_info=True)
         else:
             self.main_window.set_status_display_text("Data has been saved to a spreadsheet.")
+
+    @staticmethod
+    def get_sep_data_from_results(results, statistics):
+
+        gks = results['player'].loc[results['position'] == "Goalkeeper"].tolist()
+        defs = results['player'].loc[results['position'] == "Defender"].tolist()
+        mfs = results['player'].loc[results['position'] == "Midfielder"].tolist()
+        fwds = results['player'].loc[results['position'] == "Forward"].tolist()
+        stats_names = statistics.loc[0].tolist()
+        stats_values = statistics.loc[1].tolist()
+        stats = dict()
+        for count, item in enumerate(stats_names):
+            stats[item] = stats_values[count]
+
+        return gks, defs, mfs, fwds, stats

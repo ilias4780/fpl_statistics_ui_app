@@ -4,10 +4,7 @@
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QGridLayout, QTableView, QFileDialog, QComboBox, QLabel
-from PyQt5.QtWidgets import QVBoxLayout
-from PyQt5.QtWidgets import QWidget
-from PyQt5.QtWidgets import QLCDNumber
-from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QVBoxLayout, QWidget, QLCDNumber, QPushButton, QDialog
 
 import FPLModel
 
@@ -174,3 +171,86 @@ class MainWindow(QMainWindow):
         self.save_df_for_view_to_csv.setFixedSize(180, 80)
         self._buttons_layout3.addWidget(self.save_df_for_view_to_csv, 0, 1)
         self.save_df_for_view_to_csv.setDisabled(True)
+
+
+class Best15PopUp(QDialog):
+
+    def __init__(self, gks, defs, mfs, fwds, stats):
+        super().__init__()
+        players = gks + defs + mfs + fwds
+
+        # Set general window attributes
+        self.setWindowTitle('Best 15 Selection')
+        self.setMinimumSize(1300, 700)
+        # self.setStyleSheet("background-image:url(image.jpg)")
+        self.setStyleSheet("background-color: rgb(2, 137, 78)")
+        self.dlg_layout = QVBoxLayout()
+
+        # Create the top message
+        self.top_message = QLabel("That's the best players selection according to the criteria chosen:")
+        self.top_message.setFixedSize(800, 20)
+        self.dlg_layout.addWidget(self.top_message)
+
+        # Create the stats labels
+        self.grid = QGridLayout()
+        stat_counter = 0
+        for stat, value in stats.items():
+            stat_label = QLabel(stat)
+            stat_label.setAlignment(Qt.AlignCenter)
+            stat_label.setFixedHeight(40)
+            stat_label.setStyleSheet(
+                """
+                background-color: grey;
+                font-size: 24px;
+                """)
+            value_label = QLabel(f"{value}")
+            value_label.setAlignment(Qt.AlignCenter)
+            value_label.setFixedHeight(40)
+            value_label.setStyleSheet(
+                """
+                background-color: grey;
+                font-size: 24px;
+                """)
+            self.grid.addWidget(stat_label, 0, stat_counter)
+            self.grid.addWidget(value_label, 1, stat_counter)
+            stat_counter += 1
+
+        # Create the player labels
+        player_labels = dict()
+        for player in players:
+            player_name = player.replace(" ", "\n")
+            player_labels[player] = QLabel(player_name)
+            player_labels[player].setAlignment(Qt.AlignCenter)
+            player_labels[player].setStyleSheet(
+                """
+                background-color: rgb(55,0,60);
+                font-size: 24px;
+                border-style: outset;
+                border-width: 2px;
+                border-radius: 15px;
+                border-color: black;
+                padding: 4px;
+                """)
+
+        gk_counter = 1
+        def_counter = 0
+        mf_counter = 0
+        fwd_counter = 1
+        for player, label in player_labels.items():
+            if player in gks:
+                self.grid.addWidget(label, 2, gk_counter)
+                gk_counter += 2
+            elif player in defs:
+                self.grid.addWidget(label, 3, def_counter)
+                def_counter += 1
+            elif player in mfs:
+                self.grid.addWidget(label, 4, mf_counter)
+                mf_counter += 1
+            elif player in fwds:
+                self.grid.addWidget(label, 5, fwd_counter)
+                fwd_counter += 1
+
+        self.dlg_layout.addLayout(self.grid)
+
+        # Set the dialog layout
+        self.setLayout(self.dlg_layout)
