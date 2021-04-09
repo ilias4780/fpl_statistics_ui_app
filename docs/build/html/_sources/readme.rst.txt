@@ -1,5 +1,7 @@
 .. _Readme:
 
+[![Documentation Status](https://readthedocs.org/projects/fpl-statistics-ui-app/badge/?version=latest)](https://fpl-statistics-ui-app.readthedocs.io/en/latest/?badge=latest)
+
 FPL Python Statistics UI App
 ==============================
 
@@ -37,9 +39,9 @@ Code setup:
 -------------
 1. Create a python virtual environment.
 2. Install the required dependencies by executing:
-`pip install -r requirements.txt`
+    `pip install -r requirements.txt`
 3. Then you execute the `main.py` file either from an IDE or from CMD running:
-`python main.py`
+    `python main.py`
 
 
 To build the application the following command was used:

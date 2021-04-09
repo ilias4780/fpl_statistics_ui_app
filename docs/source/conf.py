@@ -12,7 +12,7 @@
 #
 import os
 import sys
-sys.path.insert(0, '/'.join(os.path.abspath(__file__).split("\\")[:-3]))
+sys.path.insert(0, '/'.join(os.path.abspath('./../..')))
 
 
 # -- Project information -----------------------------------------------------
