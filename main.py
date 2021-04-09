@@ -4,6 +4,14 @@
 # and is released under the "MIT License Agreement". Please see the LICENSE
 # file that should have been included as part of this application.
 
+"""
+Source file that holds the main application that instantiates the classes and runs the GUI.
+
+Classes in the source file:
+    * :func:`main`: The main application that instantiates the classes and produces the GUI.
+
+"""
+
 import logging
 import sys
 
@@ -14,6 +22,7 @@ import FPLController
 
 
 def main():
+    """The main application that instantiates the classes and produces the GUI. """
     # Logging setup
     logging.basicConfig(filename='fpl_app.log', level=logging.DEBUG, filemode='w',
                         format='%(asctime)s: %(filename)s: %(lineno)d: %(funcName)s: %(levelname)s: %(message)s')

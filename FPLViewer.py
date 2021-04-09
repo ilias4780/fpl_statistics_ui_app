@@ -1,5 +1,11 @@
 """
-    FPLViewer.py
+Source file that holds the viewer of the application. All the GUI elements are structured here and ready to
+be picked up and used by the controller.
+
+Classes in the source file:
+    * :func:`MainWindow`: Class that holds the main window used in the application's GUI.
+    * :func:`Best15PopUp`: Class that holds the pop up window used for the display of the best 15 optimization.
+
 """
 
 from PyQt5.QtCore import Qt
@@ -10,6 +16,9 @@ import FPLModel
 
 
 class MainWindow(QMainWindow):
+    """
+    Class that holds the main window used in the application's GUI.
+    """
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -42,7 +51,7 @@ class MainWindow(QMainWindow):
         self._create_sort_by_label()
         self._create_select_sort_value_button()
         self._create_find_best_15_label()
-        self._create_select_best_15_button_value()
+        self._create_select_best_15_value_button()
         self._create_most_valuable_position_button()
         self._create_most_valuable_teams_button()
         self._general_layout.addLayout(self._buttons_layout2)
@@ -52,14 +61,15 @@ class MainWindow(QMainWindow):
 
         # Add the buttons for saving the dataframes
         self._buttons_layout3 = QGridLayout()
-        self._create_save_useful_player_attributes_df_to_csv()
-        self._create_save_df_for_view_to_csv()
+        self._create_save_useful_player_attributes_df_to_csv_button()
+        self._create_save_df_for_view_to_csv_button()
         self._general_layout.addLayout(self._buttons_layout3)
 
         # Add the file dialog for choosing the save directory
         self.dialog = QFileDialog()
 
     def _create_info_bar(self):
+        """Creates the information bar of the main window."""
         self._info_layout = QGridLayout()
         self._gameweek_label = QLabel("We are currently in Gameweek:")
         self._gameweek_label.setAlignment(Qt.AlignCenter)
@@ -81,10 +91,17 @@ class MainWindow(QMainWindow):
         self._general_layout.addLayout(self._info_layout)
 
     def set_info_displays(self, gw, deadline):
+        """
+        Creates the information display of the main window.
+        :param gw: 
+        :param deadline: 
+
+        """
         self._gameweek_lcd.display(gw)
         self._deadline_display.setText(deadline)
 
     def _create_response_display(self):
+        """Creates the response display of the main window. """
         self.status_bar_label = QLabel()
         self.status_bar_label.setFixedHeight(40)
         self.status_bar_label.setStyleSheet("background-color: rgb(2,137,78)")
@@ -92,23 +109,27 @@ class MainWindow(QMainWindow):
         self._buttons_layout1.addWidget(self.status_bar_label, 0, 2, 1, 3)
 
     def _create_download_database_button(self):
+        """Creates the download database button of the main window. """
         self.download_database_button = QPushButton('Download Database')
         self.download_database_button.setFixedSize(180, 40)
         self._buttons_layout1.addWidget(self.download_database_button, 0, 0)
 
     def _create_process_data_button(self):
+        """Creates the process data button of the main window. """
         self.process_data_button = QPushButton('Process Data')
         self.process_data_button.setFixedSize(120, 40)
         self._buttons_layout1.addWidget(self.process_data_button, 0, 1)
         self.process_data_button.setDisabled(True)
 
     def _create_show_player_statistics_button(self):
+        """Creates the show player statistics button of the main window. """
         self.show_player_statistics_button = QPushButton("Show player \nstatistics")
         self.show_player_statistics_button.setFixedSize(140, 60)
         self._buttons_layout2.addWidget(self.show_player_statistics_button, 1, 0)
         self.show_player_statistics_button.setDisabled(True)
 
     def _create_sort_by_label(self):
+        """Creates the sort by label of the main window. """
         self.sort_by_label = QLabel()
         self.sort_by_label.setText("<font color='white'>Sort by:</font>")
         self.sort_by_label.setAlignment(Qt.AlignBottom)
@@ -116,12 +137,14 @@ class MainWindow(QMainWindow):
         self._buttons_layout2.addWidget(self.sort_by_label, 0, 1)
 
     def _create_select_sort_value_button(self):
+        """Creates the select sort value button of the main window. """
         self.select_sort_value_button = QComboBox()
         self.select_sort_value_button.setFixedSize(140, 60)
         self._buttons_layout2.addWidget(self.select_sort_value_button, 1, 1)
         self.select_sort_value_button.setDisabled(True)
 
     def _create_find_best_15_label(self):
+        """Creates the find best 15 label of the main window. """
         self.find_best_15_label = QLabel()
         self.find_best_15_label.setText("<font color='white'>Find best 15 based on:</font>")
         self.find_best_15_label.setWordWrap(True)
@@ -129,44 +152,62 @@ class MainWindow(QMainWindow):
         self.find_best_15_label.setFixedSize(140, 60)
         self._buttons_layout2.addWidget(self.find_best_15_label, 0, 2)
 
-    def _create_select_best_15_button_value(self):
+    def _create_select_best_15_value_button(self):
+        """Creates the select best 15 value button of the main window. """
         self.select_best_15_value_button = QComboBox()
         self.select_best_15_value_button.setFixedSize(140, 60)
         self._buttons_layout2.addWidget(self.select_best_15_value_button, 1, 2)
         self.select_best_15_value_button.setDisabled(True)
 
     def _create_most_valuable_position_button(self):
+        """Creates the most valuable position button of the main window. """
         self.most_valuable_position_button = QPushButton('Calculate most \nValuable Position')
         self.most_valuable_position_button.setFixedSize(140, 60)
         self._buttons_layout2.addWidget(self.most_valuable_position_button, 1, 3)
         self.most_valuable_position_button.setDisabled(True)
 
     def _create_most_valuable_teams_button(self):
+        """Creates the most valuable teams button of the main window. """
         self.most_valuable_teams_button = QPushButton('Calculate most \nValuable Teams')
         self.most_valuable_teams_button.setFixedSize(140, 60)
         self._buttons_layout2.addWidget(self.most_valuable_teams_button, 1, 4)
         self.most_valuable_teams_button.setDisabled(True)
 
     def _create_table_view(self):
+        """Creates the table view of the main window. """
         self.table_view = QTableView()
         self.table_view.resize(800, 600)
         self._general_layout.addWidget(self.table_view)
 
     def set_table_view(self, df):
+        """
+        Sets the dataframe model to the table view.
+
+        :param df: Dataframe to be set to the table view
+
+        """
         model = FPLModel.TableViewModel(df)
         self.table_view.setModel(model)
 
     def set_status_display_text(self, text):
+        """
+        Sets the display text to the status display.
+
+        :param text: Text to be set to the status display.
+
+        """
         self.status_bar_label.setText(text)
         self.status_bar_label.setFocus()
 
-    def _create_save_useful_player_attributes_df_to_csv(self):
+    def _create_save_useful_player_attributes_df_to_csv_button(self):
+        """Creates the save useful player attributes df to csv button of the main window. """
         self.save_useful_player_attributes_df_to_csv = QPushButton('Save Original \nDataframe To CSV')
         self.save_useful_player_attributes_df_to_csv.setFixedSize(180, 80)
         self._buttons_layout3.addWidget(self.save_useful_player_attributes_df_to_csv, 0, 0)
         self.save_useful_player_attributes_df_to_csv.setDisabled(True)
 
-    def _create_save_df_for_view_to_csv(self):
+    def _create_save_df_for_view_to_csv_button(self):
+        """Creates the save df of table view to csv button of the main window. """
         self.save_df_for_view_to_csv = QPushButton('Save Current View \nDataframe To CSV')
         self.save_df_for_view_to_csv.setFixedSize(180, 80)
         self._buttons_layout3.addWidget(self.save_df_for_view_to_csv, 0, 1)
@@ -174,6 +215,9 @@ class MainWindow(QMainWindow):
 
 
 class Best15PopUp(QDialog):
+    """
+    Class that holds the pop up window used for the display of the best 15 optimization.
+    """
 
     def __init__(self, gks, defs, mfs, fwds, stats):
         super().__init__()

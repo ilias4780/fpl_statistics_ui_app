@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+    <title>best_15_optimisation &#8212; FPL Statistics UI App v1.6 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tests.test_best_15_optimisation" href="tests.test_best_15_optimisation.html" />
+    <link rel="prev" title="License" href="license.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests.test_best_15_optimisation.html" title="tests.test_best_15_optimisation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="license.html" title="License"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">FPL Statistics UI App v1.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">best_15_optimisation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="best-15-optimisation">
+<h1>best_15_optimisation<a class="headerlink" href="#best-15-optimisation" title="Permalink to this headline">¶</a></h1>
+<p>This page provides detailed documentation for the <a class="reference internal" href="#module-best_15_optimisation" title="best_15_optimisation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">best_15_optimisation</span></code></a> script.</p>
+<section id="module-best_15_optimisation">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-best_15_optimisation" title="Permalink to this headline">¶</a></h2>
+<p>Source file that holds the model formulation of the best 15 players optimization problem.</p>
+<dl class="simple">
+<dt>Functions in the source file:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference internal" href="#best_15_optimisation.find_best_15_players_by_value" title="best_15_optimisation.find_best_15_players_by_value"><code class="xref py py-func docutils literal notranslate"><span class="pre">find_best_15_players_by_value()</span></code></a>: Calculates the best 15 player selection according</dt><dd><p>to the value passed as an argument.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt id="best_15_optimisation.find_best_15_players_by_value">
+<code class="sig-prename descclassname"><span class="pre">best_15_optimisation.</span></code><code class="sig-name descname"><span class="pre">find_best_15_players_by_value</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_prices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_teams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#best_15_optimisation.find_best_15_players_by_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the best 15 player selection according to the value passed as an argument. Uses the PULP library and
+default CBC solver. It satisfies the max 3 players per team constraint and the 100 cost constraint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>player_names</strong> – list of the player names</p></li>
+<li><p><strong>player_positions</strong> – list of the player positions</p></li>
+<li><p><strong>player_values</strong> – list of the player values</p></li>
+<li><p><strong>player_prices</strong> – list of the player prices</p></li>
+<li><p><strong>player_teams</strong> – list of the player teams</p></li>
+<li><p><strong>opt_target</strong> – string containing the optimization target (the target value)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>two pandas dataframes, first containing the players and their details, the second the
+optimization information</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">best_15_optimisation</a><ul>
+<li><a class="reference internal" href="#module-best_15_optimisation">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="license.html"
+                        title="previous chapter">License</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tests.test_best_15_optimisation.html"
+                        title="next chapter">tests.test_best_15_optimisation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/best_15_optimisation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests.test_best_15_optimisation.html" title="tests.test_best_15_optimisation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="license.html" title="License"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">FPL Statistics UI App v1.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">best_15_optimisation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Ilias Charitos.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+  </body>
+</html>

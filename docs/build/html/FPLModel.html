@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+    <title>FPLModel &#8212; FPL Statistics UI App v1.6 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="FPLViewer" href="FPLViewer.html" />
+    <link rel="prev" title="FPLController" href="FPLController.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="FPLViewer.html" title="FPLViewer"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="FPLController.html" title="FPLController"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">FPL Statistics UI App v1.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">FPLModel</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fplmodel">
+<h1>FPLModel<a class="headerlink" href="#fplmodel" title="Permalink to this headline">¶</a></h1>
+<p>This page provides detailed documentation for the <a class="reference internal" href="#module-FPLModel" title="FPLModel"><code class="xref py py-mod docutils literal notranslate"><span class="pre">FPLModel</span></code></a> script.</p>
+<section id="module-FPLModel">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-FPLModel" title="Permalink to this headline">¶</a></h2>
+<p>Source file that holds the table view model of the window.</p>
+<dl class="simple">
+<dt>Classes in the source file:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference internal" href="#FPLModel.TableViewModel" title="FPLModel.TableViewModel"><code class="xref py py-func docutils literal notranslate"><span class="pre">TableViewModel()</span></code></a>: Class that holds all the logic of the application and the manipulation of the GUI elements</dt><dd><p>that the <a class="reference internal" href="FPLViewer.html#module-FPLViewer" title="FPLViewer"><code class="xref py py-mod docutils literal notranslate"><span class="pre">FPLViewer</span></code></a> source file holds.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt id="FPLModel.TableViewModel">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FPLModel.</span></code><code class="sig-name descname"><span class="pre">TableViewModel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The table view model that is used by the application to display the various dataframes.</p>
+<dl class="py method">
+<dt id="FPLModel.TableViewModel.columnCount">
+<code class="sig-name descname"><span class="pre">columnCount</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parnet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel.columnCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the column count of the dataframe to display.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parnet</strong> – (Default value = None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLModel.TableViewModel.data">
+<code class="sig-name descname"><span class="pre">data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the data according to index passed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – </p></li>
+<li><p><strong>role</strong> – (Default value = Qt.DisplayRole)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLModel.TableViewModel.headerData">
+<code class="sig-name descname"><span class="pre">headerData</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel.headerData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the header data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>col</strong> – </p></li>
+<li><p><strong>orientation</strong> – </p></li>
+<li><p><strong>role</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLModel.TableViewModel.rowCount">
+<code class="sig-name descname"><span class="pre">rowCount</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel.rowCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the row count of the dataframe to display.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parent</strong> – (Default value = None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">FPLModel</a><ul>
+<li><a class="reference internal" href="#module-FPLModel">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="FPLController.html"
+                        title="previous chapter">FPLController</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FPLViewer.html"
+                        title="next chapter">FPLViewer</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/FPLModel.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="FPLViewer.html" title="FPLViewer"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="FPLController.html" title="FPLController"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">FPL Statistics UI App v1.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">FPLModel</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Ilias Charitos.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+  </body>
+</html>

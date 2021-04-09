@@ -1,8 +1,14 @@
 """
-    FPLController.py
+Source file that holds the controller of the application. All the logic of the application and the use
+of the GUI elements lies here.
+
+Classes in the source file:
+    * :func:`Controller`: Class that holds all the logic of the application and the manipulation of the GUI elements
+        that the :mod:`FPLViewer` source file holds.
 """
 
 import datetime
+import json
 import logging
 import os
 
@@ -15,6 +21,10 @@ from FPLViewer import Best15PopUp
 
 
 class Controller(object):
+    """
+    Class that holds all the logic of the application and the manipulation of the GUI elements
+    that the :mod:`FPLViewer` source file holds.
+    """
 
     def __init__(self, main_window):
         self.logger = logging.getLogger(__name__)
@@ -42,6 +52,8 @@ class Controller(object):
         self.main_window.select_best_15_value_button.addItems(self.columns_for_optimisation)
 
         # Connections
+        self.main_window.menu.addAction('&Save Database', self.save_database_to_file)
+        self.main_window.menu.addAction('&Load Database from file', self.load_database_from_file)
         self.main_window.menu.addAction('&Exit', self.main_window.close)
         self.main_window.download_database_button.clicked.connect(self.get_fpl_database_in_json)
         self.main_window.process_data_button.clicked.connect(self.process_data)
@@ -55,6 +67,9 @@ class Controller(object):
         self.main_window.save_df_for_view_to_csv.clicked.connect(self.save_df_for_view_to_csv)
 
     def get_fpl_database_in_json(self):
+        """
+        Get the FPL database using the FPL's API.
+        """
         fpl_api_url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
         try:
             the_whole_db = requests.get(fpl_api_url)
@@ -68,6 +83,9 @@ class Controller(object):
             self.main_window.process_data_button.setDisabled(False)
 
     def process_data(self):
+        """
+        Extract the parts that we want to keep from the downloaded data and process them.
+        """
         try:
             # Keep the data pieces that are needed for our application in pandas DataFrame format
             self.all_elements_df = pd.DataFrame(self.fpl_database_in_json['elements'])
@@ -137,6 +155,9 @@ class Controller(object):
             self.main_window.save_useful_player_attributes_df_to_csv.setDisabled(False)
 
     def show_player_statistics(self):
+        """
+        Create a table view with the player statistics.
+        """
         try:
             self.df_for_view = self.useful_player_attributes
         except Exception as e:
@@ -156,6 +177,9 @@ class Controller(object):
             self.last_process = 'show_stats'
 
     def display_sorted_statistics(self):
+        """
+        Sort the table view with the player statistics.
+        """
         if self.last_process not in ['MV_position', 'MV_teams', 'Best_15']:
             try:
                 column_to_sort = self.main_window.select_sort_value_button.currentText()
@@ -171,6 +195,9 @@ class Controller(object):
                 self.last_process = column_to_sort
 
     def display_most_valuable_position(self):
+        """
+        Create a table view with the most valuable positions.
+        """
         try:
             # Find which position provides the most value when players with zero value are not considered
             useful_player_attributes_no_zeros = \
@@ -191,6 +218,9 @@ class Controller(object):
             self.last_process = 'MV_position'
 
     def display_most_valuable_teams(self):
+        """
+        Create a table view with the most valuable teams.
+        """
         try:
             # Find which teams provide the most value when players with zero value are not considered
             useful_player_attributes_no_zeros = \
@@ -211,6 +241,9 @@ class Controller(object):
             self.last_process = 'MV_teams'
 
     def calculate_best_15_players(self):
+        """
+        Calculate and display the best 15 players selection based on the criteria selected by the user.
+        """
         try:
             value_to_use_for_optimisation = self.main_window.select_best_15_value_button.currentText()
             names = self.useful_player_attributes["first_name"] + ' ' + self.useful_player_attributes["second_name"]
@@ -236,30 +269,96 @@ class Controller(object):
             self.popup.exec()
 
     def save_useful_player_attributes_df_to_csv(self):
+        """
+        Save the useful player attributes dataframe to a CSV in a selected directory by the user.
+        """
         try:
             selected_dir = str(self.main_window.dialog.getExistingDirectory(self.main_window, "Save Dataframe"))
-            self.useful_player_attributes.to_csv(os.path.join(selected_dir, 'FplStatistics.csv'))
+            if selected_dir:
+                self.useful_player_attributes.to_csv(os.path.join(selected_dir, 'FplStatistics.csv'))
+                self.main_window.set_status_display_text("Data has been saved to a spreadsheet.")
+            else:
+                self.main_window.set_status_display_text("No directory has been selected.")
+
         except Exception as e:
             self.main_window.set_status_display_text("An error has occurred while trying to save the data. "
                                                      "Please consult the log for details.")
             self.logger.error("An error has occurred while trying to save the data.", exc_info=True)
-        else:
-            self.main_window.set_status_display_text("Data has been saved to a spreadsheet.")
 
     def save_df_for_view_to_csv(self):
+        """
+        Save the table view dataframe to a CSV in a selected directory by the user.
+        """
         try:
             selected_dir = str(self.main_window.dialog.getExistingDirectory(self.main_window, "Save Dataframe"))
-            filename = 'FplStatistics_' + self.last_process + '.csv'
-            self.df_for_view.to_csv(os.path.join(selected_dir, filename))
+            if selected_dir:
+                filename = 'FplStatistics_' + self.last_process + '.csv'
+                self.df_for_view.to_csv(os.path.join(selected_dir, filename))
+                self.main_window.set_status_display_text("Data has been saved to a spreadsheet.")
+            else:
+                self.main_window.set_status_display_text("No directory has been selected.")
+
         except Exception as e:
             self.main_window.set_status_display_text("An error has occurred while trying to save the data. "
                                                      "Please consult the log for details.")
             self.logger.error("An error has occurred while trying to save the data.", exc_info=True)
-        else:
-            self.main_window.set_status_display_text("Data has been saved to a spreadsheet.")
+
+    def save_database_to_file(self):
+        """
+        Save the downloaded FPL data to a JSON in a selected directory by the user.
+        """
+        try:
+            # Check if the data has been downloaded
+            if self.fpl_database_in_json:
+                selected_dir = str(self.main_window.dialog.getExistingDirectory(self.main_window, "Save Database"))
+                if selected_dir:
+                    with open(os.path.join(selected_dir, 'FplData.json'), 'w') as f:
+                        json.dump(self.fpl_database_in_json, f, indent=4)
+                    self.main_window.set_status_display_text("Database has been saved to a file.")
+                else:
+                    self.main_window.set_status_display_text("No directory has been selected.")
+            else:
+                self.main_window.set_status_display_text("Data has not yet been downloaded.")
+        except Exception as e:
+            self.main_window.set_status_display_text("An error has occurred while trying to save the Database. "
+                                                     "Please consult the log for details.")
+            self.logger.error("An error has occurred while trying to save the data.", exc_info=True)
+
+    def load_database_from_file(self):
+        """
+        Load Offline the FPL data from a JSON file selected by the user.
+        """
+        try:
+            selected_file = self.main_window.dialog.getOpenFileName(self.main_window.dialog,
+                                                                    "Load database",
+                                                                    "C:\\",
+                                                                    "JSON files (*.json)")[0]
+            if selected_file:
+                with open(selected_file, 'r') as f:
+                    self.fpl_database_in_json = json.load(f)
+                self.main_window.set_status_display_text("Database has been loaded from file successfully.")
+                self.main_window.process_data_button.setDisabled(False)
+            else:
+                self.main_window.set_status_display_text("No file has been selected.")
+
+        except Exception as e:
+            self.main_window.set_status_display_text("An error has occurred while trying to load the database "
+                                                     "from file. Please consult the log for details.")
+            self.logger.error("An error has occurred while trying to load the database.", exc_info=True)
 
     @staticmethod
     def get_sep_data_from_results(results, statistics):
+        """
+        Separate the results returned by the optimization and bring it in a format suitable for
+        display.
+
+        :param results: pandas dataframe containing the results of the optimization
+        :param statistics: pandas dataframe containing the statistics of the optimization process
+
+        :returns: lists containing the goalkeepers, defenders, midfielders and forwards returned by the
+            optimization, plus a list containing the statistics of the optimization process
+
+        """
 
         gks = results['player'].loc[results['position'] == "Goalkeeper"].tolist()
         defs = results['player'].loc[results['position'] == "Defender"].tolist()

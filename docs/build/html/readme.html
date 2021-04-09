@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+    <title>FPL Python Statistics UI App &#8212; FPL Statistics UI App v1.6 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Environment Requirements" href="requirements.html" />
+    <link rel="prev" title="Welcome to FPL Statistics UI App’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="requirements.html" title="Environment Requirements"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to FPL Statistics UI App’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">FPL Statistics UI App v1.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">FPL Python Statistics UI App</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fpl-python-statistics-ui-app">
+<span id="readme"></span><h1>FPL Python Statistics UI App<a class="headerlink" href="#fpl-python-statistics-ui-app" title="Permalink to this headline">¶</a></h1>
+<p>This is a python application providing users with a GUI in order to download
+the FPL database by using the FPL API URL and make statistical calculations.</p>
+<section id="changelog-in-version-1-6">
+<h2>Changelog in Version 1.6<a class="headerlink" href="#changelog-in-version-1-6" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>You can now save the downloaded FPL database locally in human readable JSON format (I propose Notepad++ for
+opening it after). That way you can create an archive of data of each Game Week for the whole season.</p></li>
+<li><p>You can now use the app OFFLINE! by loading from a JSON file the FPL database. The options for both saving and
+loading to/from local file are in the <cite>Options</cite> menu on the top of the window.</p></li>
+<li><p>Added docstrings and Sphinx generated HTML documentation.</p></li>
+</ul>
+</section>
+<section id="features">
+<h2>Features:<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Graphical Interface</p></li>
+<li><p>Info bar for interesting stats</p></li>
+<li><p>Download and save useful data from FPL database</p></li>
+<li><p>Save and load database to/from local JSON file for OFFLINE use</p></li>
+<li><p>Show sorted statistics based on your selection</p></li>
+<li><p>Calculate best 15 selection using mathematical engine solver optimization</p></li>
+<li><p>Calculate most valuable players</p></li>
+<li><p>Calculate most valuable position</p></li>
+<li><p>Calculate most valuable team</p></li>
+<li><p>Save data in CSVs</p></li>
+</ul>
+</section>
+<section id="executable-available">
+<h2>EXECUTABLE AVAILABLE!!<a class="headerlink" href="#executable-available" title="Permalink to this headline">¶</a></h2>
+<p>You can now download the zip containing the application’s executable
+if you don’t care about the code. Just download the <cite>FPL_Statistics_UI</cite> zip
+and double click the <cite>FPL_Python_Stats.exe</cite> inside it. Enjoy!</p>
+</section>
+<section id="code-setup">
+<h2>Code setup:<a class="headerlink" href="#code-setup" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Create a python virtual environment.</p></li>
+</ol>
+<p>2. Install the required dependencies by executing:
+<cite>pip install -r requirements.txt</cite>
+3. Then you execute the <cite>main.py</cite> file either from an IDE or from CMD running:
+<cite>python main.py</cite></p>
+<p>To build the application the following command was used:
+<cite>pyinstaller –onedir –windowed –add-data “C:/Users/…/Lib/site-packages/pulp;pulp/” -n FPL_Python_Stats main.py</cite>
+To generate docstrings using pyment:
+<cite>pyment -w -o reST .</cite></p>
+</section>
+<section id="support">
+<h2>Support:<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+<p>If you have new ideas on features you would like feel free to either send an email to
+<cite>ilias4780&#64;gmail.com</cite> or jump into the code yourself building it. You can also use the Issues
+page of Github.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">FPL Python Statistics UI App</a><ul>
+<li><a class="reference internal" href="#changelog-in-version-1-6">Changelog in Version 1.6</a></li>
+<li><a class="reference internal" href="#features">Features:</a></li>
+<li><a class="reference internal" href="#executable-available">EXECUTABLE AVAILABLE!!</a></li>
+<li><a class="reference internal" href="#code-setup">Code setup:</a></li>
+<li><a class="reference internal" href="#support">Support:</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to FPL Statistics UI App’s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="requirements.html"
+                        title="next chapter">Environment Requirements</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/readme.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="requirements.html" title="Environment Requirements"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to FPL Statistics UI App’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">FPL Statistics UI App v1.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">FPL Python Statistics UI App</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Ilias Charitos.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+  </body>
+</html>

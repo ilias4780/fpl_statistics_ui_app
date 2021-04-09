@@ -1,5 +1,8 @@
 """
 Test Suite for best 15 optimisation, using unittest.
+
+Classes in the source file:
+    * :func:`Best15OptimizationTests`: Test class for best 15 optimization script.
 """
 
 import unittest
@@ -8,6 +11,7 @@ from best_15_optimisation import find_best_15_players_by_value
 
 
 class Best15OptimizationTests(unittest.TestCase):
+    """Test class for best 15 optimization script."""
 
     def test_maximization_of_value(self):
         """Here we check whether the optimization aims to maximize the value."""
@@ -336,8 +340,10 @@ class Best15OptimizationTests(unittest.TestCase):
         self.assertEqual(stats_outcomes[3], expected_value_outcome)
 
     def test_price_constraint_greater_than_100(self):
-        """Here we check if the constraint for the total price of the 15 players selection is satisfied
-        on the upper limit."""
+        """
+        Here we check if the constraint for the total price of the 15 players selection is satisfied
+        on the upper limit.
+        """
 
         # Arrange
         names = [
@@ -392,8 +398,10 @@ class Best15OptimizationTests(unittest.TestCase):
         self.assertEqual(stats_outcomes[2], expected_price_outcome)
 
     def test_price_constraint_equal_to_100(self):
-        """Here we check if the constraint for the total price of the 15 players selection is satisfied
-        on the equal limit."""
+        """
+        Here we check if the constraint for the total price of the 15 players selection is satisfied
+        on the equal limit.
+        """
 
         # Arrange
         names = [

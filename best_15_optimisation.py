@@ -1,3 +1,11 @@
+"""
+Source file that holds the model formulation of the best 15 players optimization problem.
+
+Functions in the source file:
+    * :func:`find_best_15_players_by_value`: Calculates the best 15 player selection according
+        to the value passed as an argument.
+"""
+
 import pandas
 import pulp as p
 
@@ -14,9 +22,9 @@ def find_best_15_players_by_value(player_names, player_positions, player_values,
     :param player_prices: list of the player prices
     :param player_teams: list of the player teams
     :param opt_target: string containing the optimization target (the target value)
-
     :returns: two pandas dataframes, first containing the players and their details, the second the
               optimization information
+
     """
 
     # Extract the players' names, positions, values and prices

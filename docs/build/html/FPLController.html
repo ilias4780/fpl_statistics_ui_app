@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+    <title>FPLController &#8212; FPL Statistics UI App v1.6 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="FPLModel" href="FPLModel.html" />
+    <link rel="prev" title="tests.test_best_15_optimisation" href="tests.test_best_15_optimisation.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="FPLModel.html" title="FPLModel"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tests.test_best_15_optimisation.html" title="tests.test_best_15_optimisation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">FPL Statistics UI App v1.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">FPLController</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fplcontroller">
+<h1>FPLController<a class="headerlink" href="#fplcontroller" title="Permalink to this headline">¶</a></h1>
+<p>This page provides detailed documentation for the <a class="reference internal" href="#module-FPLController" title="FPLController"><code class="xref py py-mod docutils literal notranslate"><span class="pre">FPLController</span></code></a> script.</p>
+<section id="module-FPLController">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-FPLController" title="Permalink to this headline">¶</a></h2>
+<p>Source file that holds the controller of the application. All the logic of the application and the use
+of the GUI elements lies here.</p>
+<dl class="simple">
+<dt>Classes in the source file:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference internal" href="#FPLController.Controller" title="FPLController.Controller"><code class="xref py py-func docutils literal notranslate"><span class="pre">Controller()</span></code></a>: Class that holds all the logic of the application and the manipulation of the GUI elements</dt><dd><p>that the <a class="reference internal" href="FPLViewer.html#module-FPLViewer" title="FPLViewer"><code class="xref py py-mod docutils literal notranslate"><span class="pre">FPLViewer</span></code></a> source file holds.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt id="FPLController.Controller">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FPLController.</span></code><code class="sig-name descname"><span class="pre">Controller</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that holds all the logic of the application and the manipulation of the GUI elements
+that the <a class="reference internal" href="FPLViewer.html#module-FPLViewer" title="FPLViewer"><code class="xref py py-mod docutils literal notranslate"><span class="pre">FPLViewer</span></code></a> source file holds.</p>
+<dl class="py method">
+<dt id="FPLController.Controller.calculate_best_15_players">
+<code class="sig-name descname"><span class="pre">calculate_best_15_players</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.calculate_best_15_players" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate and display the best 15 players selection based on the criteria selected by the user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLController.Controller.display_most_valuable_position">
+<code class="sig-name descname"><span class="pre">display_most_valuable_position</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.display_most_valuable_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a table view with the most valuable positions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLController.Controller.display_most_valuable_teams">
+<code class="sig-name descname"><span class="pre">display_most_valuable_teams</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.display_most_valuable_teams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a table view with the most valuable teams.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLController.Controller.display_sorted_statistics">
+<code class="sig-name descname"><span class="pre">display_sorted_statistics</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.display_sorted_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort the table view with the player statistics.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLController.Controller.get_fpl_database_in_json">
+<code class="sig-name descname"><span class="pre">get_fpl_database_in_json</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.get_fpl_database_in_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the FPL database using the FPL’s API.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLController.Controller.get_sep_data_from_results">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_sep_data_from_results</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statistics</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.get_sep_data_from_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Separate the results returned by the optimization and bring it in a format suitable for
+display.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>results</strong> – pandas dataframe containing the results of the optimization</p></li>
+<li><p><strong>statistics</strong> – pandas dataframe containing the statistics of the optimization process</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>lists containing the goalkeepers, defenders, midfielders and forwards returned by the
+optimization, plus a list containing the statistics of the optimization process</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLController.Controller.load_database_from_file">
+<code class="sig-name descname"><span class="pre">load_database_from_file</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.load_database_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load Offline the FPL data from a JSON file selected by the user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLController.Controller.process_data">
+<code class="sig-name descname"><span class="pre">process_data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.process_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the parts that we want to keep from the downloaded data and process them.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLController.Controller.save_database_to_file">
+<code class="sig-name descname"><span class="pre">save_database_to_file</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.save_database_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the downloaded FPL data to a JSON in a selected directory by the user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLController.Controller.save_df_for_view_to_csv">
+<code class="sig-name descname"><span class="pre">save_df_for_view_to_csv</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.save_df_for_view_to_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the table view dataframe to a CSV in a selected directory by the user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLController.Controller.save_useful_player_attributes_df_to_csv">
+<code class="sig-name descname"><span class="pre">save_useful_player_attributes_df_to_csv</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.save_useful_player_attributes_df_to_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the useful player attributes dataframe to a CSV in a selected directory by the user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="FPLController.Controller.show_player_statistics">
+<code class="sig-name descname"><span class="pre">show_player_statistics</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.show_player_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a table view with the player statistics.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">FPLController</a><ul>
+<li><a class="reference internal" href="#module-FPLController">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tests.test_best_15_optimisation.html"
+                        title="previous chapter">tests.test_best_15_optimisation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FPLModel.html"
+                        title="next chapter">FPLModel</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/FPLController.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="FPLModel.html" title="FPLModel"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tests.test_best_15_optimisation.html" title="tests.test_best_15_optimisation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">FPL Statistics UI App v1.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">FPLController</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Ilias Charitos.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+  </body>
+</html>
