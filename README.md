@@ -1,3 +1,5 @@
+[![Documentation Status](https://readthedocs.org/projects/fpl-statistics-ui-app/badge/?version=latest)](https://fpl-statistics-ui-app.readthedocs.io/en/latest/?badge=latest)
+
 FPL Python Statistics UI App
 =============================
 
