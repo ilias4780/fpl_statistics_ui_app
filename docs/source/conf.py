@@ -12,7 +12,7 @@
 #
 import os
 import sys
-sys.path.insert(0, '/'.join(os.path.abspath('./../..')))
+sys.path.insert(0, os.path.abspath('../../fpls_ui_app/'))
 
 
 # -- Project information -----------------------------------------------------
@@ -47,23 +47,7 @@ intersphinx_mapping = {'python': ('https://docs.python.org/3.8', None)}
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'classic'
-
-html_theme_options = {
-    'sidebarbgcolor': '#a6a6a6',
-    'sidebarbtncolor': '#a6a6a6',
-    'sidebarlinkcolor': 'white',
-    'relbarbgcolor': '#a6a6a6',
-    'relbarlinkcolor': 'white',
-    'footerbgcolor': '#a6a6a6',
-    'footertextcolor': 'white',
-    'headtextcolor': 'white',
-    'headlinkcolor': 'white',
-    'headbgcolor': '#a6a6a6',
-    'collapsiblesidebar': 'True',
-    'linkcolor': '#730099',
-    'visitedlinkcolor': '#730099'
-}
+html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

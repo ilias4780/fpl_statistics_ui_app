@@ -16,7 +16,6 @@ classes and functions. You will also find the README, Environment Requirements a
    requirements
    license
    best_15_optimisation
-   tests.test_best_15_optimisation
    FPLController
    FPLModel
    FPLViewer

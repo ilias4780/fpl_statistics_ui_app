@@ -1,57 +1,169 @@
 
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>FPLController module &mdash; FPL Statistics UI App v1.6 documentation</title>
+  
 
-    <title>FPLController &#8212; FPL Statistics UI App v1.6 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
     
-    <script src="_static/sidebar.js"></script>
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="FPLModel" href="FPLModel.html" />
-    <link rel="prev" title="tests.test_best_15_optimisation" href="tests.test_best_15_optimisation.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="FPLModel.html" title="FPLModel"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="tests.test_best_15_optimisation.html" title="tests.test_best_15_optimisation"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">FPL Statistics UI App v1.6 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">FPLController</a></li> 
-      </ul>
-    </div>  
+    <link rel="next" title="FPLModel module" href="FPLModel.html" />
+    <link rel="prev" title="best_15_optimisation module" href="best_15_optimisation.html" /> 
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FPL Statistics UI App
+          
+
+          
+          </a>
+
+          
             
-  <section id="fplcontroller">
-<h1>FPLController<a class="headerlink" href="#fplcontroller" title="Permalink to this headline">¶</a></h1>
-<p>This page provides detailed documentation for the <a class="reference internal" href="#module-FPLController" title="FPLController"><code class="xref py py-mod docutils literal notranslate"><span class="pre">FPLController</span></code></a> script.</p>
-<section id="module-FPLController">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-FPLController" title="Permalink to this headline">¶</a></h2>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Table of Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">README</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Environment Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="best_15_optimisation.html">best_15_optimisation module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FPLController module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FPLModel.html">FPLModel module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FPLViewer.html">FPLViewer module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FPL Statistics UI App</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>FPLController module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/FPLController.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-FPLController">
+<span id="fplcontroller-module"></span><h1>FPLController module<a class="headerlink" href="#module-FPLController" title="Permalink to this headline">¶</a></h1>
 <p>Source file that holds the controller of the application. All the logic of the application and the use
 of the GUI elements lies here.</p>
 <dl class="simple">
@@ -67,7 +179,8 @@ of the GUI elements lies here.</p>
 <dl class="py class">
 <dt id="FPLController.Controller">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FPLController.</span></code><code class="sig-name descname"><span class="pre">Controller</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller" title="Permalink to this definition">¶</a></dt>
-<dd><p>Class that holds all the logic of the application and the manipulation of the GUI elements
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.8/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class that holds all the logic of the application and the manipulation of the GUI elements
 that the <a class="reference internal" href="FPLViewer.html#module-FPLViewer" title="FPLViewer"><code class="xref py py-mod docutils literal notranslate"><span class="pre">FPLViewer</span></code></a> source file holds.</p>
 <dl class="py method">
 <dt id="FPLController.Controller.calculate_best_15_players">
@@ -157,72 +270,53 @@ optimization, plus a list containing the statistics of the optimization process<
 </dd></dl>
 
 </section>
-</section>
 
 
-            <div class="clearer"></div>
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">FPLController</a><ul>
-<li><a class="reference internal" href="#module-FPLController">Module contents</a></li>
-</ul>
-</li>
-</ul>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="FPLModel.html" class="btn btn-neutral float-right" title="FPLModel module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="best_15_optimisation.html" class="btn btn-neutral float-left" title="best_15_optimisation module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="tests.test_best_15_optimisation.html"
-                        title="previous chapter">tests.test_best_15_optimisation</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="FPLModel.html"
-                        title="next chapter">FPLModel</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/FPLController.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ilias Charitos.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="FPLModel.html" title="FPLModel"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="tests.test_best_15_optimisation.html" title="tests.test_best_15_optimisation"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">FPL Statistics UI App v1.6 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">FPLController</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2021, Ilias Charitos.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

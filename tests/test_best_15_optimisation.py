@@ -7,7 +7,7 @@ Classes in the source file:
 
 import unittest
 
-from best_15_optimisation import find_best_15_players_by_value
+from fpls_ui_app.best_15_optimisation import find_best_15_players_by_value
 
 
 class Best15OptimizationTests(unittest.TestCase):
