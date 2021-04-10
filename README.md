@@ -8,7 +8,8 @@ the FPL database by using the FPL API URL and make statistical calculations.
 
 Changelog in Version 1.6.1
 ---------------------------
-- Edited documentation and uploaded it to readthedocs.org
+- Edited documentation and uploaded it to readthedocs.org:
+    https://fpl-statistics-ui-app.readthedocs.io/en/latest/
 
 Features
 -------------
