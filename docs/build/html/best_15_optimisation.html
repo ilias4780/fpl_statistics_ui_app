@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>best_15_optimisation module &mdash; FPL Statistics UI App v1.6 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +32,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -161,7 +165,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-best_15_optimisation">
+  <section id="module-best_15_optimisation">
 <span id="best-15-optimisation-module"></span><h1>best_15_optimisation module<a class="headerlink" href="#module-best_15_optimisation" title="Permalink to this headline">¶</a></h1>
 <p>Source file that holds the model formulation of the best 15 players optimization problem.</p>
 <dl class="simple">
@@ -175,8 +179,8 @@
 </dd>
 </dl>
 <dl class="py function">
-<dt id="best_15_optimisation.find_best_15_players_by_value">
-<code class="sig-prename descclassname"><span class="pre">best_15_optimisation.</span></code><code class="sig-name descname"><span class="pre">find_best_15_players_by_value</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_prices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_teams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#best_15_optimisation.find_best_15_players_by_value" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="best_15_optimisation.find_best_15_players_by_value">
+<span class="sig-prename descclassname"><span class="pre">best_15_optimisation.</span></span><span class="sig-name descname"><span class="pre">find_best_15_players_by_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_prices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_teams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#best_15_optimisation.find_best_15_players_by_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the best 15 player selection according to the value passed as an argument. Uses the PULP library and
 default CBC solver. It satisfies the max 3 players per team constraint and the 100 cost constraint.</p>
 <dl class="field-list simple">
@@ -197,7 +201,7 @@ optimization information</p>
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>

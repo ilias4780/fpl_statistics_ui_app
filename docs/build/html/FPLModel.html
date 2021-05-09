@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>FPLModel module &mdash; FPL Statistics UI App v1.6 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +32,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -161,7 +165,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-FPLModel">
+  <section id="module-FPLModel">
 <span id="fplmodel-module"></span><h1>FPLModel module<a class="headerlink" href="#module-FPLModel" title="Permalink to this headline">¶</a></h1>
 <p>Source file that holds the table view model of the window.</p>
 <dl class="simple">
@@ -175,13 +179,13 @@
 </dd>
 </dl>
 <dl class="py class">
-<dt id="FPLModel.TableViewModel">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FPLModel.</span></code><code class="sig-name descname"><span class="pre">TableViewModel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLModel.TableViewModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FPLModel.</span></span><span class="sig-name descname"><span class="pre">TableViewModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt6.QtCore.QAbstractTableModel</span></code></p>
 <p>The table view model that is used by the application to display the various dataframes.</p>
 <dl class="py method">
-<dt id="FPLModel.TableViewModel.columnCount">
-<code class="sig-name descname"><span class="pre">columnCount</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parnet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel.columnCount" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLModel.TableViewModel.columnCount">
+<span class="sig-name descname"><span class="pre">columnCount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parnet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel.columnCount" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the column count of the dataframe to display.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -191,8 +195,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLModel.TableViewModel.data">
-<code class="sig-name descname"><span class="pre">data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">index</span></em>, <em class="sig-param"><span class="pre">role=&lt;ItemDataRole.DisplayRole:</span> <span class="pre">0&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel.data" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLModel.TableViewModel.data">
+<span class="sig-name descname"><span class="pre">data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">index</span></em>, <em class="sig-param"><span class="pre">role=&lt;ItemDataRole.DisplayRole:</span> <span class="pre">0&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel.data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the data according to index passed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -205,8 +209,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLModel.TableViewModel.headerData">
-<code class="sig-name descname"><span class="pre">headerData</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel.headerData" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLModel.TableViewModel.headerData">
+<span class="sig-name descname"><span class="pre">headerData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel.headerData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the header data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -220,8 +224,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLModel.TableViewModel.rowCount">
-<code class="sig-name descname"><span class="pre">rowCount</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel.rowCount" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLModel.TableViewModel.rowCount">
+<span class="sig-name descname"><span class="pre">rowCount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLModel.TableViewModel.rowCount" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the row count of the dataframe to display.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -232,7 +236,7 @@
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>

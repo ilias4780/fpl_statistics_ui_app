@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>FPLController module &mdash; FPL Statistics UI App v1.6 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +32,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -161,7 +165,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-FPLController">
+  <section id="module-FPLController">
 <span id="fplcontroller-module"></span><h1>FPLController module<a class="headerlink" href="#module-FPLController" title="Permalink to this headline">¶</a></h1>
 <p>Source file that holds the controller of the application. All the logic of the application and the use
 of the GUI elements lies here.</p>
@@ -176,44 +180,44 @@ of the GUI elements lies here.</p>
 </dd>
 </dl>
 <dl class="py class">
-<dt id="FPLController.Controller">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">FPLController.</span></code><code class="sig-name descname"><span class="pre">Controller</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">FPLController.</span></span><span class="sig-name descname"><span class="pre">Controller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.8/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Class that holds all the logic of the application and the manipulation of the GUI elements
 that the <a class="reference internal" href="FPLViewer.html#module-FPLViewer" title="FPLViewer"><code class="xref py py-mod docutils literal notranslate"><span class="pre">FPLViewer</span></code></a> source file holds.</p>
 <dl class="py method">
-<dt id="FPLController.Controller.calculate_best_15_players">
-<code class="sig-name descname"><span class="pre">calculate_best_15_players</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.calculate_best_15_players" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller.calculate_best_15_players">
+<span class="sig-name descname"><span class="pre">calculate_best_15_players</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.calculate_best_15_players" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate and display the best 15 players selection based on the criteria selected by the user.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLController.Controller.display_most_valuable_position">
-<code class="sig-name descname"><span class="pre">display_most_valuable_position</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.display_most_valuable_position" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller.display_most_valuable_position">
+<span class="sig-name descname"><span class="pre">display_most_valuable_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.display_most_valuable_position" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a table view with the most valuable positions.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLController.Controller.display_most_valuable_teams">
-<code class="sig-name descname"><span class="pre">display_most_valuable_teams</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.display_most_valuable_teams" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller.display_most_valuable_teams">
+<span class="sig-name descname"><span class="pre">display_most_valuable_teams</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.display_most_valuable_teams" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a table view with the most valuable teams.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLController.Controller.display_sorted_statistics">
-<code class="sig-name descname"><span class="pre">display_sorted_statistics</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.display_sorted_statistics" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller.display_sorted_statistics">
+<span class="sig-name descname"><span class="pre">display_sorted_statistics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.display_sorted_statistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sort the table view with the player statistics.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLController.Controller.get_fpl_database_in_json">
-<code class="sig-name descname"><span class="pre">get_fpl_database_in_json</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.get_fpl_database_in_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller.get_fpl_database_in_json">
+<span class="sig-name descname"><span class="pre">get_fpl_database_in_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.get_fpl_database_in_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the FPL database using the FPL’s API.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLController.Controller.get_sep_data_from_results">
-<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_sep_data_from_results</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statistics</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.get_sep_data_from_results" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller.get_sep_data_from_results">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_sep_data_from_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statistics</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.get_sep_data_from_results" title="Permalink to this definition">¶</a></dt>
 <dd><p>Separate the results returned by the optimization and bring it in a format suitable for
 display.</p>
 <dl class="field-list simple">
@@ -231,44 +235,44 @@ optimization, plus a list containing the statistics of the optimization process<
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLController.Controller.load_database_from_file">
-<code class="sig-name descname"><span class="pre">load_database_from_file</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.load_database_from_file" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller.load_database_from_file">
+<span class="sig-name descname"><span class="pre">load_database_from_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.load_database_from_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load Offline the FPL data from a JSON file selected by the user.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLController.Controller.process_data">
-<code class="sig-name descname"><span class="pre">process_data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.process_data" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller.process_data">
+<span class="sig-name descname"><span class="pre">process_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.process_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract the parts that we want to keep from the downloaded data and process them.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLController.Controller.save_database_to_file">
-<code class="sig-name descname"><span class="pre">save_database_to_file</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.save_database_to_file" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller.save_database_to_file">
+<span class="sig-name descname"><span class="pre">save_database_to_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.save_database_to_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save the downloaded FPL data to a JSON in a selected directory by the user.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLController.Controller.save_df_for_view_to_csv">
-<code class="sig-name descname"><span class="pre">save_df_for_view_to_csv</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.save_df_for_view_to_csv" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller.save_df_for_view_to_csv">
+<span class="sig-name descname"><span class="pre">save_df_for_view_to_csv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.save_df_for_view_to_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save the table view dataframe to a CSV in a selected directory by the user.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLController.Controller.save_useful_player_attributes_df_to_csv">
-<code class="sig-name descname"><span class="pre">save_useful_player_attributes_df_to_csv</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.save_useful_player_attributes_df_to_csv" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller.save_useful_player_attributes_df_to_csv">
+<span class="sig-name descname"><span class="pre">save_useful_player_attributes_df_to_csv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.save_useful_player_attributes_df_to_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save the useful player attributes dataframe to a CSV in a selected directory by the user.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="FPLController.Controller.show_player_statistics">
-<code class="sig-name descname"><span class="pre">show_player_statistics</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.show_player_statistics" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="FPLController.Controller.show_player_statistics">
+<span class="sig-name descname"><span class="pre">show_player_statistics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FPLController.Controller.show_player_statistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a table view with the player statistics.</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
