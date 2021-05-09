@@ -8,9 +8,9 @@ Classes in the source file:
 
 """
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMainWindow, QGridLayout, QTableView, QFileDialog, QComboBox, QLabel
-from PyQt5.QtWidgets import QVBoxLayout, QWidget, QLCDNumber, QPushButton, QDialog
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QMainWindow, QGridLayout, QTableView, QFileDialog, QComboBox, QLabel
+from PyQt6.QtWidgets import QVBoxLayout, QWidget, QLCDNumber, QPushButton, QDialog
 
 import FPLModel
 
@@ -72,13 +72,13 @@ class MainWindow(QMainWindow):
         """Creates the information bar of the main window."""
         self._info_layout = QGridLayout()
         self._gameweek_label = QLabel("We are currently in Gameweek:")
-        self._gameweek_label.setAlignment(Qt.AlignCenter)
+        self._gameweek_label.setAlignment(Qt.Alignment.AlignCenter)
         self._gameweek_label.setStyleSheet("background-color: rgb(2,137,78)")
         self._gameweek_label.setFixedHeight(60)
         self._gameweek_lcd = QLCDNumber()
         self._gameweek_lcd.setFixedHeight(60)
         self._deadline_label = QLabel("Next Deadline Date:")
-        self._deadline_label.setAlignment(Qt.AlignCenter)
+        self._deadline_label.setAlignment(Qt.Alignment.AlignCenter)
         self._deadline_label.setStyleSheet("background-color: rgb(2,137,78)")
         self._deadline_label.setFixedHeight(60)
         self._deadline_display = QLabel()
@@ -132,7 +132,7 @@ class MainWindow(QMainWindow):
         """Creates the sort by label of the main window. """
         self.sort_by_label = QLabel()
         self.sort_by_label.setText("<font color='white'>Sort by:</font>")
-        self.sort_by_label.setAlignment(Qt.AlignBottom)
+        self.sort_by_label.setAlignment(Qt.Alignment.AlignBottom)
         self.sort_by_label.setFixedSize(140, 60)
         self._buttons_layout2.addWidget(self.sort_by_label, 0, 1)
 
@@ -148,7 +148,7 @@ class MainWindow(QMainWindow):
         self.find_best_15_label = QLabel()
         self.find_best_15_label.setText("<font color='white'>Find best 15 based on:</font>")
         self.find_best_15_label.setWordWrap(True)
-        self.find_best_15_label.setAlignment(Qt.AlignBottom)
+        self.find_best_15_label.setAlignment(Qt.Alignment.AlignBottom)
         self.find_best_15_label.setFixedSize(140, 60)
         self._buttons_layout2.addWidget(self.find_best_15_label, 0, 2)
 
@@ -240,7 +240,7 @@ class Best15PopUp(QDialog):
         stat_counter = 0
         for stat, value in stats.items():
             stat_label = QLabel(stat)
-            stat_label.setAlignment(Qt.AlignCenter)
+            stat_label.setAlignment(Qt.Alignment.AlignCenter)
             stat_label.setFixedHeight(40)
             stat_label.setStyleSheet(
                 """
@@ -248,7 +248,7 @@ class Best15PopUp(QDialog):
                 font-size: 24px;
                 """)
             value_label = QLabel(f"{value}")
-            value_label.setAlignment(Qt.AlignCenter)
+            value_label.setAlignment(Qt.Alignment.AlignCenter)
             value_label.setFixedHeight(40)
             value_label.setStyleSheet(
                 """
@@ -264,7 +264,7 @@ class Best15PopUp(QDialog):
         for player in players:
             player_name = player.replace(" ", "\n")
             player_labels[player] = QLabel(player_name)
-            player_labels[player].setAlignment(Qt.AlignCenter)
+            player_labels[player].setAlignment(Qt.Alignment.AlignCenter)
             player_labels[player].setStyleSheet(
                 """
                 background-color: rgb(55,0,60);

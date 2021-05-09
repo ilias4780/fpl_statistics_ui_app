@@ -4,5 +4,5 @@ Environment Requirements
 * numpy
 * pandas
 * requests
-* PyQt5
+* PyQt6
 * pulp

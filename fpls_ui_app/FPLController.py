@@ -43,7 +43,7 @@ class Controller(object):
         self.last_process = None
         self.columns_for_sorting = ['total_points', 'now_cost', 'value', 'position', 'team_name', 'form', 'minutes',
                                     'ict_index', 'ict_index_rank', 'goals_scored', 'assists', 'clean_sheets',
-                                    'bonus', 'selected_by_percent', 'transfers_in', 'transfers_out']
+                                    'bonus', 'selected_by_percent', 'transfer_diff', 'transfers_in', 'transfers_out']
         self.columns_for_optimisation = ['total_points', 'value', 'form', 'ict_index']
 
         # Populate the sort_value_button
@@ -140,6 +140,16 @@ class Controller(object):
             self.useful_player_attributes.insert(5, 'value', self.useful_player_attributes.value_season.astype(float))
             # Drop the value_season column as it is not needed anymore
             self.useful_player_attributes = self.useful_player_attributes.drop(['value_season'], axis=1)
+
+            # Cast ICT Index and Selected by Percent Columns to numeric, so that they can be sorted properly.
+            self.useful_player_attributes[["ict_index", "selected_by_percent"]] = \
+                self.useful_player_attributes[["ict_index", "selected_by_percent"]].apply(pd.to_numeric)
+
+            # Make a new column for the transfer difference
+            transfer_loc = self.useful_player_attributes.columns.get_loc("transfers_in")
+            self.useful_player_attributes.insert(transfer_loc, "transfer_diff",
+                                                 self.useful_player_attributes["transfers_in"] -
+                                                 self.useful_player_attributes["transfers_out"])
         except Exception as e:
             self.main_window.set_status_display_text("An error has occurred while trying to process the data. "
                                                      "Please consult the log for details.")
@@ -183,7 +193,16 @@ class Controller(object):
         if self.last_process not in ['MV_position', 'MV_teams', 'Best_15']:
             try:
                 column_to_sort = self.main_window.select_sort_value_button.currentText()
-                self.df_for_view = self.useful_player_attributes.sort_values(column_to_sort, ascending=False)
+                columns = self.useful_player_attributes.columns.tolist()
+                column_to_sort_index = columns.index(column_to_sort)
+                if column_to_sort == 'position':
+                    columns.insert(2, columns.pop(column_to_sort_index))
+                elif column_to_sort == 'team_name':
+                    columns.insert(3, columns.pop(column_to_sort_index))
+                else:
+                    columns.insert(4, columns.pop(column_to_sort_index))
+                self.df_for_view = self.useful_player_attributes.reindex(columns=columns).sort_values(
+                    column_to_sort, ascending=False)
             except Exception as e:
                 self.main_window.set_status_display_text("An error has occurred while trying to calculate the data. "
                                                          "Please consult the log for details.")

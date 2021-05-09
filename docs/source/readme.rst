@@ -10,9 +10,14 @@ README
 This is a python application providing users with a GUI in order to download
 the FPL database by using the FPL API URL and make statistical calculations.
 
-Changelog in Version 1.6.1
+Changelog in Version 1.7.0
 ---------------------------
-- Edited documentation and uploaded it to readthedocs.org:
+- Upgraded from PyQt5 to PyQt6 library.
+- Issue #3: Fixed sorting issue in for columns ICT Index and Selected by Percent.
+- Ticket by geo-xar: When shorting rows by any criteria then the relevant column should be displayed first
+- Ticket by geo-xar: Added a new column containing the transfer difference (transfers in - transfers out) which can
+  be used for sorting as well. Colour may be used in the future but not in this release.
+
 
 Features
 -------------
