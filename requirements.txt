@@ -49,5 +49,5 @@ sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.4
 toml==0.10.2
 traitlets==5.0.5
-urllib3==1.26.4
+urllib3==1.26.5
 wcwidth==0.2.5
