@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>README &mdash; FPL Statistics UI App v1.6 documentation</title>
@@ -91,7 +90,7 @@
               <p class="caption"><span class="caption-text">Table of Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">README</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#changelog-in-version-1-7-0">Changelog in Version 1.7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changelog-in-version-1-7-1">Changelog in Version 1.7.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#executable-available">EXECUTABLE AVAILABLE!!</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code-setup">Code setup</a></li>
@@ -173,21 +172,18 @@
            <div itemprop="articleBody">
             
   <a class="reference external image-reference" href="https://fpl-statistics-ui-app.readthedocs.io/en/latest/?badge=latest" id="readme"><img alt="Documentation Status" src="https://readthedocs.org/projects/fpl-statistics-ui-app/badge/?version=latest" /></a>
-<section id="id1">
+<div class="section" id="id1">
 <h1>README<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>This is a python application providing users with a GUI in order to download
 the FPL database by using the FPL API URL and make statistical calculations.</p>
-<section id="changelog-in-version-1-7-0">
-<h2>Changelog in Version 1.7.0<a class="headerlink" href="#changelog-in-version-1-7-0" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="changelog-in-version-1-7-1">
+<h2>Changelog in Version 1.7.1<a class="headerlink" href="#changelog-in-version-1-7-1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Upgraded from PyQt5 to PyQt6 library.</p></li>
-<li><p>Issue #3: Fixed sorting issue in for columns ICT Index and Selected by Percent.</p></li>
-<li><p>Ticket by geo-xar: When shorting rows by any criteria then the relevant column should be displayed first</p></li>
-<li><p>Ticket by geo-xar: Added a new column containing the transfer difference (transfers in - transfers out) which can
-be used for sorting as well. Colour may be used in the future but not in this release.</p></li>
+<li><p>Issue #5: Fixed end of season bug, now displaying <cite>End of Season</cite> instead of next Gameweek deadline.</p></li>
+<li><p>Executable was not updated as I face an issue with PyQt6 and pyinstaller. Will update once I find the solution.</p></li>
 </ul>
-</section>
-<section id="features">
+</div>
+<div class="section" id="features">
 <h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Graphical Interface</p></li>
@@ -201,14 +197,14 @@ be used for sorting as well. Colour may be used in the future but not in this re
 <li><p>Calculate most valuable team</p></li>
 <li><p>Save data in CSVs</p></li>
 </ul>
-</section>
-<section id="executable-available">
+</div>
+<div class="section" id="executable-available">
 <h2>EXECUTABLE AVAILABLE!!<a class="headerlink" href="#executable-available" title="Permalink to this headline">¶</a></h2>
 <p>You can download the zip containing the application’s executable
 if you don’t care about the code. Just download the <cite>FPL_Statistics_UI</cite> zip
 and double click the <cite>FPL_Python_Stats.exe</cite> inside it. Enjoy!</p>
-</section>
-<section id="code-setup">
+</div>
+<div class="section" id="code-setup">
 <h2>Code setup<a class="headerlink" href="#code-setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Create a python virtual environment.</p></li>
@@ -227,14 +223,14 @@ and double click the <cite>FPL_Python_Stats.exe</cite> inside it. Enjoy!</p>
 <dt>To build the application into an executable the following command was used:</dt><dd><p><cite>pyinstaller –onedir –windowed –add-data “C:/Users/…/Lib/site-packages/pulp;pulp/” -n FPL_Python_Stats main.py</cite></p>
 </dd>
 </dl>
-</section>
-<section id="support">
+</div>
+<div class="section" id="support">
 <h2>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
 <p>If you have new ideas on features you would like feel free to either send an email to
 <cite>ilias4780&#64;gmail.com</cite> or jump into the code yourself building it. You can also use the Issues
 page of Github.</p>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

@@ -1,4 +1,4 @@
-# Copyright 2020 by Ilias Charitos.
+# Copyright 2021 by Ilias Charitos.
 # All rights reserved.
 # This file is part of the FPL Python Statistics UI App,
 # and is released under the "MIT License Agreement". Please see the LICENSE

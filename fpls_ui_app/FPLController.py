@@ -97,9 +97,12 @@ class Controller(object):
             current_gameweek_index = self.events_df['is_current'].idxmax()
             current_gameweek = current_gameweek_index + 1
             highest_current_score = self.events_df['highest_score'][current_gameweek_index]
-            next_deadline = self.events_df['deadline_time'][current_gameweek_index+1]
-            next_deadline_date = datetime.datetime.strptime(next_deadline, '%Y-%m-%dT%H:%M:%SZ')\
-                .strftime('%Y-%m-%d %H:%M:%S GMT')
+            try:
+                next_deadline = self.events_df['deadline_time'][current_gameweek_index+1]
+                next_deadline_date = datetime.datetime.strptime(next_deadline, '%Y-%m-%dT%H:%M:%SZ')\
+                    .strftime('%Y-%m-%d %H:%M:%S GMT')
+            except KeyError:
+                next_deadline_date = 'End of Season'
             current_most_captained_index = self.events_df['most_captained'][current_gameweek_index]
             current_most_captained = self.all_elements_df['second_name'][current_most_captained_index]
             #??current_most_selected = self.events_df['most_selected'][current_gameweek_index]
