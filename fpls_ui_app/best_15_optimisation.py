@@ -4,10 +4,21 @@ Source file that holds the model formulation of the best 15 players optimization
 Functions in the source file:
     * :func:`find_best_15_players_by_value`: Calculates the best 15 player selection according
         to the value passed as an argument.
+    * :func:`OptimizationValuesAllZeroError`: Exception for when the values chosen to be used as the
+        main optimization values in :func:`find_best_15_players_by_value` are all zero.
 """
 
 import pandas
 import pulp as p
+
+
+class OptimizationValuesAllZeroError(Exception):
+    """
+    Exception for when the values chosen to be used as the main optimization values in
+    :func:`find_best_15_players_by_value` are all zero. This would technically happen only
+    in the pre season period when for example 'Form' is zero for all players.
+    """
+    pass
 
 
 def find_best_15_players_by_value(player_names, player_positions, player_values, player_prices,
@@ -26,6 +37,10 @@ def find_best_15_players_by_value(player_names, player_positions, player_values,
               optimization information
 
     """
+
+    # Check that there are values to be compared (only relevant for when the season has not started yet)
+    if not any([float(value) for value in player_values]):
+        raise OptimizationValuesAllZeroError
 
     # Extract the players' names, positions, values and prices
     players = list()

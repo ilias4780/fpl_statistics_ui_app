@@ -96,18 +96,19 @@ class Controller(object):
             self.events_df = pd.DataFrame(self.fpl_database_in_json['events'])
             current_gameweek_index = self.events_df['is_current'].idxmax()
             current_gameweek = current_gameweek_index + 1
-            highest_current_score = self.events_df['highest_score'][current_gameweek_index]
             try:
                 next_deadline = self.events_df['deadline_time'][current_gameweek_index+1]
                 next_deadline_date = datetime.datetime.strptime(next_deadline, '%Y-%m-%dT%H:%M:%SZ')\
                     .strftime('%Y-%m-%d %H:%M:%S GMT')
             except KeyError:
                 next_deadline_date = 'End of Season'
-            current_most_captained_index = self.events_df['most_captained'][current_gameweek_index]
-            current_most_captained = self.all_elements_df['second_name'][current_most_captained_index]
-            #??current_most_selected = self.events_df['most_selected'][current_gameweek_index]
-            current_most_transferred_in_index = self.events_df['most_transferred_in'][current_gameweek_index]
-            current_most_transferred_in = self.all_elements_df['second_name'][current_most_transferred_in_index]
+            # Data for future stats labels
+            # highest_current_score = self.events_df['highest_score'][current_gameweek_index]
+            # current_most_captained_index = self.events_df['most_captained'][current_gameweek_index]
+            # current_most_captained = self.all_elements_df['second_name'][current_most_captained_index]
+            # current_most_selected = self.events_df['most_selected'][current_gameweek_index]
+            # current_most_transferred_in_index = self.events_df['most_transferred_in'][current_gameweek_index]
+            # current_most_transferred_in = self.all_elements_df['second_name'][current_most_transferred_in_index]
 
             # Keep the useful columns of the elements dataframe
             self.useful_player_attributes = self.all_elements_df[['second_name', 'first_name', 'team',
@@ -278,6 +279,10 @@ class Controller(object):
                                                                        value_to_use_for_optimisation)
             self.df_for_view = pd.concat([result_df, total_stats], ignore_index=True)
             gks, defs, mfs, fwds, stats = self.get_sep_data_from_results(result_df, total_stats)
+        except opt.OptimizationValuesAllZeroError:
+            self.main_window.set_status_display_text("The values chosen to be used for optimisation "
+                                                     "are all zero.")
+            self.logger.warning("The values chosen to be used for optimisation are all zero.")
         except Exception as e:
             self.main_window.set_status_display_text("An error has occurred while trying to calculate the data. "
                                                      "Please consult the log for details.")

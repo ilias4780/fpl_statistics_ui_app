@@ -174,9 +174,23 @@
 </dd>
 </dl>
 </li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#best_15_optimisation.OptimizationValuesAllZeroError" title="best_15_optimisation.OptimizationValuesAllZeroError"><code class="xref py py-func docutils literal notranslate"><span class="pre">OptimizationValuesAllZeroError()</span></code></a>: Exception for when the values chosen to be used as the</dt><dd><p>main optimization values in <a class="reference internal" href="#best_15_optimisation.find_best_15_players_by_value" title="best_15_optimisation.find_best_15_players_by_value"><code class="xref py py-func docutils literal notranslate"><span class="pre">find_best_15_players_by_value()</span></code></a> are all zero.</p>
+</dd>
+</dl>
+</li>
 </ul>
 </dd>
 </dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="best_15_optimisation.OptimizationValuesAllZeroError">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">best_15_optimisation.</span></span><span class="sig-name descname"><span class="pre">OptimizationValuesAllZeroError</span></span><a class="headerlink" href="#best_15_optimisation.OptimizationValuesAllZeroError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.8/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Exception for when the values chosen to be used as the main optimization values in
+<a class="reference internal" href="#best_15_optimisation.find_best_15_players_by_value" title="best_15_optimisation.find_best_15_players_by_value"><code class="xref py py-func docutils literal notranslate"><span class="pre">find_best_15_players_by_value()</span></code></a> are all zero. This would technically happen only
+in the pre season period when for example ‘Form’ is zero for all players.</p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="best_15_optimisation.find_best_15_players_by_value">
 <span class="sig-prename descclassname"><span class="pre">best_15_optimisation.</span></span><span class="sig-name descname"><span class="pre">find_best_15_players_by_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_prices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_teams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#best_15_optimisation.find_best_15_players_by_value" title="Permalink to this definition">¶</a></dt>
