@@ -15,7 +15,7 @@ Classes in the source file:
 import logging
 import sys
 
-from PyQt6.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication
 
 import FPLViewer
 import FPLController
@@ -71,7 +71,7 @@ def main():
 
         main_window.show()
 
-        sys.exit(app.exec())
+        sys.exit(app.exec_())
     except Exception as e:
         logger.critical("Application has failed. Error is shown below:", exc_info=True)
         sys.exit(1)

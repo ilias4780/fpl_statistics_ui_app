@@ -6,8 +6,8 @@ Classes in the source file:
         that the :mod:`FPLViewer` source file holds.
 """
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtCore import QAbstractTableModel
+from PyQt5.QtCore import Qt
+from PyQt5.QtCore import QAbstractTableModel
 
 
 class TableViewModel(QAbstractTableModel):
@@ -39,16 +39,16 @@ class TableViewModel(QAbstractTableModel):
         # Pandas .shape() returns a tuple representing the dimensionality of the DataFrame.
         return self._data.shape[1]
 
-    def data(self, index, role=Qt.ItemDataRole.DisplayRole):
+    def data(self, index, role=Qt.DisplayRole):
         """
         Return the data according to index passed.
 
         :param index: 
-        :param role:  (Default value = Qt.ItemDataRole.DisplayRole)
+        :param role:  (Default value = Qt.DisplayRole)
 
         """
         if index.isValid():
-            if role == Qt.ItemDataRole.DisplayRole:
+            if role == Qt.DisplayRole:
                 return str(self._data.iloc[index.row(), index.column()])
         return None
 
@@ -61,6 +61,6 @@ class TableViewModel(QAbstractTableModel):
         :param role: 
 
         """
-        if orientation == Qt.Orientations.Horizontal and role == Qt.ItemDataRole.DisplayRole:
+        if orientation == Qt.Horizontal and role == Qt.DisplayRole:
             return self._data.columns[col]
         return None
