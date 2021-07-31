@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('../../fpls_ui_app/'))
 # -- Project information -----------------------------------------------------
 
 project = 'FPL Statistics UI App'
-copyright = '2021, Ilias Charitos'
+copyright = '2020-2021, Ilias Charitos'
 author = 'Ilias Charitos'
 
 # The full version, including alpha/beta/rc tags

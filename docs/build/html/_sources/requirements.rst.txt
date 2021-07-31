@@ -1,8 +1,10 @@
 Environment Requirements
 ===========================
 
+* PyQt5
+* Sphinx
 * numpy
 * pandas
-* requests
-* PyQt6
 * pulp
+* requests
+* sphinx-rtd-theme

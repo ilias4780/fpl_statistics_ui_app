@@ -10,10 +10,10 @@ README
 This is a python application providing users with a GUI in order to download
 the FPL database by using the FPL API URL and make statistical calculations.
 
-Changelog in Version 1.7.2
+Changelog in Version 1.8.0
 ---------------------------
-- Fixed issues with new season's database.
-- Executable was not updated as I face an issue with PyQt6 and pyinstaller. Will update once I find the solution.
+- Reverted to PyQt5 due to PyQt6 failing auto docs and pyinstaller build.
+- Added `Archive` folder that stores the databases of previous years.
 
 
 Features
