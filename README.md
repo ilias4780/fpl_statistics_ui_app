@@ -40,7 +40,7 @@ Code setup
     `python fpls_ui_app/main.py`
 
 To build the application into an executable the following command was used: 
-    `pyinstaller --onedir --windowed --add-data "C:/Users/.../Lib/site-packages/pulp;pulp/" -n FPL_Python_Stats main.py`
+    `pyinstaller --onedir --windowed --add-data "C:/Users/.../Lib/site-packages/pulp;pulp/" -n FPL_Python_Stats fpls_ui_app/main.py`
 
 
 Support

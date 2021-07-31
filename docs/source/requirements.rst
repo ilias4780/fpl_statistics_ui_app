@@ -2,9 +2,7 @@ Environment Requirements
 ===========================
 
 * PyQt5
-* Sphinx
 * numpy
 * pandas
 * pulp
 * requests
-* sphinx-rtd-theme
