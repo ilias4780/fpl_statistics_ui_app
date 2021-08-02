@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>README &mdash; FPL Statistics UI App v1.6 documentation</title>
+  <title>Readme &mdash; FPL Statistics UI App v1.6 documentation</title>
   
 
   
@@ -41,7 +41,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Environment Requirements" href="requirements.html" />
+    <link rel="next" title="Environment Requirements" href="PIP%20requirements.html" />
     <link rel="prev" title="Welcome to FPL Statistics UI App’s documentation!" href="index.html" /> 
 </head>
 
@@ -87,18 +87,19 @@
               
             
             
-              <p class="caption"><span class="caption-text">Table of Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">README</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#changelog-in-version-1-7-2">Changelog in Version 1.7.2</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Readme</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#changelog-in-version-1-8-0">Changelog in Version 1.8.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#executable-available">EXECUTABLE AVAILABLE!!</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code-setup">Code setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="requirements.html">Environment Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PIP%20requirements.html">Environment Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="License.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Algorithmic%20Model.html">Algorithmic Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="best_15_optimisation.html">best_15_optimisation module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FPLController.html">FPLController module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FPLModel.html">FPLModel module</a></li>
@@ -152,13 +153,13 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>README</li>
+      <li>Readme</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/readme.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/Readme.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -173,14 +174,15 @@
             
   <a class="reference external image-reference" href="https://fpl-statistics-ui-app.readthedocs.io/en/latest/?badge=latest" id="readme"><img alt="Documentation Status" src="https://readthedocs.org/projects/fpl-statistics-ui-app/badge/?version=latest" /></a>
 <div class="section" id="id1">
-<h1>README<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>Readme<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>This is a python application providing users with a GUI in order to download
 the FPL database by using the FPL API URL and make statistical calculations.</p>
-<div class="section" id="changelog-in-version-1-7-2">
-<h2>Changelog in Version 1.7.2<a class="headerlink" href="#changelog-in-version-1-7-2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="changelog-in-version-1-8-0">
+<h2>Changelog in Version 1.8.0<a class="headerlink" href="#changelog-in-version-1-8-0" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Fixed issues with new season’s database.</p></li>
-<li><p>Executable was not updated as I face an issue with PyQt6 and pyinstaller. Will update once I find the solution.</p></li>
+<li><p>Reverted to PyQt5 due to PyQt6 failing auto docs and pyinstaller build.</p></li>
+<li><p>Added <cite>Archive</cite> folder that stores the databases of previous years.</p></li>
+<li><p>Restructured GUI to use Tabs for different app features (enabling more space for future features).</p></li>
 </ul>
 </div>
 <div class="section" id="features">
@@ -220,7 +222,7 @@ and double click the <cite>FPL_Python_Stats.exe</cite> inside it. Enjoy!</p>
 </li>
 </ol>
 <dl class="simple">
-<dt>To build the application into an executable the following command was used:</dt><dd><p><cite>pyinstaller –onedir –windowed –add-data “C:/Users/…/Lib/site-packages/pulp;pulp/” -n FPL_Python_Stats main.py</cite></p>
+<dt>To build the application into an executable the following command was used:</dt><dd><p><cite>pyinstaller –onedir –windowed –add-data “C:/Users/…/Lib/site-packages/pulp;pulp/” -n FPL_Python_Stats fpls_ui_app/main.py</cite></p>
 </dd>
 </dl>
 </div>
@@ -238,7 +240,7 @@ page of Github.</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="requirements.html" class="btn btn-neutral float-right" title="Environment Requirements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="PIP%20requirements.html" class="btn btn-neutral float-right" title="Environment Requirements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to FPL Statistics UI App’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
@@ -246,7 +248,7 @@ page of Github.</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, Ilias Charitos.
+        &#169; Copyright 2020-2021, Ilias Charitos.
 
     </p>
   </div>

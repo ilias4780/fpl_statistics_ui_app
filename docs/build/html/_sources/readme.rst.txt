@@ -4,16 +4,17 @@
     :target: https://fpl-statistics-ui-app.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-README
+Readme
 =======
 
 This is a python application providing users with a GUI in order to download
 the FPL database by using the FPL API URL and make statistical calculations.
 
-Changelog in Version 1.7.2
+Changelog in Version 1.8.0
 ---------------------------
-- Fixed issues with new season's database.
-- Executable was not updated as I face an issue with PyQt6 and pyinstaller. Will update once I find the solution.
+- Reverted to PyQt5 due to PyQt6 failing auto docs and pyinstaller build.
+- Added `Archive` folder that stores the databases of previous years.
+- Restructured GUI to use Tabs for different app features (enabling more space for future features).
 
 
 Features
@@ -44,7 +45,7 @@ Code setup
     `python fpls_ui_app/main.py`
 
 To build the application into an executable the following command was used:
-    `pyinstaller --onedir --windowed --add-data "C:/Users/.../Lib/site-packages/pulp;pulp/" -n FPL_Python_Stats main.py`
+    `pyinstaller --onedir --windowed --add-data "C:/Users/.../Lib/site-packages/pulp;pulp/" -n FPL_Python_Stats fpls_ui_app/main.py`
 
 
 Support
