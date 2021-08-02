@@ -1,4 +1,4 @@
-[![Documentation Status](https://readthedocs.org/projects/fpl-statistics-ui-app/badge/?version=latest)](https://fpl-statistics-ui-app.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/fpl-statistics-ui-app/badge/?version=master)](https://fpl-statistics-ui-app.readthedocs.io/en/master/?badge=master)
 
 Readme
 =======
