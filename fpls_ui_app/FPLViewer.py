@@ -4,7 +4,6 @@ be picked up and used by the controller.
 
 Classes in the source file:
     * :func:`MainWindow`: Class that holds the main window used in the application's GUI.
-    * :func:`Best15PopUp`: Class that holds the pop up window used for the display of the best 15 optimization.
 
 """
 
@@ -88,15 +87,15 @@ class MainWindow(QMainWindow):
         self._tab_2_general_layout.addLayout(self._buttons_layout1_tab2)
 
         # Create the players template
-        self.dlg_layout = QVBoxLayout()
-        self.stat_names_labels = list()
-        self.stat_values_labels = list()
-        self.player_labels = list()
-        self.grid = QGridLayout()
-        self.instantiate_players_template()
+        self._best15_players_layout = QVBoxLayout()
+        self._best15_players_stat_names_labels = list()
+        self._best15_players_stat_values_labels = list()
+        self._best15_players_player_labels = list()
+        self._best15_players_grid = QGridLayout()
+        self._instantiate_best15_players_template()
 
         # Set the dialog layout
-        self._tab_2_general_layout.addLayout(self.dlg_layout)
+        self._tab_2_general_layout.addLayout(self._best15_players_layout)
 
         # Add the file dialog for choosing the save directory
         self.dialog = QFileDialog()
@@ -166,7 +165,7 @@ class MainWindow(QMainWindow):
         self.sort_by_label = QLabel()
         self.sort_by_label.setText("<font color='black'>Sort by:</font>")
         self.sort_by_label.setAlignment(Qt.AlignBottom)
-        self.sort_by_label.setFixedSize(140, 60)
+        self.sort_by_label.setFixedSize(140, 25)
         self._buttons_layout1_tab1.addWidget(self.sort_by_label, 0, 1)
 
     def _create_select_sort_value_button(self):
@@ -179,10 +178,10 @@ class MainWindow(QMainWindow):
     def _create_find_best_15_label(self):
         """Creates the find best 15 label of the main window. """
         self.find_best_15_label = QLabel()
-        self.find_best_15_label.setText("<font color='black'>Find best 15 based on:</font>")
+        self.find_best_15_label.setText("<font color='black'>Obj.Target:</font>")
         self.find_best_15_label.setWordWrap(True)
         self.find_best_15_label.setAlignment(Qt.AlignBottom)
-        self.find_best_15_label.setFixedSize(140, 60)
+        self.find_best_15_label.setFixedSize(140, 25)
         self._buttons_layout1_tab2.addWidget(self.find_best_15_label)
 
     def _create_select_best_15_value_button(self):
@@ -235,18 +234,18 @@ class MainWindow(QMainWindow):
     def _create_save_useful_player_attributes_df_to_csv_button(self):
         """Creates the save useful player attributes df to csv button of the main window. """
         self.save_useful_player_attributes_df_to_csv = QPushButton('Save Original \nDataframe To CSV')
-        self.save_useful_player_attributes_df_to_csv.setFixedSize(180, 80)
+        self.save_useful_player_attributes_df_to_csv.setFixedSize(180, 60)
         self._buttons_layout2_tab1.addWidget(self.save_useful_player_attributes_df_to_csv, 0, 0)
         self.save_useful_player_attributes_df_to_csv.setDisabled(True)
 
     def _create_save_df_for_view_to_csv_button(self):
         """Creates the save df of table view to csv button of the main window. """
         self.save_df_for_view_to_csv = QPushButton('Save Current View \nDataframe To CSV')
-        self.save_df_for_view_to_csv.setFixedSize(180, 80)
+        self.save_df_for_view_to_csv.setFixedSize(180, 60)
         self._buttons_layout2_tab1.addWidget(self.save_df_for_view_to_csv, 0, 1)
         self.save_df_for_view_to_csv.setDisabled(True)
 
-    def instantiate_players_template(self):
+    def _instantiate_best15_players_template(self):
         """Instantiates the players template of the best 15 selection with default data."""
         gks = [f"Player {i}" for i in range(1, 3)]
         defs = [f"Player {i}" for i in range(3, 8)]
@@ -275,10 +274,10 @@ class MainWindow(QMainWindow):
                 background-color: grey;
                 font-size: 24px;
                 """)
-            self.stat_names_labels.append(stat_label)
-            self.stat_values_labels.append(value_label)
-            self.grid.addWidget(stat_label, 0, stat_counter)
-            self.grid.addWidget(value_label, 1, stat_counter)
+            self._best15_players_stat_names_labels.append(stat_label)
+            self._best15_players_stat_values_labels.append(value_label)
+            self._best15_players_grid.addWidget(stat_label, 0, stat_counter)
+            self._best15_players_grid.addWidget(value_label, 1, stat_counter)
             stat_counter += 1
 
         # Create the player labels
@@ -297,7 +296,7 @@ class MainWindow(QMainWindow):
                 border-color: black;
                 padding: 4px;
                 """)
-            self.player_labels.append(player_labels[player])
+            self._best15_players_player_labels.append(player_labels[player])
 
         gk_counter = 1
         def_counter = 0
@@ -305,23 +304,23 @@ class MainWindow(QMainWindow):
         fwd_counter = 1
         for player, label in player_labels.items():
             if player in gks:
-                self.grid.addWidget(label, 2, gk_counter)
+                self._best15_players_grid.addWidget(label, 2, gk_counter)
                 gk_counter += 2
             elif player in defs:
-                self.grid.addWidget(label, 3, def_counter)
+                self._best15_players_grid.addWidget(label, 3, def_counter)
                 def_counter += 1
             elif player in mfs:
-                self.grid.addWidget(label, 4, mf_counter)
+                self._best15_players_grid.addWidget(label, 4, mf_counter)
                 mf_counter += 1
             elif player in fwds:
-                self.grid.addWidget(label, 5, fwd_counter)
+                self._best15_players_grid.addWidget(label, 5, fwd_counter)
                 fwd_counter += 1
 
-        self.dlg_layout.addLayout(self.grid)
+        self._best15_players_layout.addLayout(self._best15_players_grid)
 
-    def set_players_template(self, gks, defs, mfs, fwds, stats):
+    def set_best15_players_template(self, gks, defs, mfs, fwds, stats):
         """
-        Sets the players and stats of the players template.
+        Sets the players and stats of the best 15 players template.
 
         :param gks: list of the goalkeepers
         :param defs: list of the defenders
@@ -332,10 +331,10 @@ class MainWindow(QMainWindow):
         players = gks + defs + mfs + fwds
 
         # Set the stats labels
-        for count, stat_label in enumerate(self.stat_names_labels):
+        for count, stat_label in enumerate(self._best15_players_stat_names_labels):
             stat_label.setText(str(list(stats.keys())[count]))
-            self.stat_values_labels[count].setText(str(list(stats.values())[count]))
+            self._best15_players_stat_values_labels[count].setText(str(list(stats.values())[count]))
 
         # Set the player labels
-        for count, player_label in enumerate(self.player_labels):
+        for count, player_label in enumerate(self._best15_players_player_labels):
             player_label.setText(str(players[count]))

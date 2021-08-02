@@ -12,9 +12,10 @@ classes and functions. You will also find the README, Environment Requirements a
    :maxdepth: 2
    :caption: Table of Contents:
 
-   readme
-   requirements
-   license
+   Readme
+   PIP requirements
+   License
+   Algorithmic Model
    best_15_optimisation
    FPLController
    FPLModel

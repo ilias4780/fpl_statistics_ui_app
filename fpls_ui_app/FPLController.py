@@ -291,7 +291,7 @@ class Controller(object):
             self.main_window.set_status_display_text("Best 15 successfully calculated.")
             self.main_window.save_df_for_view_to_csv.setDisabled(False)
             self.last_process = f'Best_15_{value_to_use_for_optimisation}'
-            self.main_window.set_players_template(gks, defs, mfs, fwds, stats)
+            self.main_window.set_best15_players_template(gks, defs, mfs, fwds, stats)
 
     def save_useful_player_attributes_df_to_csv(self):
         """
