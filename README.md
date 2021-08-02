@@ -10,6 +10,7 @@ Changelog in Version 1.8.0
 ---------------------------
 - Reverted to PyQt5 due to PyQt6 failing auto docs and pyinstaller build.
 - Added `Archive` folder that stores the databases of previous years.
+- Restructured GUI to use Tabs for different app features (enabling more space for future features).
 
 
 Features

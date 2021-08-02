@@ -37,6 +37,35 @@ def main():
             MainWindow{
                 background-color: rgb(55,0,60)
             }
+            QTabWidget::pane{
+                border: 0;
+            }
+            QTabWidget::pane > QWidget{
+                background-color: rgb(55,0,60);
+                border: 0;
+            }
+            QTabWidget::tab-bar{
+                left: 5px;
+                alignment: left;
+                background: rgb(2,137,78);
+            }
+            QTabBar::tab{
+                background: transparent;
+                color: black;
+                padding: 15px 5px 15px 5px;
+            }
+            QTabBar::tab:hover{
+                text-decoration: underline;
+                color: grey
+            }
+            QTabBar::tab:selected{
+                background: rgb(2,137,78);
+                border-style: outset;
+                border-width: 2px;
+                border-radius: 15px;
+                border-color: black;
+                padding: 4px;
+            }
             QTableView{ 
                 background-color: rgb(2,137,78);
                 font-size: 18px
@@ -69,7 +98,7 @@ def main():
         main_window = FPLViewer.MainWindow()
         controller = FPLController.Controller(main_window)
 
-        main_window.show()
+        main_window.showMaximized()
 
         sys.exit(app.exec_())
     except Exception as e:
