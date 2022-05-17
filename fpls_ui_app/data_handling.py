@@ -2,11 +2,15 @@
 Source file that holds the functions to download and process the FPL data.
 
 Functions in the source file:
-    * :func:``:
-    * :func:``:
+    * :func:`get_fpl_database_in_json`: Get the FPL database using the FPL's API.
+    * :func:`process_data`: Extract the parts that we want to keep from the downloaded data and process them.
+    * :func:`sort_statistics_table`: Sort the table view with the player statistics.
+    * :func:`calculate_most_valuable_position`: Create a table view with the most valuable positions.
+    * :func:`calculate_most_valuable_teams`: Create a table view with the most valuable teams.
 """
 
 import datetime
+import numpy as np
 import pandas as pd
 import requests
 
@@ -25,7 +29,7 @@ def process_data(fpl_database_in_json):
     Extract the parts that we want to keep from the downloaded data and process them.
 
     :param fpl_database_in_json: FPL database in JSON format
-    :param fpl_database_in_json: dict
+    :type fpl_database_in_json: dict
     """
     # Keep the data pieces that are needed for our application in pandas DataFrame format
     all_elements_df = pd.DataFrame(fpl_database_in_json['elements'])
@@ -95,3 +99,56 @@ def process_data(fpl_database_in_json):
     )
 
     return current_gameweek, next_deadline_date, useful_player_attributes
+
+
+def sort_statistics_table(useful_player_attributes, column_to_sort):
+    """
+    Sort the table view with the player statistics.
+
+    :param useful_player_attributes: FPL statistics table
+    :type useful_player_attributes: pandas.dataframe
+    :param column_to_sort: Column to use for sorting
+    :type column_to_sort: str
+    """
+
+    columns = useful_player_attributes.columns.tolist()
+    column_to_sort_index = columns.index(column_to_sort)
+    if column_to_sort == 'position':
+        columns.insert(2, columns.pop(column_to_sort_index))
+    elif column_to_sort == 'team_name':
+        columns.insert(3, columns.pop(column_to_sort_index))
+    else:
+        columns.insert(4, columns.pop(column_to_sort_index))
+    return useful_player_attributes.reindex(columns=columns).sort_values(column_to_sort, ascending=False)
+
+
+def calculate_most_valuable_position(useful_player_attributes):
+    """
+    Create a table view with the most valuable positions.
+
+    :param useful_player_attributes: FPL statistics table
+    :type useful_player_attributes: pandas.dataframe
+    """
+
+    # Find which position provides the most value when players with zero value are not considered
+    useful_player_attributes_no_zeros = useful_player_attributes.loc[useful_player_attributes.value > 0]
+    pivot = useful_player_attributes_no_zeros.pivot_table(index='position', values='value',
+                                                          aggfunc=np.mean).reset_index()
+    pivot['value'] = pivot['value'].round(decimals=2)
+    return pivot.sort_values('value', ascending=False)
+
+
+def calculate_most_valuable_teams(useful_player_attributes):
+    """
+    Create a table view with the most valuable teams.
+
+    :param useful_player_attributes: FPL statistics table
+    :type useful_player_attributes: pandas.dataframe
+    """
+
+    # Find which teams provide the most value when players with zero value are not considered
+    useful_player_attributes_no_zeros = useful_player_attributes.loc[useful_player_attributes.value > 0]
+    team_pivot = useful_player_attributes_no_zeros.pivot_table(index='team_name', values='value',
+                                                               aggfunc=np.mean).reset_index()
+    team_pivot['value'] = team_pivot['value'].round(decimals=2)
+    return team_pivot.sort_values('value', ascending=False)
