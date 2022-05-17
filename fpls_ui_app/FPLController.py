@@ -17,6 +17,7 @@ import pandas as pd
 import requests
 
 import best_15_optimisation as opt
+import data_handling as dh
 
 
 class Controller(object):
@@ -31,10 +32,6 @@ class Controller(object):
         self.popup = None
 
         self.fpl_database_in_json = None
-        self.all_elements_df = None
-        self.element_types_df = None
-        self.teams_df = None
-        self.events_df = None
         self.useful_player_attributes = None
         self.columns_for_sorting = None
         self.df_for_view = None
@@ -67,17 +64,15 @@ class Controller(object):
 
     def get_fpl_database_in_json(self):
         """
-        Get the FPL database using the FPL's API.
+        Get the FPL database.
         """
-        fpl_api_url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
         try:
-            the_whole_db = requests.get(fpl_api_url)
+            self.fpl_database_in_json = dh.get_fpl_database_in_json()
         except requests.RequestException as e:
             self.main_window.set_status_display_text("An error has occurred while trying to download the database. "
                                                      "Please consult the log for details.")
             self.logger.error("An error has occurred while trying to download the database.", exc_info=True)
         else:
-            self.fpl_database_in_json = the_whole_db.json()
             self.main_window.set_status_display_text("Database has been downloaded successfully.")
             self.main_window.process_data_button.setDisabled(False)
 
@@ -86,73 +81,8 @@ class Controller(object):
         Extract the parts that we want to keep from the downloaded data and process them.
         """
         try:
-            # Keep the data pieces that are needed for our application in pandas DataFrame format
-            self.all_elements_df = pd.DataFrame(self.fpl_database_in_json['elements'])
-            self.element_types_df = pd.DataFrame(self.fpl_database_in_json['element_types'])
-            self.teams_df = pd.DataFrame(self.fpl_database_in_json['teams'])
-
-            # Use events df to add interesting stats like current gw, most points etc
-            self.events_df = pd.DataFrame(self.fpl_database_in_json['events'])
-            current_gameweek_index = self.events_df['is_current'].idxmax()
-            current_gameweek = current_gameweek_index + 1
-            try:
-                next_deadline = self.events_df['deadline_time'][current_gameweek_index+1]
-                next_deadline_date = datetime.datetime.strptime(next_deadline, '%Y-%m-%dT%H:%M:%SZ')\
-                    .strftime('%Y-%m-%d %H:%M:%S GMT')
-            except KeyError:
-                next_deadline_date = 'End of Season'
-            # Data for future stats labels
-            # highest_current_score = self.events_df['highest_score'][current_gameweek_index]
-            # current_most_captained_index = self.events_df['most_captained'][current_gameweek_index]
-            # current_most_captained = self.all_elements_df['second_name'][current_most_captained_index]
-            # current_most_selected = self.events_df['most_selected'][current_gameweek_index]
-            # current_most_transferred_in_index = self.events_df['most_transferred_in'][current_gameweek_index]
-            # current_most_transferred_in = self.all_elements_df['second_name'][current_most_transferred_in_index]
-
-            # Keep the useful columns of the elements dataframe
-            self.useful_player_attributes = self.all_elements_df[['second_name', 'first_name', 'team',
-                                                                  'selected_by_percent', 'value_season', 'form',
-                                                                  'minutes', 'ict_index', 'ict_index_rank',
-                                                                  'goals_scored', 'assists', 'clean_sheets',
-                                                                  'own_goals', 'penalties_saved', 'penalties_missed',
-                                                                  'saves', 'element_type', 'yellow_cards', 'red_cards',
-                                                                  'bonus', 'transfers_in', 'transfers_out', 'now_cost',
-                                                                  'total_points']].copy()
-
-            # Adjust the 'now_cost' column to show millions (by default instead of 5.5 shows 55)
-            self.useful_player_attributes.loc[:, 'now_cost'] *= 0.1
-
-            # TODO: self.all_elements_df[['chance_of_playing_this_round', 'chance_of_playing_next_round']]
-            # TODO: divide total_points with minutes to find points per minute of play
-            # TODO: find about cost_change_event, cost_change_event_fall, cost_change_start, cost_change_start_fall
-
-            # Map the position of the player to a new column using the element types dataframe
-            self.useful_player_attributes.insert(
-                2, 'position',
-                self.useful_player_attributes['element_type'].map(self.element_types_df.set_index('id').singular_name))
-            # Drop the element type column as it is not needed anymore
-            self.useful_player_attributes = self.useful_player_attributes.drop(['element_type'], axis=1)
-
-            # Map the team of the player using the teams dataframe
-            self.useful_player_attributes.insert(
-                3, 'team_name', self.useful_player_attributes.team.map(self.teams_df.set_index('id').name))
-            # Drop the team column as it is not needed anymore
-            self.useful_player_attributes = self.useful_player_attributes.drop(['team'], axis=1)
-
-            # Make a new column for value_season to guarantee float type of values in order to sort the df using it
-            self.useful_player_attributes.insert(5, 'value', self.useful_player_attributes.value_season.astype(float))
-            # Drop the value_season column as it is not needed anymore
-            self.useful_player_attributes = self.useful_player_attributes.drop(['value_season'], axis=1)
-
-            # Cast ICT Index and Selected by Percent Columns to numeric, so that they can be sorted properly.
-            self.useful_player_attributes[["ict_index", "selected_by_percent"]] = \
-                self.useful_player_attributes[["ict_index", "selected_by_percent"]].apply(pd.to_numeric)
-
-            # Make a new column for the transfer difference
-            transfer_loc = self.useful_player_attributes.columns.get_loc("transfers_in")
-            self.useful_player_attributes.insert(transfer_loc, "transfer_diff",
-                                                 self.useful_player_attributes["transfers_in"] -
-                                                 self.useful_player_attributes["transfers_out"])
+            current_gameweek, next_deadline_date, self.useful_player_attributes = \
+                dh.process_data(self.fpl_database_in_json)
         except Exception as e:
             self.main_window.set_status_display_text("An error has occurred while trying to process the data. "
                                                      "Please consult the log for details.")
