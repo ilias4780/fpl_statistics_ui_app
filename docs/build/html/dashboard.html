@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Algorithmic Model &mdash; FPL Statistics UI App v1.9.0 documentation</title>
+  <title>Dashboard module &mdash; FPL Statistics UI App v1.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="best_15_optimisation module" href="best_15_optimisation.html" />
-    <link rel="prev" title="License" href="License.html" /> 
+    <link rel="next" title="main module" href="main.html" />
+    <link rel="prev" title="FPLViewer module" href="FPLViewer.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,15 +43,12 @@
 <li class="toctree-l1"><a class="reference internal" href="Readme.html">Readme</a></li>
 <li class="toctree-l1"><a class="reference internal" href="PIP%20requirements.html">Environment Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="License.html">License</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Algorithmic Model</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#mathematical-modelling">Mathematical modelling</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="Algorithmic%20Model.html">Algorithmic Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="best_15_optimisation.html">best_15_optimisation module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FPLController.html">FPLController module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FPLModel.html">FPLModel module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FPLViewer.html">FPLViewer module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dashboard.html">Dashboard module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dashboard module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
 </ul>
 
@@ -69,9 +66,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Algorithmic Model</li>
+      <li>Dashboard module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/Algorithmic Model.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/dashboard.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -79,45 +76,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="algorithmic-model">
-<h1>Algorithmic Model<a class="headerlink" href="#algorithmic-model" title="Permalink to this heading"></a></h1>
-<p>The mathematical problem that the best 15 optimisation solves is a MIP problem of maximizing the objective value selected
-by the user (selection between: Value, Form, Total Point, ICT Index), while also respecting the following constraints:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>Maximum of 3 players can be selected by each team.</p></li>
-<li><p>Exactly 2 Goalkeepers, 5 Defenders, 5 Midfielders and 3 Forwards should be selected.</p></li>
-<li><p>Cost of players selected has a maximum of 100 units.</p></li>
-</ol>
-</div></blockquote>
-<section id="mathematical-modelling">
-<h2>Mathematical modelling<a class="headerlink" href="#mathematical-modelling" title="Permalink to this heading"></a></h2>
-<ul class="simple">
-<li><p>Pi: player of team i</p></li>
-<li><p>G: goalkeeper - binary</p></li>
-<li><p>D: defender - binary</p></li>
-<li><p>M: midfielder - binary</p></li>
-<li><p>F: forward - binary</p></li>
-<li><p>T: set of teams</p></li>
-<li><p>Cp: cost of player</p></li>
-<li><p>Vp: objective value of player</p></li>
-</ul>
-<ul class="simple">
-<li><p>Pi ε {G, D, M, F}</p></li>
-<li><p>Σ(Pi) = 2G + 5D + 5M + 3F</p></li>
-<li><p>Σ(Pi * Cp) &lt;= 100</p></li>
-<li><p>Σ(Pi) &lt;= 3 for every i ε T</p></li>
-<li><p>max(Σ(Pi * Vp))</p></li>
-</ul>
-</section>
+  <section id="module-dashboard">
+<span id="dashboard-module"></span><h1>Dashboard module<a class="headerlink" href="#module-dashboard" title="Permalink to this heading"></a></h1>
+<p>To run the dashboard, run from the command line the below:
+<cite>streamlit run fpls_ui_app/dashboard.py</cite></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="dashboard.run_dashboard">
+<span class="sig-prename descclassname"><span class="pre">dashboard.</span></span><span class="sig-name descname"><span class="pre">run_dashboard</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dashboard.run_dashboard" title="Permalink to this definition"></a></dt>
+<dd><p>Runs the streamlit dashboard.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dashboard.set_best15_players_template">
+<span class="sig-prename descclassname"><span class="pre">dashboard.</span></span><span class="sig-name descname"><span class="pre">set_best15_players_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goalkeepers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defenders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">midfielders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forwards</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statistics</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dashboard.set_best15_players_template" title="Permalink to this definition"></a></dt>
+<dd><p>Creates the template for the best 15 players selection and populates it.</p>
+</dd></dl>
+
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="License.html" class="btn btn-neutral float-left" title="License" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="best_15_optimisation.html" class="btn btn-neutral float-right" title="best_15_optimisation module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="FPLViewer.html" class="btn btn-neutral float-left" title="FPLViewer module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="main.html" class="btn btn-neutral float-right" title="main module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

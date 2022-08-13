@@ -6,3 +6,4 @@ Environment Requirements
 * pandas
 * pulp
 * requests
+* streamlit
