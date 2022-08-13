@@ -7,7 +7,45 @@ import json
 
 import streamlit as st
 
+import best_15_optimisation as opt
 import data_handling as dh
+
+
+def set_best15_players_template(goalkeepers, defenders, midfielders, forwards, statistics):
+    """
+    Creates the template for the best 15 players selection and populates it.
+    """
+    # stats
+    st.write("OPTIMISATION STATS:")
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric(label=list(statistics.keys())[0], value=list(statistics.values())[0])
+    col2.metric(label=list(statistics.keys())[1], value=list(statistics.values())[1])
+    col3.metric(label=list(statistics.keys())[2], value=list(statistics.values())[2])
+    col4.metric(label=list(statistics.keys())[3], value=list(statistics.values())[3])
+    st.write("TEAM SELECTION:")
+    # goalkeepers
+    col1, col2, col3, col4 = st.columns(4)
+    col2.markdown(goalkeepers[0])
+    col3.markdown(goalkeepers[1])
+    # defenders
+    col1, col2, col3, col4, col5 = st.columns(5)
+    col1.markdown(defenders[0])
+    col2.markdown(defenders[1])
+    col3.markdown(defenders[2])
+    col4.markdown(defenders[3])
+    col5.markdown(defenders[4])
+    # midfielders
+    col1, col2, col3, col4, col5 = st.columns(5)
+    col1.markdown(midfielders[0])
+    col2.markdown(midfielders[1])
+    col3.markdown(midfielders[2])
+    col4.markdown(midfielders[3])
+    col5.markdown(midfielders[4])
+    # forwards
+    col1, col2, col3, col4, col5 = st.columns(5)
+    col2.markdown(forwards[0])
+    col3.markdown(forwards[1])
+    col4.markdown(forwards[2])
 
 
 if "full_database" not in st.session_state:
@@ -84,8 +122,25 @@ if st.sidebar.button("Display most valuable positions", key="mvp_positions",
                        file_name="FplMVPPositions.csv", mime="text/csv", key="down_positions",
                        help="Download the most valuable positions stats in CSV format.")
 
+# Create the best 15 selection button
+options_mapping = {
+    'Total Points': 'total_points',
+    'Value': 'value',
+    'Form': 'form',
+    'ICT Index': 'ict_index'
+}
+if option := st.sidebar.selectbox("Calculate best 15 players - select criteria:",
+                                  options=[None, *options_mapping.keys()], key="best_15",
+                                  help="Calculate the best 15 player selection based on the criteria selected below."):
+    names, positions, values, prices, teams = opt.pre_process_data(st.session_state.useful_player_attributes,
+                                                                   options_mapping[option])
+    result_df, total_stats = opt.find_best_15_players_by_value(names, positions, values, prices, teams,
+                                                               options_mapping[option])
+    df_for_view, gks, defs, mfs, fwds, stats = opt.post_process_data(result_df, total_stats)
+    set_best15_players_template(gks, defs, mfs, fwds, stats)
+
+
 # Create the save downloaded db into json
 st.sidebar.download_button("Download FPL database to file", data=json.dumps(st.session_state.full_database, indent=4),
                            file_name="FplData.json", mime="application/json", key="down_data",
                            help="Download the full FPL downloaded database into a JSON file.")
-
