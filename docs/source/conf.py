@@ -18,11 +18,11 @@ sys.path.insert(0, os.path.abspath('../../fpls_ui_app/'))
 # -- Project information -----------------------------------------------------
 
 project = 'FPL Statistics UI App'
-copyright = '2020-2021, Ilias Charitos'
+copyright = '2020-2022, Ilias Charitos'
 author = 'Ilias Charitos'
 
 # The full version, including alpha/beta/rc tags
-release = 'v1.6'
+release = 'v1.9.0'
 
 
 # -- General configuration ---------------------------------------------------
