@@ -89,7 +89,7 @@ def run_dashboard():
         )
 
     # Create the re-download db button
-    if st.sidebar.button("Re-Download Database from FPL", key="upload",
+    if st.sidebar.button("Re-Download Database from FPL", key="download",
                          help="Download the FPL database again from FPL server."):
         st.session_state.full_database = dh.get_fpl_database_in_json()
         st.session_state.current_gameweek, \
