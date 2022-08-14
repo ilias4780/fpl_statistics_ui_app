@@ -52,6 +52,8 @@ def run_dashboard():
     """
     Runs the streamlit dashboard.
     """
+    st.set_page_config(layout="wide")
+
     if "full_database" not in st.session_state:
         # Download and process the data
         st.session_state.full_database = dh.get_fpl_database_in_json()

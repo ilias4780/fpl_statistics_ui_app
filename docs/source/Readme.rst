@@ -10,12 +10,22 @@ Readme
 This is a python application providing users with a GUI and a web interface, in order to download
 the FPL database by using the FPL API URL and make statistical calculations.
 
+The Web interface of the app (the streamlit dashboard) is also hosted and available in the following link:
+https://ilias4780-fpl-statistics-ui-app-fpls-ui-appdashboard-tdn5u0.streamlitapp.com/
+
+You can use it or take a peak of the functionality there!
+
 Changelog in Version 1.9.0
 ---------------------------
 - Separated all the calculations and data functionality from the controller.
 - Created a Streamlit dashboard to show the calculations, instead of running the application as PYQT app.
 - Added last year's database json (2021-2022) to `Archive` folder.
 - Removed exe zip, an exe will no longer be available.
+
+Changelog in Version 1.9.1
+---------------------------
+- Couple of fixes to the configuration of the streamlit dashboard
+- Hosted the streamlit dashboard in the streamlit cloud (link shared above)
 
 
 Features

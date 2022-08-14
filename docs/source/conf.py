@@ -22,7 +22,7 @@ copyright = '2020-2022, Ilias Charitos'
 author = 'Ilias Charitos'
 
 # The full version, including alpha/beta/rc tags
-release = 'v1.9.0'
+release = 'v1.9.1'
 
 
 # -- General configuration ---------------------------------------------------
