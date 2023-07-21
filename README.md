@@ -1,4 +1,4 @@
-[![Documentation Status](https://readthedocs.org/projects/fpl-statistics-ui-app/badge/?version=master)](https://fpl-statistics-ui-app.readthedocs.io/en/master/?badge=master)
+[![Documentation](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)](https://ilias4780.github.io/fpl_statistics_ui_app/index)\
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ilias4780-fpl-statistics-ui-app-fpls-ui-appdashboard-tdn5u0.streamlitapp.com/)
 
 Readme
@@ -16,6 +16,7 @@ Changelog in Version 2.0.0
 ---------------------------
 - Upgraded to python 3.9
 - Added `points_per_game` stat column to stat table
+- Changed documentation platform to GitHub Pages
 
 
 Features
