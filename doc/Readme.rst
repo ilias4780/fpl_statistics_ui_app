@@ -1,8 +1,11 @@
 .. _Readme:
 
-.. image:: https://readthedocs.org/projects/fpl-statistics-ui-app/badge/?version=latest
-    :target: https://fpl-statistics-ui-app.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Status
+.. image:: https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white
+    :target: https://ilias4780.github.io/fpl_statistics_ui_app/index
+    :alt: Documentation
+.. image:: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
+    :target: https://ilias4780-fpl-statistics-ui-app-fpls-ui-appdashboard-tdn5u0.streamlitapp.com/
+    :alt: Streamlit App
 
 Readme
 =======
@@ -15,17 +18,11 @@ https://ilias4780-fpl-statistics-ui-app-fpls-ui-appdashboard-tdn5u0.streamlitapp
 
 You can use it or take a peak of the functionality there!
 
-Changelog in Version 1.9.0
+Changelog in Version 2.0.0
 ---------------------------
-- Separated all the calculations and data functionality from the controller.
-- Created a Streamlit dashboard to show the calculations, instead of running the application as PYQT app.
-- Added last year's database json (2021-2022) to `Archive` folder.
-- Removed exe zip, an exe will no longer be available.
-
-Changelog in Version 1.9.1
----------------------------
-- Couple of fixes to the configuration of the streamlit dashboard
-- Hosted the streamlit dashboard in the streamlit cloud (link shared above)
+- Upgraded to python 3.11
+- Added `points_per_game` stat column to stat table
+- Changed documentation platform to GitHub Pages
 
 
 Features
@@ -57,4 +54,4 @@ Support
 --------
 If you have new ideas on features you would like feel free to either send an email to
 `ilias4780@gmail.com` or jump into the code yourself building it. You can also use the Issues
-page of Github.
+page of GitHub.

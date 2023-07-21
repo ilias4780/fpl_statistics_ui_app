@@ -14,7 +14,7 @@ You can use it or take a peak of the functionality there!
 
 Changelog in Version 2.0.0
 ---------------------------
-- Upgraded to python 3.9
+- Upgraded to python 3.11
 - Added `points_per_game` stat column to stat table
 - Changed documentation platform to GitHub Pages
 

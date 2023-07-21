@@ -7,3 +7,5 @@ Environment Requirements
 * pulp
 * requests
 * streamlit
+* sphinx
+* sphinx_rtd_theme

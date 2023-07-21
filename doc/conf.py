@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('../fpls_ui_app/'))
 # -- Project information -----------------------------------------------------
 
 project = 'FPL Statistics UI App'
-copyright = '2020-2022, Ilias Charitos'
+copyright = '2020-2023, Ilias Charitos'
 author = 'Ilias Charitos'
 
 # The full version, including alpha/beta/rc tags
@@ -40,7 +40,7 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-intersphinx_mapping = {'python': ('https://docs.python.org/3.9', None)}
+intersphinx_mapping = {'python': ('https://docs.python.org/3.11', None)}
 
 # -- Options for HTML output -------------------------------------------------
 
