@@ -12,7 +12,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../fpls_ui_app/'))
+sys.path.insert(0, os.path.abspath('../fpls_ui_app/'))
 
 
 # -- Project information -----------------------------------------------------
