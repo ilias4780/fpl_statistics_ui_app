@@ -22,7 +22,7 @@ copyright = '2020-2022, Ilias Charitos'
 author = 'Ilias Charitos'
 
 # The full version, including alpha/beta/rc tags
-release = 'v1.9.1'
+release = 'v2.0.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -40,7 +40,7 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-intersphinx_mapping = {'python': ('https://docs.python.org/3.8', None)}
+intersphinx_mapping = {'python': ('https://docs.python.org/3.9', None)}
 
 # -- Options for HTML output -------------------------------------------------
 

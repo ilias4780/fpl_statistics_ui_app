@@ -1,4 +1,5 @@
 [![Documentation Status](https://readthedocs.org/projects/fpl-statistics-ui-app/badge/?version=master)](https://fpl-statistics-ui-app.readthedocs.io/en/master/?badge=master)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ilias4780-fpl-statistics-ui-app-fpls-ui-appdashboard-tdn5u0.streamlitapp.com/)
 
 Readme
 =======
@@ -11,17 +12,10 @@ https://ilias4780-fpl-statistics-ui-app-fpls-ui-appdashboard-tdn5u0.streamlitapp
 
 You can use it or take a peak of the functionality there!
 
-Changelog in Version 1.9.0
+Changelog in Version 2.0.0
 ---------------------------
-- Separated all the calculations and data functionality from the controller. 
-- Created a Streamlit dashboard to show the calculations, instead of running the application as PYQT app.
-- Added last year's database json (2021-2022) to `Archive` folder.
-- Removed exe zip, an exe will no longer be available.
-
-Changelog in Version 1.9.1
----------------------------
-- Couple of fixes to the configuration of the streamlit dashboard
-- Hosted the streamlit dashboard in the streamlit cloud (link shared above)
+- Upgraded to python 3.9
+- Added `points_per_game` stat column to stat table
 
 
 Features
@@ -53,4 +47,4 @@ Support
 --------
 If you have new ideas on features you would like feel free to either send an email to 
 `ilias4780@gmail.com` or jump into the code yourself building it. You can also use the Issues
-page of Github.
+page of GitHub.

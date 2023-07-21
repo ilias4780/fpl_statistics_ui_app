@@ -23,29 +23,43 @@ def set_best15_players_template(goalkeepers, defenders, midfielders, forwards, s
     col3.metric(label=list(statistics.keys())[2], value=list(statistics.values())[2])
     col4.metric(label=list(statistics.keys())[3], value=list(statistics.values())[3])
     st.write("TEAM SELECTION:")
-    # goalkeepers
-    col1, col2, col3, col4 = st.columns(4)
-    col2.markdown(goalkeepers[0])
-    col3.markdown(goalkeepers[1])
-    # defenders
-    col1, col2, col3, col4, col5 = st.columns(5)
-    col1.markdown(defenders[0])
-    col2.markdown(defenders[1])
-    col3.markdown(defenders[2])
-    col4.markdown(defenders[3])
-    col5.markdown(defenders[4])
-    # midfielders
-    col1, col2, col3, col4, col5 = st.columns(5)
-    col1.markdown(midfielders[0])
-    col2.markdown(midfielders[1])
-    col3.markdown(midfielders[2])
-    col4.markdown(midfielders[3])
-    col5.markdown(midfielders[4])
-    # forwards
-    col1, col2, col3, col4, col5 = st.columns(5)
-    col2.markdown(forwards[0])
-    col3.markdown(forwards[1])
-    col4.markdown(forwards[2])
+    st.markdown(
+        """
+        <style>
+        table {
+            min-width: 800px;
+            min-height: 600px;
+            background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Football_field.svg/512px-Football_field.svg.png");
+            background-size:100% 100%;
+        }
+        table th:first-of-type {
+            width: 20%;
+        }
+        table th:nth-of-type(2) {
+            width: 20%;
+        }
+        table th:nth-of-type(3) {
+            width: 20%;
+        }
+        table th:nth-of-type(4) {
+            width: 20%;
+        }
+        table th:nth-of-type(5) {
+            width: 20%;
+        }
+        </style>
+        """
+        f"""
+        |                  |                  |                  |                  |                  |
+        |:----------------:|:----------------:|:----------------:|:----------------:|:----------------:|
+        |                  | {goalkeepers[0]} |                  | {goalkeepers[1]} |                  |
+        |  {defenders[0]}  |  {defenders[1]}  |  {defenders[2]}  |  {defenders[3]}  |  {defenders[4]}  |
+        | {midfielders[0]} | {midfielders[1]} | {midfielders[2]} | {midfielders[3]} | {midfielders[4]} |
+        |                  |  {forwards[0]}   |  {forwards[1]}   |  {forwards[2]}   |                  |
+        |                  |                  |                  |                  |                  |
+        """,
+        unsafe_allow_html=True
+    )
 
 
 def run_dashboard():

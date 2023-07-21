@@ -60,7 +60,7 @@ def process_data(fpl_database_in_json):
                                                 'goals_scored', 'assists', 'clean_sheets', 'own_goals',
                                                 'penalties_saved', 'penalties_missed', 'saves', 'element_type',
                                                 'yellow_cards', 'red_cards', 'bonus', 'transfers_in', 'transfers_out',
-                                                'now_cost', 'total_points']].copy()
+                                                'now_cost', 'points_per_game', 'total_points']].copy()
 
     # Adjust the 'now_cost' column to show millions (by default instead of 5.5 shows 55)
     useful_player_attributes.loc[:, 'now_cost'] *= 0.1

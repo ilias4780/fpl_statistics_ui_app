@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>best_15_optimisation module &mdash; FPL Statistics UI App v1.9.1 documentation</title>
+  <title>best_15_optimisation module &mdash; FPL Statistics UI App v2.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -103,7 +103,7 @@
 <dl class="py exception">
 <dt class="sig sig-object py" id="best_15_optimisation.OptimisationValuesAllZeroError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">best_15_optimisation.</span></span><span class="sig-name descname"><span class="pre">OptimisationValuesAllZeroError</span></span><a class="headerlink" href="#best_15_optimisation.OptimisationValuesAllZeroError" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.8/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 <p>Exception for when the values chosen to be used as the main optimisation values in
 <a class="reference internal" href="#best_15_optimisation.find_best_15_players_by_value" title="best_15_optimisation.find_best_15_players_by_value"><code class="xref py py-func docutils literal notranslate"><span class="pre">find_best_15_players_by_value()</span></code></a> are all zero. This would technically happen only
 in the pre-season period when for example ‘Form’ is zero for all players.</p>
@@ -117,12 +117,12 @@ default CBC solver. It satisfies the max 3 players per team constraint and the 1
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>player_names</strong> (<a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of the player names</p></li>
-<li><p><strong>player_positions</strong> (<a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of the player positions</p></li>
-<li><p><strong>player_values</strong> (<a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of the player values</p></li>
-<li><p><strong>player_prices</strong> (<a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of the player prices</p></li>
-<li><p><strong>player_teams</strong> (<a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of the player teams</p></li>
-<li><p><strong>opt_target</strong> (<a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – optimisation target (the target value)</p></li>
+<li><p><strong>player_names</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – list of the player names</p></li>
+<li><p><strong>player_positions</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – list of the player positions</p></li>
+<li><p><strong>player_values</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – list of the player values</p></li>
+<li><p><strong>player_prices</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – list of the player prices</p></li>
+<li><p><strong>player_teams</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – list of the player teams</p></li>
+<li><p><strong>opt_target</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – optimisation target (the target value)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -155,7 +155,7 @@ display.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>useful_player_attributes</strong> (<em>pandas.dataframe</em>) – FPL statistics table</p></li>
-<li><p><strong>opt_target</strong> (<a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – optimisation target (the target value)</p></li>
+<li><p><strong>opt_target</strong> (<a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – optimisation target (the target value)</p></li>
 </ul>
 </dd>
 </dl>
