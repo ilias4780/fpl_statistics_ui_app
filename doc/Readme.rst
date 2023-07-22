@@ -32,7 +32,7 @@ Features
 - Download and save useful data from FPL database
 - Save and load database to/from local JSON file for OFFLINE use
 - Show sorted statistics based on your selection
-- Calculate best 15 selection using mathematical engine solver optimization
+- Calculate best 15 selection using mathematical engine solver optimisation
 - Calculate most valuable players
 - Calculate most valuable position
 - Calculate most valuable team
