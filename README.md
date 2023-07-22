@@ -1,5 +1,5 @@
 [![Documentation](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)](https://ilias4780.github.io/fpl_statistics_ui_app/index)\
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ilias4780-fpl-statistics-ui-app-fpls-ui-appdashboard-tdn5u0.streamlitapp.com/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://fplselection.streamlit.app/)
 
 Readme
 =======
@@ -8,7 +8,7 @@ This is a python application providing users with a GUI and a web interface, in 
 the FPL database by using the FPL API URL and make statistical calculations.
 
 The Web interface of the app (the streamlit dashboard) is also hosted and available in the following link:
-https://ilias4780-fpl-statistics-ui-app-fpls-ui-appdashboard-tdn5u0.streamlitapp.com/
+https://fplselection.streamlit.app/
 
 You can use it or take a peak of the functionality there!
 
