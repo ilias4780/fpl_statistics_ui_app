@@ -18,6 +18,12 @@ Changelog in Version 2.0.0
 - Added `points_per_game` stat column to stat table
 - Changed documentation platform to GitHub Pages
 - Added 2022-2023 season full JSON data in Archive
+- User can pre-select players in the Best 15 Optimisation. This way user can force their
+  selection, making it possible to, essentially, find how to optimise a subset of their fantasy team.
+  This new feature is only available in the Dashboard version and not in the PyQt UI.
+- UI refactored to split the table statistics and the best 15 selection into two different tabs,
+  for better user experience.
+- Columns `first_name`, `second_name` are now combined into one column named `name`.
 
 
 Features
@@ -28,6 +34,7 @@ Features
 - Save and load database to/from local JSON file for OFFLINE use
 - Show sorted statistics based on your selection
 - Calculate best 15 selection using mathematical engine solver optimisation
+- Pre-select subset of players on the best 15 optimisation to force their selection
 - Calculate most valuable players
 - Calculate most valuable position
 - Calculate most valuable team

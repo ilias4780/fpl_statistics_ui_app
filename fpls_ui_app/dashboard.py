@@ -11,20 +11,25 @@ import best_15_optimisation as opt
 import data_handling as dh
 
 
-def set_best15_players_template(goalkeepers, defenders, midfielders, forwards, statistics):
+def set_best15_players_template(goalkeepers,
+                                defenders,
+                                midfielders,
+                                forwards,
+                                statistics,
+                                st_tab):
     """
     Creates the template for the best 15 players selection and populates it.
     """
     # stats
-    st.write("OPTIMISATION STATS:")
-    col1, col2, col3, col4 = st.columns(4)
+    st_tab.write("OPTIMISATION STATS:")
+    col1, col2, col3, col4 = st_tab.columns(4)
     col1.metric(label=list(statistics.keys())[0], value=list(statistics.values())[0])
     col2.metric(label=list(statistics.keys())[1], value=list(statistics.values())[1])
     col3.metric(label=list(statistics.keys())[2], value=list(statistics.values())[2])
     col4.metric(label=list(statistics.keys())[3], value=list(statistics.values())[3])
     if list(statistics.values())[0] == 'Optimal':
-        st.write("TEAM SELECTION:")
-        st.markdown(
+        st_tab.write("TEAM SELECTION:")
+        st_tab.markdown(
 
             """
             <style>
@@ -92,7 +97,10 @@ def run_dashboard():
     col1.header(f"Current Gameweek: {st.session_state.current_gameweek}")
     col2.header(f"Next Deadline Date: {st.session_state.next_deadline_date}")
 
-    # Create the upload data button
+    # Create the two tabs
+    stat_tab, opt_tab = st.tabs(['Statistics', 'Best Selection'])
+
+    # Create the upload data button in the sidebar
     uploaded_file = st.sidebar.file_uploader(
         "Load Database from file",
         type=['json'],
@@ -112,7 +120,7 @@ def run_dashboard():
             st.session_state.useful_player_attributes
         )
 
-    # Create the re-download db button
+    # Create the re-download db button in the sidebar
     if st.sidebar.button(
             "Re-Download Database from FPL",
             key="download",
@@ -129,14 +137,24 @@ def run_dashboard():
             st.session_state.useful_player_attributes
         )
 
+    # Create the save downloaded db into json in the sidebar
+    st.sidebar.download_button(
+        "Save FPL database to file",
+        data=json.dumps(st.session_state.full_database, indent=4),
+        file_name="FplData.json",
+        mime="application/json",
+        key="down_data",
+        help="Save the full FPL downloaded database into a JSON file."
+    )
+
     # Create the display stats button
-    if st.sidebar.button(
+    if stat_tab.button(
             "Display useful stats",
             key="stats",
             help="Display useful statistics from the FPL database."
     ):
-        st.write(st.session_state.useful_player_attributes.drop('uid', axis=1))
-        st.download_button(
+        stat_tab.write(st.session_state.useful_player_attributes.drop('uid', axis=1))
+        stat_tab.download_button(
             "Download useful stats",
             data=st.session_state.useful_player_attributes.to_csv(),
             mime="text/csv",
@@ -145,13 +163,13 @@ def run_dashboard():
         )
 
     # Create the display most valuable teams button
-    if st.sidebar.button(
+    if stat_tab.button(
             "Display most valuable teams",
             key="mvp_teams",
             help="Display the most valuable teams of the PL according to aggregated value of players."
     ):
-        st.write(st.session_state.most_valuable_teams)
-        st.download_button(
+        stat_tab.write(st.session_state.most_valuable_teams)
+        stat_tab.download_button(
             "Download most valuable teams",
             data=st.session_state.most_valuable_teams.to_csv(),
             file_name="FplMVPTeams.csv",
@@ -161,14 +179,14 @@ def run_dashboard():
         )
 
     # Create the display most valuable positions button
-    if st.sidebar.button(
+    if stat_tab.button(
             "Display most valuable positions",
             key="mvp_positions",
             help="Display the most valuable positions of the PL according to "
                  "aggregated value of players in that position."
     ):
-        st.write(st.session_state.most_valuable_positions)
-        st.download_button(
+        stat_tab.write(st.session_state.most_valuable_positions)
+        stat_tab.download_button(
             "Download most valuable positions",
             data=st.session_state.most_valuable_positions.to_csv(),
             file_name="FplMVPPositions.csv",
@@ -178,35 +196,29 @@ def run_dashboard():
         )
 
     # Best 15 selection optimisation
-    options_mapping = {
-        'Total Points': 'total_points',
-        'Value': 'value',
-        'Form': 'form',
-        'ICT Index': 'ict_index'
-    }
     # Pre-selected players multi selects
-    pre_selected_gks = st.multiselect(
+    pre_selected_gks = opt_tab.multiselect(
         "Pre-selected Goalkeepers:",
         options=st.session_state.useful_player_attributes.loc[
             st.session_state.useful_player_attributes['position'] == 'Goalkeeper', 'name'],
         max_selections=2,
         help="Enforce the selection of specific goal keeper(s)."
     )
-    pre_selected_defs = st.multiselect(
+    pre_selected_defs = opt_tab.multiselect(
         "Pre-selected Defenders:",
         options=st.session_state.useful_player_attributes.loc[
             st.session_state.useful_player_attributes['position'] == 'Defender', 'name'],
         max_selections=5,
         help="Enforce the selection of specific defender(s)."
     )
-    pre_selected_mfs = st.multiselect(
+    pre_selected_mfs = opt_tab.multiselect(
         "Pre-selected Midfielders:",
         options=st.session_state.useful_player_attributes.loc[
             st.session_state.useful_player_attributes['position'] == 'Midfielder', 'name'],
         max_selections=5,
         help="Enforce the selection of specific midfielder(s)."
     )
-    pre_selected_fwds = st.multiselect(
+    pre_selected_fwds = opt_tab.multiselect(
         "Pre-selected Forwards:",
         options=st.session_state.useful_player_attributes.loc[
             st.session_state.useful_player_attributes['position'] == 'Forward', 'name'],
@@ -220,7 +232,13 @@ def run_dashboard():
     )['uid'].tolist()
 
     # Best 15 selection calculation
-    if option := st.sidebar.selectbox(
+    options_mapping = {
+        'Total Points': 'total_points',
+        'Value': 'value',
+        'Form': 'form',
+        'ICT Index': 'ict_index'
+    }
+    if option := opt_tab.selectbox(
             "Calculate best 15 players - select criteria:",
             options=[None, *options_mapping.keys()],
             key="best_15",
@@ -240,17 +258,14 @@ def run_dashboard():
             result_df,
             total_stats
         )
-        set_best15_players_template(gks, defs, mfs, fwds, stats)
-
-    # Create the save downloaded db into json
-    st.sidebar.download_button(
-        "Download FPL database to file",
-        data=json.dumps(st.session_state.full_database, indent=4),
-        file_name="FplData.json",
-        mime="application/json",
-        key="down_data",
-        help="Download the full FPL downloaded database into a JSON file."
-    )
+        set_best15_players_template(
+            gks,
+            defs,
+            mfs,
+            fwds,
+            stats,
+            opt_tab
+        )
 
 
 if __name__ == '__main__':
