@@ -17,6 +17,7 @@ Changelog in Version 2.0.0
 - Upgraded to python 3.11
 - Added `points_per_game` stat column to stat table
 - Changed documentation platform to GitHub Pages
+- Added 2022-2023 season full JSON data in Archive
 
 
 Features
