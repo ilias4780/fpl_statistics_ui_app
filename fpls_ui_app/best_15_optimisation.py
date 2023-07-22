@@ -28,37 +28,25 @@ class OptimisationValuesAllZeroError(Exception):
     pass
 
 
-def pre_process_data(useful_player_attributes: pd.DataFrame,
-                     opt_target: str):
-    """
-    Preprocesses the data needed for the optimisation.
-
-    :param useful_player_attributes: FPL statistics table
-    :type useful_player_attributes: pandas.dataframe
-    :param opt_target: optimisation target (the target value)
-    :type opt_target: str
-    """
-    names = useful_player_attributes["first_name"] + ' ' + useful_player_attributes["second_name"]
-    names = names.tolist()
-    positions = useful_player_attributes["position"].tolist()
-    values = useful_player_attributes[opt_target].tolist()
-    prices = useful_player_attributes["now_cost"].tolist()
-    teams = useful_player_attributes["team_name"].tolist()
-    return names, positions, values, prices, teams
-
-
-def post_process_data(results: pd.DataFrame,
+def post_process_data(players_df: pd.DataFrame,
+                      results: pd.DataFrame,
                       statistics: pd.DataFrame):
     """
     Separate the results returned by the optimisation and bring it to a format suitable for
     display.
 
+    :param players_df: Dataframe containing the uid, first and last name of players
+    :type players_df: pandas.dataframe
     :param results: The results of the optimisation
     :type results: pandas.dataframe
     :param statistics: pandas dataframe containing the statistics of the optimisation process
     :type statistics: pandas.dataframe
     """
+    # Create the players names and replace the ids in results df
+    name_mapping = dict(zip(players_df['uid'], players_df['name']))
+    results['player'] = results['player'].map(name_mapping)
 
+    # Create the output data in the format wanted
     gks = results['player'].loc[results['position'] == "Goalkeeper"].tolist()
     defs = results['player'].loc[results['position'] == "Defender"].tolist()
     mfs = results['player'].loc[results['position'] == "Midfielder"].tolist()
@@ -74,7 +62,7 @@ def post_process_data(results: pd.DataFrame,
     return df_for_view, gks, defs, mfs, fwds, stats
 
 
-def find_best_15_players_by_value(player_names: List,
+def find_best_15_players_by_value(player_ids: List,
                                   player_positions: List,
                                   player_values: List,
                                   player_prices: List,
@@ -85,8 +73,8 @@ def find_best_15_players_by_value(player_names: List,
     Calculates the best 15 player selection according to the value passed as an argument. Uses the PULP library and
     default CBC solver. It satisfies the max 3 players per team constraint and the 100 cost constraint.
 
-    :param player_names: Player names
-    :type player_names: list
+    :param player_ids: Player unique ids
+    :type player_ids: list
     :param player_positions: Player positions
     :type player_positions: list
     :param player_values: Player values
@@ -115,31 +103,31 @@ def find_best_15_players_by_value(player_names: List,
     defs = list()
     mfs = list()
     fwds = list()
-    for index in range(len(player_names)):
-        name = player_names[index]
-        players.append(name)
-        values[name] = float(player_values[index])
-        prices[name] = float(player_prices[index])
+    for index in range(len(player_ids)):
+        uid = player_ids[index]
+        players.append(uid)
+        values[uid] = float(player_values[index])
+        prices[uid] = float(player_prices[index])
         if player_positions[index] == "Goalkeeper":
-            gks.append(name)
+            gks.append(uid)
         elif player_positions[index] == "Defender":
-            defs.append(name)
+            defs.append(uid)
         elif player_positions[index] == "Midfielder":
-            mfs.append(name)
+            mfs.append(uid)
         elif player_positions[index] == "Forward":
-            fwds.append(name)
+            fwds.append(uid)
 
     # Create lists of players per team
     teams_list = set(player_teams)
     team_players_dict = dict()
     for team in teams_list:
         team_players_dict[team] = list()
-        for index in range(len(player_names)):
+        for index in range(len(player_ids)):
             if player_teams[index] == team:
-                team_players_dict[team].append(player_names[index])
+                team_players_dict[team].append(player_ids[index])
 
     # Create the problem and set it to maximization (we want to maximize value)
-    prob = p.LpProblem("The FPL problem", p.LpMaximize)
+    prob = p.LpProblem("The_FPL_problem", p.LpMaximize)
 
     # Create the dictionaries to contain the referenced player variables
     gk_vars = p.LpVariable.dicts("gk", gks, cat=p.LpBinary)
@@ -193,9 +181,9 @@ def find_best_15_players_by_value(player_names: List,
     best_15_prices = list()
     best_15_target_values = list()
     for player in best_15_corrected:
-        best_15_positions.append(player_positions[player_names.index(player)])
-        best_15_prices.append(player_prices[player_names.index(player)])
-        best_15_target_values.append(player_values[player_names.index(player)])
+        best_15_positions.append(player_positions[player_ids.index(player)])
+        best_15_prices.append(player_prices[player_ids.index(player)])
+        best_15_target_values.append(player_values[player_ids.index(player)])
 
     # Round the values in best_15_prices
     best_15_prices_rounded = list()
