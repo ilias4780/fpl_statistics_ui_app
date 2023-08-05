@@ -60,7 +60,16 @@ def process_data(fpl_database_in_json):
                                                 'goals_scored', 'assists', 'clean_sheets', 'own_goals',
                                                 'penalties_saved', 'penalties_missed', 'saves', 'element_type',
                                                 'yellow_cards', 'red_cards', 'bonus', 'transfers_in', 'transfers_out',
-                                                'now_cost', 'total_points']].copy()
+                                                'now_cost', 'points_per_game', 'total_points']].copy()
+    # Create the name column and drop the partial ones
+    useful_player_attributes.insert(
+        0,
+        'name',
+        useful_player_attributes['first_name'] + ' ' + useful_player_attributes['second_name'],
+    )
+    useful_player_attributes.drop(['first_name', 'second_name'], axis=1, inplace=True)
+    # Create a unique identifier for each player
+    useful_player_attributes['uid'] = useful_player_attributes['name'].map(hash)
 
     # Adjust the 'now_cost' column to show millions (by default instead of 5.5 shows 55)
     useful_player_attributes.loc[:, 'now_cost'] *= 0.1

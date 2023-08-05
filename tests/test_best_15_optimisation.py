@@ -2,7 +2,7 @@
 Test Suite for best 15 optimisation, using unittest.
 
 Classes in the source file:
-    * :func:`Best15OptimizationTests`: Test class for best 15 optimization script.
+    * :func:`Best15OptimisationTests`: Test class for best 15 optimisation script.
 """
 
 import unittest
@@ -10,11 +10,11 @@ import unittest
 from fpls_ui_app.best_15_optimisation import find_best_15_players_by_value
 
 
-class Best15OptimizationTests(unittest.TestCase):
-    """Test class for best 15 optimization script."""
+class Best15OptimisationTests(unittest.TestCase):
+    """Test class for best 15 optimisation script."""
 
     def test_maximization_of_value(self):
-        """Here we check whether the optimization aims to maximize the value."""
+        """Here we check whether the optimisation aims to maximize the value."""
 
         # Arrange
         names = [
@@ -454,3 +454,61 @@ class Best15OptimizationTests(unittest.TestCase):
         expected_value_outcome = 100
         self.assertCountEqual(players_outcome, expected_players_outcome)
         self.assertEqual(stats_outcomes[2], expected_value_outcome)
+
+    def test_pre_selected_players_enforcement(self):
+        """Here we check whether the optional pre-selected players are enforced to be selected,
+        even though they would not be chosen otherwise."""
+
+        # Arrange
+        names = [
+            'degea', 'martinez', 'pope',
+            'yedlin', 'terry', 'rose', 'bissaka', 'stones', 'lascelles',
+            'westwood', 'debruyne', 'lampard', 'alli', 'salah', 'henderson',
+            'firminio', 'rashford', 'giroud', 'jesus'
+        ]
+        positions = [
+            'Goalkeeper', 'Goalkeeper', 'Goalkeeper',
+            'Defender', 'Defender', 'Defender', 'Defender', 'Defender', 'Defender',
+            'Midfielder', 'Midfielder', 'Midfielder', 'Midfielder', 'Midfielder', 'Midfielder',
+            'Forward', 'Forward', 'Forward', 'Forward'
+        ]
+        values = [  # According to the values below, the first player of each position (with the least value)
+                    # should not be selected.
+            1, 2, 3,
+            1, 2, 3, 4, 5, 6,
+            1, 2, 3, 4, 5, 6,
+            1, 2, 3, 4
+        ]
+        prices = [  # We don't care about the price in this test
+            1, 2, 3,
+            1, 2, 3, 4, 5, 6,
+            1, 2, 3, 4, 5, 6,
+            1, 2, 3, 4
+        ]
+        teams = [  # We don't care to check this for now so I have used data to not trigger the constraint
+            'ManUtd', 'Villa', 'Burnley',
+            'Newcastle', 'Chelsea', 'Tottenham', 'ManUtd', 'ManCity', 'Newcastle',
+            'Burnley', 'ManCity', 'Chelsea', 'Tottenham', 'Liverpool', 'Liverpool',
+            'Liverpool', 'ManUtd', 'Chelsea', 'ManCity'
+        ]
+        value_to_use_for_optimisation = 'value'
+        pre_selected_players = ['degea', 'firminio']
+
+        # Act
+        result_df, total_stats = find_best_15_players_by_value(names, positions,
+                                                               values, prices, teams,
+                                                               value_to_use_for_optimisation,
+                                                               pre_selected_players)
+
+        # Assert
+        players_outcome = result_df['player'].tolist()
+        stats_outcomes = total_stats.loc[1].tolist()
+
+        expected_players_outcome = [
+            'bissaka', 'lascelles', 'rose', 'stones', 'terry',
+            'firminio', 'giroud', 'jesus', 'degea', 'pope',
+            'alli', 'debruyne', 'henderson', 'lampard', 'salah'
+        ]
+        expected_value_outcome = 52
+        self.assertCountEqual(players_outcome, expected_players_outcome)
+        self.assertEqual(stats_outcomes[3], expected_value_outcome)

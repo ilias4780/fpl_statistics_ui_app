@@ -1,4 +1,5 @@
-[![Documentation Status](https://readthedocs.org/projects/fpl-statistics-ui-app/badge/?version=master)](https://fpl-statistics-ui-app.readthedocs.io/en/master/?badge=master)
+[![Documentation](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)](https://ilias4780.github.io/fpl_statistics_ui_app/index)\
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://fplselection.streamlit.app/)
 
 Readme
 =======
@@ -7,21 +8,24 @@ This is a python application providing users with a GUI and a web interface, in 
 the FPL database by using the FPL API URL and make statistical calculations.
 
 The Web interface of the app (the streamlit dashboard) is also hosted and available in the following link:
-https://ilias4780-fpl-statistics-ui-app-fpls-ui-appdashboard-tdn5u0.streamlitapp.com/
+https://fplselection.streamlit.app/
 
 You can use it or take a peak of the functionality there!
 
-Changelog in Version 1.9.0
+Changelog in Version 2.0.0
 ---------------------------
-- Separated all the calculations and data functionality from the controller. 
-- Created a Streamlit dashboard to show the calculations, instead of running the application as PYQT app.
-- Added last year's database json (2021-2022) to `Archive` folder.
-- Removed exe zip, an exe will no longer be available.
-
-Changelog in Version 1.9.1
----------------------------
-- Couple of fixes to the configuration of the streamlit dashboard
-- Hosted the streamlit dashboard in the streamlit cloud (link shared above)
+- Upgraded to python 3.11
+- Added `points_per_game` stat column to stat table
+- Changed documentation platform to GitHub Pages
+- Added 2022-2023 season full JSON data in Archive
+- User can pre-select players in the Best 15 Optimisation. This way user can force their
+  selection, making it possible to, essentially, find how to optimise a subset of their fantasy team.
+  This new feature is only available in the Dashboard version and not in the PyQt UI.
+- UI refactored to split the table statistics and the best 15 selection into two different tabs,
+  for better user experience.
+- Columns `first_name`, `second_name` are now combined into one column named `name`.
+- Added `Percent Selected` to the optimisation targets, so that users can find the most selected by squad
+  members to fill their team (towards a 'template' team)
 
 
 Features
@@ -31,7 +35,8 @@ Features
 - Download and save useful data from FPL database
 - Save and load database to/from local JSON file for OFFLINE use
 - Show sorted statistics based on your selection
-- Calculate best 15 selection using mathematical engine solver optimization
+- Calculate best 15 selection using mathematical engine solver optimisation
+- Pre-select subset of players on the best 15 optimisation to force their selection
 - Calculate most valuable players
 - Calculate most valuable position
 - Calculate most valuable team
@@ -53,4 +58,4 @@ Support
 --------
 If you have new ideas on features you would like feel free to either send an email to 
 `ilias4780@gmail.com` or jump into the code yourself building it. You can also use the Issues
-page of Github.
+page of GitHub.

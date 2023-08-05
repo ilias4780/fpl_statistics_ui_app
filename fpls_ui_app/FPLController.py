@@ -37,7 +37,8 @@ class Controller(object):
         self.columns_for_sorting = ['total_points', 'now_cost', 'value', 'position', 'team_name', 'form', 'minutes',
                                     'ict_index', 'ict_index_rank', 'goals_scored', 'assists', 'clean_sheets',
                                     'bonus', 'selected_by_percent', 'transfer_diff', 'transfers_in', 'transfers_out']
-        self.columns_for_optimisation = ['total_points', 'value', 'form', 'ict_index']
+        self.columns_for_optimisation = ['total_points', 'value', 'form',
+                                         'ict_index', 'selected_by_percent']
 
         # Populate the sort_value_button
         self.main_window.select_sort_value_button.addItems(self.columns_for_sorting)
@@ -78,8 +79,9 @@ class Controller(object):
         Extract the parts that we want to keep from the downloaded data and process them.
         """
         try:
-            current_gameweek, next_deadline_date, self.useful_player_attributes = \
+            current_gameweek, next_deadline_date, self.useful_player_attributes = (
                 dh.process_data(self.fpl_database_in_json)
+            )
         except Exception as e:
             self.main_window.set_status_display_text("An error has occurred while trying to process the data. "
                                                      "Please consult the log for details.")
@@ -99,7 +101,7 @@ class Controller(object):
         Create a table view with the player statistics.
         """
         try:
-            self.df_for_view = self.useful_player_attributes
+            self.df_for_view = self.useful_player_attributes.drop('uid', axis=1)
         except Exception as e:
             self.main_window.set_status_display_text("An error has occurred while trying to calculate the data. "
                                                      "Please consult the log for details.")
@@ -123,7 +125,10 @@ class Controller(object):
         if self.last_process not in ['MV_position', 'MV_teams', 'Best_15']:
             try:
                 column_to_sort = self.main_window.select_sort_value_button.currentText()
-                self.df_for_view = dh.sort_statistics_table(self.useful_player_attributes, column_to_sort)
+                self.df_for_view = dh.sort_statistics_table(
+                    self.useful_player_attributes.drop('uid', axis=1),
+                    column_to_sort
+                )
             except Exception as e:
                 self.main_window.set_status_display_text("An error has occurred while trying to calculate the data. "
                                                          "Please consult the log for details.")
@@ -172,12 +177,20 @@ class Controller(object):
         """
         try:
             value_to_use_for_optimisation = self.main_window.select_best_15_value_button.currentText()
-            names, positions, values, prices, teams = opt.pre_process_data(self.useful_player_attributes,
-                                                                           value_to_use_for_optimisation)
             result_df, total_stats = opt.find_best_15_players_by_value(
-                names, positions, values, prices, teams, value_to_use_for_optimisation)
+                self.useful_player_attributes['uid'].tolist(),
+                self.useful_player_attributes['position'].tolist(),
+                self.useful_player_attributes[value_to_use_for_optimisation].tolist(),
+                self.useful_player_attributes['now_cost'].tolist(),
+                self.useful_player_attributes['team_name'].tolist(),
+                value_to_use_for_optimisation
+            )
 
-            self.df_for_view, gks, defs, mfs, fwds, stats = opt.post_process_data(result_df, total_stats)
+            self.df_for_view, gks, defs, mfs, fwds, stats = opt.post_process_data(
+                self.useful_player_attributes[['uid', 'name']].copy(),
+                result_df,
+                total_stats
+            )
         except opt.OptimisationValuesAllZeroError:
             self.main_window.set_status_display_text("The values chosen to be used for optimisation "
                                                      "are all zero.")

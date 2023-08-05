@@ -1,3 +1,6 @@
+License
+========
+
 MIT License
 
 Copyright (c) 2020-2023 Ilias Charitos
