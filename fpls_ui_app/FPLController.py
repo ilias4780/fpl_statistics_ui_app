@@ -37,7 +37,8 @@ class Controller(object):
         self.columns_for_sorting = ['total_points', 'now_cost', 'value', 'position', 'team_name', 'form', 'minutes',
                                     'ict_index', 'ict_index_rank', 'goals_scored', 'assists', 'clean_sheets',
                                     'bonus', 'selected_by_percent', 'transfer_diff', 'transfers_in', 'transfers_out']
-        self.columns_for_optimisation = ['total_points', 'value', 'form', 'ict_index']
+        self.columns_for_optimisation = ['total_points', 'value', 'form',
+                                         'ict_index', 'selected_by_percent']
 
         # Populate the sort_value_button
         self.main_window.select_sort_value_button.addItems(self.columns_for_sorting)

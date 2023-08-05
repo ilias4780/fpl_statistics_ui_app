@@ -24,6 +24,8 @@ Changelog in Version 2.0.0
 - UI refactored to split the table statistics and the best 15 selection into two different tabs,
   for better user experience.
 - Columns `first_name`, `second_name` are now combined into one column named `name`.
+- Added `Percent Selected` to the optimisation targets, so that users can find the most selected by squad
+  members to fill their team (towards a 'template' team)
 
 
 Features

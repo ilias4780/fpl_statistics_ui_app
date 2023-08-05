@@ -9,6 +9,7 @@ import streamlit as st
 
 import best_15_optimisation as opt
 import data_handling as dh
+from constants import options_mapping
 
 
 def set_best15_players_template(goalkeepers,
@@ -232,12 +233,6 @@ def run_dashboard():
     )['uid'].tolist()
 
     # Best 15 selection calculation
-    options_mapping = {
-        'Total Points': 'total_points',
-        'Value': 'value',
-        'Form': 'form',
-        'ICT Index': 'ict_index'
-    }
     if option := opt_tab.selectbox(
             "Calculate best 15 players - select criteria:",
             options=[None, *options_mapping.keys()],
